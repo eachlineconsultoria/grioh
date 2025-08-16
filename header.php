@@ -55,7 +55,7 @@
     </div>
   </header>
 
-  <main id="conteudo" class="py-4"></main>
+<main id="content" <?php if(function_exists('grioh_schema_type')){ grioh_schema_type(); } ?> class="py-4">
 
 
 
