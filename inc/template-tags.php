@@ -12,7 +12,7 @@ add_filter('the_title', function ($title) {
   return $title === '' ? esc_html('...') : wp_kses_post($title);
 });
 
-// Schema.org no elemento principal (use: <main <?php grioh_schema_type(); ?>>
+// Schema.org no elemento principal
 function grioh_schema_type() {
   $schema = 'https://schema.org/';
   if (is_single())      $type = 'Article';
@@ -20,16 +20,16 @@ function grioh_schema_type() {
   elseif (is_search())  $type = 'SearchResultsPage';
   else                  $type = 'WebPage';
 
-  echo 'itemscope itemtype="' . esc_url( $schema ) . esc_attr( $type ) . '"';
+  echo 'itemscope itemtype="' . esc_url($schema) . esc_attr($type) . '"';
 }
 
-// itemprop=url nos links do menu (SEO leve)
+// itemprop=url nos links do menu
 add_filter('nav_menu_link_attributes', function ($atts) {
   $atts['itemprop'] = 'url';
   return $atts;
 }, 10);
 
-// Shim para wp_body_open (compatibilidade)
+// Shim para wp_body_open (compat)
 if (!function_exists('grioh_wp_body_open')) {
   function grioh_wp_body_open() { do_action('wp_body_open'); }
 }
@@ -57,7 +57,7 @@ add_filter('excerpt_more', function ($more) {
        . '</a>';
 });
 
-// Pingback header quando aplicável
+// Pingback header
 add_action('wp_head', function () {
   if (is_singular() && pings_open()) {
     printf('<link rel="pingback" href="%s">' . "\n", esc_url(get_bloginfo('pingback_url')));

@@ -16,34 +16,13 @@ Text Domain: grioh
 BlankSlate WordPress Theme adaptado por Wagner Beethoven para Grioh Games.
 Distribuído sob os termos da GNU GPL.
 */
-
-/* LOGO */
-:focus-visible {
-  outline: 2px solid #0d6efd;
-  outline-offset: 2px;
-}
-
-.navbar .btn.btn-link {
-  text-decoration: none;
-}
-
-.navbar .custom-logo,
-.navbar .custom-logo-inline {
-  max-height: 48px;
-  height: auto;
-  width: auto;
-  display: inline-block;
-}
-
-/* Troca global da fonte do Bootstrap por Lexend */
-:root{
-  /* Bootstrap usa esta var p/ compor --bs-body-font-family */
+:root {
   --bs-font-sans-serif: "Lexend", system-ui, -apple-system, "Segoe UI", Roboto,
-                        "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
-                        sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
 }
 
 /* (Opcional) se quiser forçar no body explicitamente */
-body{
+body {
   font-family: var(--bs-font-sans-serif);
 }

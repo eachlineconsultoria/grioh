@@ -1,12 +1,26 @@
 <?php
-// Define versão do tema para cache-busting
-define('GRIOH_VERSION', wp_get_theme()->get('Version') ?: '1.0.0');
+/**
+ * Funções principais do tema Grioh
+ */
+define('GRIOH_INC', get_template_directory() . '/inc');
 
-// Carrega módulos
-require_once get_template_directory() . '/inc/template-tags.php';
-require_once get_template_directory() . '/inc/comments.php';
-require_once get_template_directory() . '/inc/media.php';
-require_once get_template_directory() . '/inc/admin-notice.php';
-require_once get_template_directory() . '/inc/setup.php';
-require_once get_template_directory() . '/inc/assets.php';
-require_once get_template_directory() . '/inc/navigation.php';
+$grioh_includes = [
+  'template-tags.php',
+  'comments.php',
+  'media.php',
+  'admin-notice.php',
+  'enqueue.php',
+  'setup.php',
+  'assests.php',
+  'navigation.php',
+  'render-block.php'
+];
+
+foreach ($grioh_includes as $file) {
+  $path = GRIOH_INC . '/' . $file;
+  if (file_exists($path)) {
+    require_once $path;
+  } else {
+    error_log("GRIOH: arquivo não encontrado: $path");
+  }
+}
