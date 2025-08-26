@@ -13,8 +13,9 @@ add_action('after_setup_theme', function () {
   if (!isset($content_width)) $content_width = 1920;
 
   register_nav_menus([
-    'main-menu'   => esc_html__('Main Menu', 'grioh'),
-    'footer-menu' => esc_html__('Footer Menu', 'grioh'),
+    'main-menu'   => esc_html__('Menu principal', 'grioh'),
+    'footer-menu' => esc_html__('Menu do rodapé', 'grioh'),
+    'footer-credits' => esc_html__('Menu dos créditos', 'grioh'),
   ]);
 
   add_theme_support('custom-logo', [

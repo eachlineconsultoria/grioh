@@ -8,8 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php wp_head(); ?>
 
-  <!-- (Opcional) CSS de diagnóstico de acessibilidade. Evite em produção. -->
-  <!-- <link rel="stylesheet" href="https://raw.githubusercontent.com/karlgroves/diagnostic.css/refs/heads/master/diagnostic.css"> -->
+  <link rel="stylesheet" href="https://raw.githubusercontent.com/karlgroves/diagnostic.css/refs/heads/master/diagnostic.css">
 </head>
 
 <body <?php body_class(); ?>>
@@ -78,3 +77,9 @@
   <main id="content" <?php if (function_exists('grioh_schema_type')) {
     grioh_schema_type();
   } ?> class="py-4">
+
+  <?php if (function_exists('wb_bootstrap_breadcrumbs')) {
+  wb_bootstrap_breadcrumbs([
+    'show_on_front' => false,   // true para mostrar também na home
+  ]);
+} ?>

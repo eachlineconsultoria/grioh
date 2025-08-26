@@ -1,19 +1,23 @@
 <?php
-/**
- * Funções principais do tema Grioh
- */
 define('GRIOH_INC', get_template_directory() . '/inc');
 
 $grioh_includes = [
+  // padrão
   'template-tags.php',
   'comments.php',
   'media.php',
   'admin-notice.php',
+  // configuração do tema
   'enqueue.php',
   'setup.php',
   'assests.php',
   'navigation.php',
-  'render-block.php'
+  'render-block.php',
+  'pattern.php',
+  'sidebar.php',
+  'breadcrumb.php',
+  // administração
+  'admin-posts-list.php'
 ];
 
 foreach ($grioh_includes as $file) {

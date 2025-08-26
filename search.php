@@ -4,7 +4,8 @@
 <h1 class="entry-title" itemprop="name"><?php printf( esc_html__( 'Search Results for: %s', 'grioh' ), get_search_query() ); ?></h1>
 </header>
 <?php while ( have_posts() ) : the_post(); ?>
-<?php get_template_part( 'entry' ); ?>
+<?php get_template_part(slug: 'template-parts/entry', name: 'entry'); ?>
+
 <?php endwhile; ?>
 <?php get_template_part( 'nav', 'below' ); ?>
 <?php else : ?>
