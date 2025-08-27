@@ -17,6 +17,11 @@ function grioh_register_sidebars()
       'id' => 'footer-social',
       'description' => __('Espaço para inserir os links das redes sociais do rodapé', 'grioh'),
     ],
+    [
+      'name' => __('Sidebar páginas', 'grioh'),
+      'id' => 'sidebar-page',
+      'description' => __('Espaço para inserir os widgets nas páginas', 'grioh'),
+    ],
 
   ];
 

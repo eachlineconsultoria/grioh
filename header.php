@@ -8,10 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php wp_head(); ?>
 
-  <link rel="stylesheet" href="https://raw.githubusercontent.com/karlgroves/diagnostic.css/refs/heads/master/diagnostic.css">
+  <link rel="stylesheet"
+    href="https://raw.githubusercontent.com/karlgroves/diagnostic.css/refs/heads/master/diagnostic.css">
 </head>
 
 <body <?php body_class(); ?>>
+
+
+
+
   <?php if (function_exists('wp_body_open')) {
     wp_body_open();
   } ?>
@@ -21,14 +26,15 @@
 
   <header class="navbar navbar-expand-lg bg-body-tertiary border-bottom" role="banner">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo esc_url(home_url('/')); ?>" title="Página inicial da <?php echo esc_attr(get_bloginfo('name')); ?>">
-        <?php if ( is_front_page() || is_home() ) : ?>
-          <h1 class="m-0" >
+      <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo esc_url(home_url('/')); ?>"
+        title="Página inicial da <?php echo esc_attr(get_bloginfo('name')); ?>">
+        <?php if (is_front_page() || is_home()): ?>
+          <h1 class="m-0">
             <img src="<?php echo esc_url(get_template_directory_uri() . '/img/logo-icon.svg'); ?>"
               alt="<?php echo esc_attr__('Ilustração de uma tartaruga no estilo pixelart vista de cima com as quatro patas abertas, na cor preta, com quatro riscos brancos no casco', 'grioh'); ?>"
               class="d-inline-block align-text-top" />
           </h1>
-        <?php else : ?>
+        <?php else: ?>
           <span class="m-0">
             <img src="<?php echo esc_url(get_template_directory_uri() . '/img/logo-icon.svg'); ?>"
               alt="<?php echo esc_attr__('Ilustração de uma tartaruga no estilo pixelart vista de cima com as quatro patas abertas, na cor preta, com quatro riscos brancos no casco', 'grioh'); ?>"
@@ -78,8 +84,8 @@
     grioh_schema_type();
   } ?> class="py-4">
 
-  <?php if (function_exists('wb_bootstrap_breadcrumbs')) {
-  wb_bootstrap_breadcrumbs([
-    'show_on_front' => false,   // true para mostrar também na home
-  ]);
-} ?>
+    <?php if (function_exists('wb_bootstrap_breadcrumbs')) {
+      wb_bootstrap_breadcrumbs([
+        'show_on_front' => false,   // true para mostrar também na home
+      ]);
+    } ?>

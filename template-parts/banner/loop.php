@@ -1,3 +1,4 @@
+<?php if ( ! function_exists('in_the_loop') || ! in_the_loop() || ! is_main_query() ) { return;} ?>
 <?php
 /**
  * Loop dos banners (categoria 'destaque')

@@ -16,6 +16,7 @@ $grioh_includes = [
   'pattern.php',
   'sidebar.php',
   'breadcrumb.php',
+  'helper.php',
   // administração
   'admin-posts-list.php'
 ];

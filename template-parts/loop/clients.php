@@ -1,6 +1,10 @@
+<?php if ( ! function_exists('in_the_loop') || ! in_the_loop() || ! is_main_query() ) { return;} ?>
+
+
 <?php
 /**
- * Loop de posts reutilizável (com links em imagem, título e botão)
+ * Loop de posts reutilizável (corrigido)
+ * Parâmetros: category (slug), posts_per_page (int)
  */
 
 $args = [
@@ -31,12 +35,11 @@ if ($query->have_posts()): ?>
               <?php
               $thumb_id = get_post_thumbnail_id($post_id);
               $alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true);
-
               the_post_thumbnail('medium', [
                 'class' => 'card-img-top img-fluid',
                 'alt' => $alt ? $alt : $title,
                 'loading' => 'lazy',
-                'title' => 'Conheça o jogo: ' . $title
+                'title' => 'Conheça o projeto: ' . $title
 
               ]);
               ?>
@@ -44,18 +47,14 @@ if ($query->have_posts()): ?>
           <?php endif; ?>
 
           <div class="card-body">
-            <h2 class="card-title h5 mb-2">
+            <h2 class="card-title h5 mb-3">
               <a href="<?php echo esc_url($permalink); ?>" class="text-decoration-none">
                 <?php echo esc_html($title); ?>
               </a>
             </h2>
 
-            <p class="card-text mb-3">
-              <?php echo esc_html(get_the_excerpt($post_id)); ?>
-            </p>
-
             <a href="<?php echo esc_url($permalink); ?>" class="btn btn-primary mt-2">
-              <?php esc_html_e('Conheça o jogo', 'grioh'); ?>
+              <?php esc_html_e('Conheça o projeto', 'grioh'); ?>
             </a>
           </div>
 

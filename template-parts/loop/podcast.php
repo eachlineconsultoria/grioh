@@ -1,7 +1,11 @@
+<?php if ( ! function_exists('in_the_loop') || ! in_the_loop() || ! is_main_query() ) { return;} ?>
+
 <?php
 /**
- * Loop de posts reutilizável (corrigido)
- * Parâmetros: category (slug), posts_per_page (int)
+ * Loop de posts reutilizável
+ * Parâmetros esperados:
+ * - category (slug da categoria)
+ * - posts_per_page (quantidade de posts)
  */
 
 $args = [
@@ -32,26 +36,31 @@ if ($query->have_posts()): ?>
               <?php
               $thumb_id = get_post_thumbnail_id($post_id);
               $alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true);
+
               the_post_thumbnail('medium', [
                 'class' => 'card-img-top img-fluid',
                 'alt' => $alt ? $alt : $title,
                 'loading' => 'lazy',
-                'title' => 'Conheça o projeto: ' . $title
-
+                'title' => 'Ouça do episódio: ' . $title
               ]);
               ?>
             </a>
           <?php endif; ?>
 
           <div class="card-body">
-            <h2 class="card-title h5 mb-3">
-              <a href="<?php echo esc_url($permalink); ?>" class="text-decoration-none">
-                <?php echo esc_html($title); ?>
-              </a>
+            <h2 class="visually-hidden-focusable">
+              <?php echo esc_html($title); ?>
             </h2>
 
-            <a href="<?php echo esc_url($permalink); ?>" class="btn btn-primary mt-2">
-              <?php esc_html_e('Conheça o projeto', 'grioh'); ?>
+            <?php if ($participantes = get_post_meta($post_id, 'participantes', true)): ?>
+              <p class="mb-3">
+                <?php echo esc_html__('Participação de', 'grioh'); ?>
+                <?php echo ' ' . esc_html($participantes); ?>
+              </p>
+            <?php endif; ?>
+
+            <a href="<?php echo esc_url($permalink); ?>" class="btn btn-primary mt-auto">
+              <?php esc_html_e('Ouça o episódio', 'grioh'); ?>
             </a>
           </div>
 

@@ -17,7 +17,7 @@
     </header>
     <?php
     get_template_part(
-      'template-parts/posts/loop-games',
+      'template-parts/loop/games',
       null,
       [
         'category' => 'jogos',
@@ -42,7 +42,7 @@
     <a href="<?php echo esc_url(get_permalink(get_page_by_path('contato'))); ?>">Fale Conosco</a>
 
     <div class="clients">
-      <?php get_template_part('template-parts/posts/loop-clients', null, ['category' => 'clientes', 'posts_per_page' => 3, 'category__not_in' => [6]]); ?>
+      <?php get_template_part('template-parts/loop/clients', null, ['category' => 'clientes', 'posts_per_page' => 3, 'category__not_in' => [6]]); ?>
     </div>
   </div>
 </section>
@@ -56,7 +56,7 @@
 
     <?php
     get_template_part(
-      'template-parts/posts/loop-podcast',
+      'template-parts/loop/podcast',
       null,
       [
         'category' => 'podcast',
@@ -78,7 +78,7 @@
 
     <?php
     get_template_part(
-      'template-parts/posts/loop-blog',
+      'template-parts/loop/blog',
       null,
       [
         'category' => 'blog',

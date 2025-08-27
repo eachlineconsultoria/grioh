@@ -1,3 +1,5 @@
+<?php if ( ! function_exists('in_the_loop') || ! in_the_loop() || ! is_main_query() ) { return;} ?>
+
 <?php
 /**
  * Card do banner: imagem destacada por padrão,

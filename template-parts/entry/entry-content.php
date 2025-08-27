@@ -1,3 +1,5 @@
+<?php if ( ! function_exists('in_the_loop') || ! in_the_loop() || ! is_main_query() ) { return;} ?>
+
 <div class="entry-content" itemprop="mainEntityOfPage">
   <?php if (has_post_thumbnail()): ?>
     <a href="<?php the_post_thumbnail_url('full'); ?>"

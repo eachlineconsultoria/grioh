@@ -1,9 +1,8 @@
+<?php if ( ! function_exists('in_the_loop') || ! in_the_loop() || ! is_main_query() ) { return;} ?>
+
 <?php
 /**
- * Loop de posts reutilizável
- * Parâmetros esperados:
- * - category (slug da categoria)
- * - posts_per_page (quantidade de posts)
+ * Loop de posts reutilizável (com links em imagem, título e botão)
  */
 
 $args = [
@@ -39,26 +38,26 @@ if ($query->have_posts()): ?>
                 'class' => 'card-img-top img-fluid',
                 'alt' => $alt ? $alt : $title,
                 'loading' => 'lazy',
-                'title' => 'Ouça do episódio: ' . $title
+                'title' => 'Conheça o jogo: ' . $title
+
               ]);
               ?>
             </a>
           <?php endif; ?>
 
           <div class="card-body">
-            <h2 class="visually-hidden-focusable">
-              <?php echo esc_html($title); ?>
+            <h2 class="card-title h5 mb-2">
+              <a href="<?php echo esc_url($permalink); ?>" class="text-decoration-none">
+                <?php echo esc_html($title); ?>
+              </a>
             </h2>
 
-            <?php if ($participantes = get_post_meta($post_id, 'participantes', true)): ?>
-              <p class="mb-3">
-                <?php echo esc_html__('Participação de', 'grioh'); ?>
-                <?php echo ' ' . esc_html($participantes); ?>
-              </p>
-            <?php endif; ?>
+            <p class="card-text mb-3">
+              <?php echo esc_html(get_the_excerpt($post_id)); ?>
+            </p>
 
-            <a href="<?php echo esc_url($permalink); ?>" class="btn btn-primary mt-auto">
-              <?php esc_html_e('Ouça o episódio', 'grioh'); ?>
+            <a href="<?php echo esc_url($permalink); ?>" class="btn btn-primary mt-2">
+              <?php esc_html_e('Conheça o jogo', 'grioh'); ?>
             </a>
           </div>
 

@@ -15,7 +15,6 @@
         title="<?php echo esc_attr(get_bloginfo('name')); ?>" class="d-inline-block align-text-top" />
 
     </a>
-
     <?php
     wp_nav_menu([
       'theme_location' => 'main-menu',
@@ -26,23 +25,41 @@
       'walker' => new Grioh_Bootstrap_Navwalker(),
     ]);
     ?>
+
+    <div class="d-flex justify-content-between">
+
+
+      <?php
+      wp_nav_menu([
+        'theme_location' => 'footer-credits',
+        'container' => false,
+        'menu_class' => 'navbar',
+        'depth' => 2,
+        'fallback_cb' => '__return_false',
+        'walker' => new Grioh_Bootstrap_Navwalker(),
+      ]);
+      ?>
+
+
+
+      <?php if (is_active_sidebar('footer-social')): ?>
+        <aside class="sidebar" role="complementary">
+          <?php dynamic_sidebar('footer-social'); ?>
+        </aside>
+      <?php endif; ?>
+    </div>
+
+
+
+    <div class="d-flex justify-content-between">
+      <p>&copy; <?php echo date('Y'); ?> Grioh Games, todos os direitos reservados.</p>
+
+      <a title="Desenvolvido por Wagner Beethoven" href="http://wagnerbeethoven.com.br">Wagner Beethoven</a>
+    </div>
   </div>
 
-  <?php if (is_active_sidebar('footer-social')): ?>
-    <aside class="sidebar" role="complementary">
-      <?php dynamic_sidebar('footer-social'); ?>
-    </aside>
-  <?php endif; ?>
-
-  <div class="d-flex justify-content-between">
-    <p>&copy; <?php echo date('Y'); ?> Grioh Games, todos os direitos reservados.</p>
-
-    <a title="Desenvolvido por Wagner Beethoven" href="http://wagnerbeethoven.com.br">Wagner Beethoven</a>
-  </div>
 
 
-
-  </div>
 </footer>
 
 <?php get_template_part('template-parts/modal-search'); ?>

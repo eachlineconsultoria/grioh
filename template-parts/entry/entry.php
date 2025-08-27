@@ -1,3 +1,5 @@
+<?php if ( ! function_exists('in_the_loop') || ! in_the_loop() || ! is_main_query() ) { return;} ?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <header>
     <?php if ( is_singular() ) : ?>
