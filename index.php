@@ -1,11 +1,11 @@
 <?php get_header(); ?>
 
-<?php get_template_part('template-parts/banner/loop', 'banner'); ?>
+<?php get_template_part('template-parts/banner/content', 'content'); ?>
 
 <section id="about">
   <div class="container">
     <h2>Sobre nós</h2>
-    <?php dynamic_sidebar('about-us-area'); ?>
+    <?php dynamic_sidebar(index: 'about-us-area'); ?>
   </div>
 </section>
 

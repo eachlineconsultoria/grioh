@@ -6,9 +6,28 @@ $permalink = get_permalink();
 $title     = get_the_title();
 $date_pub  = get_the_date('d/m/Y');
 ?>
+
+default
+
+
+
 <article <?php post_class('mb-4'); ?>>
   <div class="card h-100">
     <div class="card-body">
+      <?php if (has_post_thumbnail()): ?>
+        <a href="<?php echo esc_url($permalink); ?>" class="d-block" aria-label="<?php echo esc_attr($title); ?>">
+          <?php
+            $thumb_id = get_post_thumbnail_id();
+            $alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true);
+            the_post_thumbnail('medium', [
+              'class'   => 'card-img-top img-fluid',
+              'alt'     => $alt ?: $title,
+              'loading' => 'lazy',
+            ]);
+          ?>
+        </a>
+      <?php endif; ?>
+
       <h2><a href="<?php echo esc_url($permalink); ?>"><?php echo esc_html($title); ?></a></h2>
 
       <div class="d-flex justify-content-start align-items-center gap-2 mb-2">
@@ -19,8 +38,10 @@ $date_pub  = get_the_date('d/m/Y');
         <time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html($date_pub); ?></time>
       </div>
 
+      <?php the_excerpt(); ?>
+
       <a href="<?php echo esc_url($permalink); ?>">
-        Ouça o episódio<i aria-hidden="true" class="ms-1 bi bi-arrow-right-short"></i>
+        Leia mais<i aria-hidden="true" class="ms-1 bi bi-arrow-right-short"></i>
       </a>
     </div>
   </div>

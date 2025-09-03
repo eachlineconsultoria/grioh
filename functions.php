@@ -17,6 +17,7 @@ $grioh_includes = [
   'sidebar.php',
   'breadcrumb.php',
   'helper.php',
+  'video_thumbnai.php',
   // administração
   'admin-posts-list.php'
 ];

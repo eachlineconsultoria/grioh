@@ -29,8 +29,8 @@ get_header();
           $slug = !empty($term->slug) ? sanitize_title($term->slug) : '';
           $templates = [];
           if ($slug)
-            $templates[] = "template-parts/category/{$slug}.php";
-          $templates[] = "template-parts/category/default.php";
+            $templates[] = "template-parts/category/category-{$slug}.php";
+          $templates[] = "template-parts/category/category-default.php";
           $templates[] = "template-parts/default.php";
           locate_template($templates, true, false);
           ?>

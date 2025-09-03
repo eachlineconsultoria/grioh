@@ -6,6 +6,10 @@ $permalink = get_permalink();
 $title     = get_the_title();
 $date_pub  = get_the_date('d/m/Y');
 ?>
+
+blog
+
+
 <article <?php post_class('mb-4'); ?>>
   <div class="card h-100">
     <div class="card-body">
@@ -36,7 +40,7 @@ $date_pub  = get_the_date('d/m/Y');
       <?php the_excerpt(); ?>
 
       <a href="<?php echo esc_url($permalink); ?>">
-        Leia mais<i aria-hidden="true" class="ms-1 bi bi-arrow-right-short"></i>
+        Leia o texto<i aria-hidden="true" class="ms-1 bi bi-arrow-right-short"></i>
       </a>
     </div>
   </div>
