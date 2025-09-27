@@ -19,7 +19,9 @@ $grioh_includes = [
   'helper.php',
   'video_thumbnai.php',
   // administração
-  'admin-posts-list.php'
+  'admin-posts-list.php',
+  // administração
+  'links.php'
 ];
 
 foreach ($grioh_includes as $file) {
@@ -30,3 +32,10 @@ foreach ($grioh_includes as $file) {
     error_log("GRIOH: arquivo não encontrado: $path");
   }
 }
+
+
+
+
+
+// ativar os links nativos do wordpress
+add_filter('pre_option_link_manager_enabled', '__return_true');

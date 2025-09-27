@@ -1,8 +1,43 @@
 <?php get_header(); ?>
 
-<?php get_template_part('template-parts/banner/content', 'content'); ?>
+<section class="intro" id="intro">
+  <div class="container">
+    <?php
+    get_template_part('template-parts/page_teaser/teaser', null, [
+      'slug' => 'consultoria',
+      'show' => 'image,title, excerpt,button',
+      'link' => 'image,title',
+      'order' => 'image,title,excerpt,button',
+    ]);
+    ?>
+  </div>
+</section>
 
-<section id="about">
+<section class="partners" id="partners">
+  <div class="container">
+    <?php
+    get_template_part('template-parts/page_teaser/teaser', null, [
+      'slug' => 'parceiros',
+      'show' => 'image,title, excerpt',
+      'link' => 'image,title',
+      'order' => 'image,title,excerpt',
+    ]);
+    ?>
+<?php echo do_shortcode('[wb_links category="parceiros" limit="4" orderby="rand" show_image="1" show_url="0" show_count="0"]'); ?>
+    <?php
+    get_template_part('template-parts/page_teaser/teaser', null, [
+      'slug' => 'parceiros',
+      'show' => 'button',
+      'link' => 'title',
+      'order' => 'button',
+    ]);
+    ?>
+  </div>
+</section>
+<?php /*
+get_template_part('template-parts/banner/content', 'content'); */ ?>
+
+<!-- <section id="about">
   <div class="container">
     <h2>Sobre nós</h2>
     <?php dynamic_sidebar(index: 'about-us-area'); ?>
@@ -89,7 +124,7 @@
     ?>
 
   </div>
-</section>
+</section> -->
 
 
 <?php /* get_template_part('nav', 'below');*/ ?>
