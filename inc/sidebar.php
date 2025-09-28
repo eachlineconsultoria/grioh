@@ -3,9 +3,9 @@ function grioh_register_sidebars()
 {
   $sidebars = [
     [
-      'name' => __('Sobre nós (Index)', 'grioh'),
-      'id' => 'about-us-area',
-      'description' => __('Espaço para inserir os blocos sincronizado da seção: Sobre', 'grioh'),
+      'name' => __('CTA 1 (index)', 'grioh'),
+      'id' => 'cta-1',
+      'description' => __('', 'grioh'),
     ],
     [
       'name' => __('Consultoria (Index)', 'grioh'),

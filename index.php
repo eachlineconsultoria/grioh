@@ -1,10 +1,10 @@
 <?php get_header(); ?>
 
-<section class="intro" id="intro">
+<section class="intro my-5 py-5 " id="intro">
   <div class="container">
     <?php
     get_template_part('template-parts/page_teaser/teaser', null, [
-      'slug' => 'consultoria',
+      'slug' => 'contato',
       'show' => 'image,title, excerpt,button',
       'link' => 'image,title',
       'order' => 'image,title,excerpt,button',
@@ -13,7 +13,7 @@
   </div>
 </section>
 
-<section class="partners" id="partners">
+<section class="partners my-5 py-5 " id="partners">
   <div class="container">
     <?php
     get_template_part('template-parts/page_teaser/teaser', null, [
@@ -23,23 +23,110 @@
       'order' => 'image,title,excerpt',
     ]);
     ?>
-<?php echo do_shortcode('[wb_links category="parceiros" limit="4" orderby="rand" show_image="1" show_url="0" show_count="0"]'); ?>
+    <?php echo do_shortcode('[wb_links category="parceiros" limit="4" orderby="rand" show_image="1" show_url="0" show_count="0"]'); ?>
     <?php
     get_template_part('template-parts/page_teaser/teaser', null, [
       'slug' => 'parceiros',
       'show' => 'button',
-      'link' => 'title',
+      'link' => 'button',
       'order' => 'button',
     ]);
     ?>
   </div>
 </section>
+
+<section class="cases my-5 py-5 " id="cases">
+  <div class="container">
+    <header class="d-flex justify-content-between">
+      <?php
+      get_template_part('template-parts/page_teaser/teaser', null, [
+        'slug' => 'clientes',
+        'show' => 'title',
+        'link' => 'title',
+        'order' => 'title',
+      ]);
+      ?>
+
+      <?php
+      get_template_part('template-parts/page_teaser/teaser', null, [
+        'slug' => 'clientes',
+        'show' => 'button',
+        'link' => 'button',
+        'order' => 'button',
+      ]);
+      ?>
+    </header>
+
+    <?php
+    get_template_part('template-parts/page_teaser/teaser', null, [
+      'slug' => 'clientes',
+      'show' => 'excerpt',
+      // 'link' => 'except',
+      'order' => 'except',
+    ]);
+    ?>
+    <?php echo do_shortcode('[wb_links category="cases" limit="6" orderby="rand" show_image="1" show_url="0" show_count="0"]'); ?>
+
+    <?php // get_template_part('template-parts/loop/cases', 'cases'); ?>
+
+  </div>
+</section>
+
+<?php if (is_active_sidebar('cta-1')): ?>
+  <section id="sidebar" class="sidebar my-5 py-5" role="complementary"
+    aria-label="<?php esc_attr_e('Barra lateral', 'grioh'); ?>">
+    <div class="container">
+      <?php dynamic_sidebar('cta-1'); ?>
+    </div>
+  </section>
+<?php endif; ?>
+
+<section class="jobs" id="jobs">
+  <div class="container">
+    <header class="d-flex justify-content-between">
+      
+        <?php
+        get_template_part('template-parts/page_teaser/teaser', null, [
+          'slug' => 'trabalhe-conosco',
+          'show' => 'title',
+          'link' => 'title',
+          'order' => 'title',
+        ]);
+        ?>
+      
+
+      <?php
+      get_template_part('template-parts/page_teaser/teaser', null, [
+        'slug' => 'trabalhe-conosco',
+        'show' => 'button',
+        'link' => 'button',
+        'order' => 'button',
+      ]);
+      ?>
+    </header>
+    <small>
+      <?php
+      get_template_part('template-parts/page_teaser/teaser', null, [
+        'slug' => 'trabalhe-conosco',
+        'show' => 'excerpt',
+        // 'link' => 'except',
+        'order' => 'except',
+      ]);
+      ?>
+
+    </small>
+
+    <?php get_template_part('template-parts/loop/vagas', 'vagas'); ?>
+
+  </div>
+</section>
+
 <?php /*
 get_template_part('template-parts/banner/content', 'content'); */ ?>
 
 <!-- <section id="about">
   <div class="container">
-    <h2>Sobre nós</h2>
+    Sobre nós
     <?php dynamic_sidebar(index: 'about-us-area'); ?>
   </div>
 </section>
@@ -47,7 +134,7 @@ get_template_part('template-parts/banner/content', 'content'); */ ?>
 <section id="games">
   <div class="container">
     <header class="d-flex justify-content-between align-items-center">
-      <h2>Jogos</h2>
+      Jogos
       <a href="<?php bloginfo('url'); ?>/jogos">Conheça todos os jogos</a>
     </header>
     <?php
@@ -68,7 +155,7 @@ get_template_part('template-parts/banner/content', 'content'); */ ?>
 <section id="services">
   <div class="container">
     <header class="d-flex justify-content-between align-items-center">
-      <h2>Consultoria</h2>
+      Consultoria
       <a href="<?php bloginfo('url'); ?>/jogos">Conheça nossos clientes</a>
     </header>
 
@@ -85,7 +172,7 @@ get_template_part('template-parts/banner/content', 'content'); */ ?>
 <section id="podcast">
   <div class="container">
     <header class="d-flex justify-content-between align-items-center">
-      <h2>Podcast</h2>
+      Podcast
       <a href="<?php bloginfo('url'); ?>/jogos">Ouça todos os episódios</a>
     </header>
 
@@ -107,7 +194,7 @@ get_template_part('template-parts/banner/content', 'content'); */ ?>
 <section id="blog">
   <div class="container">
     <header class="d-flex justify-content-between align-items-center">
-      <h2>Blog</h2>
+      Blog
       <a href="<?php bloginfo('url'); ?>/jogos">Leia todas as publicações</a>
     </header>
 

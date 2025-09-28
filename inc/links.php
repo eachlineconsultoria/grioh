@@ -91,7 +91,7 @@ add_shortcode('wb_links', function ($atts) {
             ]);
           } else {
             $imgH = sprintf(
-              '<img src="%s" alt="%s" loading="lazy" decoding="async" class="bg-dark img-fluid wb-links__img" />',
+              '<img src="%s" alt="%s" loading="lazy" decoding="async" class="b-block mx-auto rounded img-fluid wb-links__img" />',
               esc_url($imgU),
               esc_attr($alt)
             );
@@ -99,15 +99,15 @@ add_shortcode('wb_links', function ($atts) {
         }
         ?>
         <li class="wb-links__item col-4 col-md mb-3">
-          <a class="wb-links__anchor h-100 align-items-center d-flex justify-content-center"
+          <a class="wb-links__anchor bg-light h-100 align-items-center d-flex justify-content-center"
              href="<?php echo esc_url($url); ?>"
              <?php echo $link->link_target ? ' target="'.esc_attr($link->link_target).'" rel="noopener"' : ''; ?>>
             <?php echo $imgH ? $imgH.' ' : ''; ?>
-            <?php /* <span class="wb-links__name"><?php echo esc_html($name); ?></span> */ ?>
+            <h3 class="wb-links__name visually-hidden"><?php echo esc_html($name); ?></h3>
           </a>
 
           <?php if ($a['show_url'] === '1'): ?>
-            <small class="wb-links__url"><?php echo esc_html($url); ?></small>
+             <small class="wb-links__url"><?php echo esc_html($url); ?></small>
           <?php endif; ?>
         </li>
       <?php endforeach; ?>

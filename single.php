@@ -9,7 +9,7 @@
     $category_slug = (!empty($category)) ? $category[0]->slug : 'default';
 
     // Lista de slugs válidos
-    $valid_templates = ['blog', 'jogos', 'podcast'];
+    $valid_templates = ['blog', 'vagas', 'jogos', 'podcast'];
 
     // Verifica se o slug da categoria está na lista, senão usa 'default'
     $template_slug = in_array($category_slug, $valid_templates) ? $category_slug : 'default';
