@@ -12,48 +12,98 @@
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
+
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/aplicacao.css">
 </head>
 
-<body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'eachline' ); ?></a>
+<body <?php body_class(' px-3 px-md-2'); ?>>
+	<?php wp_body_open(); ?>
+	<div id="page" class="site">
+		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'eachline'); ?></a>
+		<header id="masthead" class="site-header py-4">
+			<div class="container">
+				<div
+					class="d-flex flex-column flex-lg-row justify-content-center justify-content-md-between align-items-start align-items-lg-center">
+					<div class="site-branding d-flex mx-auto align-items-center">
+						<?php the_custom_logo(); ?>
+						<?php if (is_front_page() && is_home()): ?>
+							<h1 class="site-title mb-0 ms-2">
+								<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+									<?php bloginfo('name'); ?>
+								</a>
+							</h1>
+						<?php else: ?>
+							<p class="site-title mb-0 ms-2">
+								<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+									<?php bloginfo('name'); ?>
+								</a>
+							</p>
+						<?php endif; ?>
+					</div>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$eachline_description = get_bloginfo( 'description', 'display' );
-			if ( $eachline_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $eachline_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+					<nav id="site-navigation"
+						class="main-navigation navbar justify-content-center justify-content-md-end navbar-expand-lg">
+						<button class="mt-3 navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-menu"
+							aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation">
+							<i class="fa-solid fa-bars"></i> Menu
+						</button>
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'eachline' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+						<div class="collapse navbar-collapse" id="primary-menu">
+							<?php
+							wp_nav_menu(array(
+								'theme_location' => 'menu-1',
+								'container' => false,
+								'menu_class' => 'navbar-nav ms-auto mb-2 mb-lg-0',
+								'fallback_cb' => 'WP_Bootstrap_Navwalker::fallback',
+								'walker' => new WP_Bootstrap_Navwalker(),
+							));
+							?>
+
+							<ul id="menu-icones" class="navbar-nav flex-row gap-2 ms-lg-3 mt-3 mt-lg-0">
+								<li class="nav-item">
+									<a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#searchModal">
+										<span class="visually-hidden">Pesquisa</span>
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" data-bs-toggle="dropdown">
+										<span class="visually-hidden">Traduzir</span>
+										<i class="fa-solid fa-language"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+
+				</div>
+			</div>
+		</header>
+
+
+		<!-- Modal de Pesquisa -->
+		<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="searchModalLabel">Pesquisar</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+					</div>
+					<div class="modal-body">
+						<form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+							<div class="input-group">
+								<input type="search" class="form-control" placeholder="Buscar..."
+									value="<?php echo get_search_query(); ?>" name="s">
+								<button class="btn btn-primary" type="submit"><i class="fa-solid fa-search"></i></button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
