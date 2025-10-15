@@ -22,9 +22,8 @@
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/aplicacao.css">
 </head>
 
-<body <?php body_class(' px-3 px-md-2'); ?>>
+<body <?php body_class('site'); ?>>
 	<?php wp_body_open(); ?>
-	<div id="page" class="site">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'eachline'); ?></a>
 		<header id="masthead" class="site-header py-4">
 			<div class="container">

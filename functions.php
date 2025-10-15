@@ -207,3 +207,5 @@ require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
 // ativação do menu
 add_filter('pre_option_link_manager_enabled', '__return_true');
 
+// remover tag categoria
+require_once get_template_directory() . '/inc/remove-slug-category-tag.php';
