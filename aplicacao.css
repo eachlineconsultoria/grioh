@@ -52,6 +52,7 @@ a:visited {
   text-align: left;
 }
 /* botão */
+
 .link {
   text-decoration: none;
   font-weight: bold;
@@ -66,16 +67,17 @@ a:visited {
   font-weight: bold;
   position: relative;
 }
+
 .link:after {
   display: none;
   content: "";
-  width: calc(100% - 38px);
   height: 2px;
   position: absolute;
   left: 0;
   bottom: 0;
   background-color: var(--ativo);
 }
+
 .link:hover:after {
   display: block;
 }
@@ -83,7 +85,8 @@ a.link-primario {
   color: var(--ativo);
 }
 a.link-primario:hover,
-a.link-primario:focus {
+a.link-primario:focus,
+a.link-primario:visited {
   color: var(--cinza-escuro);
 }
 a.link:hover:after {
@@ -101,7 +104,7 @@ a.link:hover:after {
 /* links */
 #menu-principal .nav-link:after {
   content: "";
-  width: calc(100% - (var(--bs-navbar-nav-link-padding-x) * 2));
+  /* width: calc(100% - (var(--bs-navbar-nav-link-padding-x) * 2)); */
   height: 2px;
   position: absolute;
   left: var(--bs-navbar-nav-link-padding-x);
@@ -179,32 +182,50 @@ a.link:hover:after {
   background-color: #fff;
 }
 
-/* cases */
-.case-card {
-}
-.case-image {
+/* cards */
+.card-image {
   height: 264px;
 }
-.case-body {
+.card-body {
   display: grid;
   row-gap: 1rem;
 }
-.case-title {
+.card-title {
   font-weight: bold;
   font-size: 1.25rem;
   margin-bottom: 1rem;
 }
-.case-description {
+ .card-title a {
+  color: var(--cinza-escuro);
+  text-decoration: none;
+}
+.card-title a:hover,
+.card-title a:focus {
+  color: var(--ativo);
+}
+.card-description {
   font-size: 1.125rem;
 }
-.case-footer {
+.card-footer {
   background: transparent;
 }
-
-.case-link:after {
-  width: calc(100% - 28px);
+.card-link{
+  position: relative;
+}
+.card-link:after {
+  display: none;
+  content: "";
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--ativo);
+  width: 80%;
 }
 
+.card-link:hover:after {
+  display: block;
+}
 /* cta */
 .cta {
   background: #ddd;
@@ -213,6 +234,6 @@ a.link:hover:after {
   font-size: 3rem;
   font-weight: bold;
 }
-.cta a{
+.cta a {
   text-decoration: none;
 }
