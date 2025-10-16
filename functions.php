@@ -50,7 +50,9 @@ function eachline_setup()
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__('Primary', 'eachline'),
+			'menu-principal' => esc_html__('Menu principal', 'eachline'),
+			'menu-footer' => esc_html__('Menud rodapé', 'eachline'),
+			'footer-links' => esc_html__('Politicas e Termos', 'eachline'),
 		)
 	);
 
@@ -123,19 +125,47 @@ add_action('after_setup_theme', 'eachline_content_width', 0);
  */
 function eachline_widgets_init()
 {
-	register_sidebar(
-		array(
-			'name' => esc_html__('Sidebar', 'eachline'),
-			'id' => 'sidebar-1',
-			'description' => esc_html__('Add widgets here.', 'eachline'),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget' => '</section>',
-			'before_title' => '<h2 class="widget-title">',
-			'after_title' => '</h2>',
-		)
-	);
+
+	// Sidebar principal
+	register_sidebar(array(
+		'name' => esc_html__('Sidebar', 'eachline'),
+		'id' => 'sidebar-1',
+		'description' => esc_html__('Adicione widgets à sidebar principal.', 'eachline'),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget' => '</section>',
+		'before_title' => '<h2 class="widget-title">',
+		'after_title' => '</h2>',
+	));
+
+	// Rodapé 1
+	register_sidebar(array(
+		'name' => esc_html__('Rodapé: redes sociais', 'eachline'),
+		'id' => 'footer-social',
+		'description' => esc_html__('Área de widgets de posicionamento das redes sociais.', 'eachline'),
+
+		// Remove divs e wrappers
+		'before_widget' => '',
+		'after_widget' => '',
+
+		// Opcional: pode manter os títulos se quiser
+		'before_title' => '',
+		'after_title' => '',
+	));
+
+
+	// Rodapé 2
+	// register_sidebar(array(
+	// 	'name'          => esc_html__('Rodapé 2', 'eachline'),
+	// 	'id'            => 'footer-2',
+	// 	'description'   => esc_html__('Área de widgets do rodapé - coluna 2.', 'eachline'),
+	// 	'before_widget' => '<div id="%1$s" class="widget %2$s">',
+	// 	'after_widget'  => '</div>',
+	// 	'before_title'  => '<h3 class="widget-title">',
+	// 	'after_title'   => '</h3>',
+	// ));
 }
 add_action('widgets_init', 'eachline_widgets_init');
+
 
 /**
  * Enqueue scripts and styles.

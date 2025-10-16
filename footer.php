@@ -10,20 +10,45 @@
  */
 
 ?>
+<?php require_once get_template_directory() . '/section/newsletter.php'; ?>
+<?php require_once get_template_directory() . '/section/jobs.php'; ?>
 
-<footer id="colophon" class="site-footer">
-	<div class="site-info">
-		<a href="<?php echo esc_url(__('https://wordpress.org/', 'eachline')); ?>">
+<footer id="colophon" class="site-footer flex-column flex-md-row footer justify-content-center d-flex">
+	<div class="site-info container">
+		<nav >
 			<?php
-			/* translators: %s: CMS name, i.e. WordPress. */
-			printf(esc_html__('Proudly powered by %s', 'eachline'), 'WordPress');
+			wp_nav_menu(array(
+				'theme_location' => 'menu-footer',
+				'container' => false,
+				'menu_class' => 'menu-footer m-0 p-0 navbar-nav align-items-center justify-content-center flex-column flex-md-row d-flex',
+				'fallback_cb' => 'WP_Bootstrap_Navwalker::fallback',
+				'walker' => new WP_Bootstrap_Navwalker(),
+			));
 			?>
-		</a>
-		<span class="sep"> | </span>
-		<?php
-		/* translators: 1: Theme name, 2: Theme author. */
-		printf(esc_html__('Theme: %1$s by %2$s.', 'eachline'), 'eachline', '<a href="http://wagnerbeethoven.com.br">Wagner Beethoven</a>');
-		?>
+		</nav>
+		<div class="footer-divider"></div>
+
+		<div class="footer-links flex-column flex-md-row d-flex justify-content-center justify-content-md-between">
+			<?php
+			wp_nav_menu(array(
+				'theme_location' => 'footer-links',
+				'container' => false,
+				'menu_class' => 'mb-3 mb-md-0 d-flex justify-content-start',
+
+			));
+			?>
+
+
+			<?php if (is_active_sidebar('footer-social')): ?>
+				<?php dynamic_sidebar('footer-social'); ?>
+			<?php endif; ?>
+		</div>
+		<div class="footer-credits d-flex justify-content-between">
+			<span>&copy; <?php the_date('Y'); ?>. Eachline — Todos os direitos reservados.</span>
+
+			<a href="http://wagnerbeethoven.com.br" title="Desenvolvido por Wagner Beethoven"><img
+					src="<?php echo get_template_directory_uri(); ?>/assets/img/author.svg"></a>
+		</div>
 	</div><!-- .site-info -->
 </footer><!-- #colophon -->
 

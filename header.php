@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/aplicacao.css">
 </head>
 
-<body <?php body_class('site'); ?>>
+<body <?php body_class('sitew'); ?>>
 	<?php wp_body_open(); ?>
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'eachline'); ?></a>
 		<header id="masthead" class="site-header py-4">
@@ -56,15 +56,15 @@
 						<div class="collapse navbar-collapse" id="primary-menu">
 							<?php
 							wp_nav_menu(array(
-								'theme_location' => 'menu-1',
+								'theme_location' => 'menu-principal',
 								'container' => false,
-								'menu_class' => 'navbar-nav ms-auto mb-2 mb-lg-0',
+								'menu_class' => 'navbar-nav ms-auto mb-2 mb-lg-0 menu-principal',
 								'fallback_cb' => 'WP_Bootstrap_Navwalker::fallback',
 								'walker' => new WP_Bootstrap_Navwalker(),
 							));
 							?>
 
-							<ul id="menu-icones" class="navbar-nav flex-row gap-2 ms-lg-3 mt-3 mt-lg-0">
+							<ul id="menu-icones" class="menu-principal-icones navbar-nav flex-row gap-2 ms-lg-3 mt-3 mt-lg-0">
 								<li class="nav-item">
 									<a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#searchModal">
 										<span class="visually-hidden">Pesquisa</span>
