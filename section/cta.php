@@ -7,7 +7,7 @@
     if ($page):
       $link = get_permalink($page->ID);
       ?>
-      <a href="<?php echo esc_url($link); ?>" class="d-flex align-items-center stretched-link" title="Vamos aplicar acessibilidade no seu produto digital?">
+      <a href="<?php echo esc_url($link); ?>" class="section-title text-center text-md-start d-flex align-items-center stretched-link" title="Vamos aplicar acessibilidade no seu produto digital?">
         Transforme sua Jornada digital
         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icons/animated-icon.gif" alt="" class="ms-3">
       </a>

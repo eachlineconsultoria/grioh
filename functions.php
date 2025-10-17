@@ -190,6 +190,8 @@ function theme_enqueue_scripts()
 	wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', array(), null, true);
 	wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css');
 	wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+	wp_enqueue_style('main-style', get_template_directory_uri() . '/style.css', array(), time());
+	wp_enqueue_style('aplicacao-style', get_template_directory_uri() . '/aplicacao.css', array(), time());
 
 
 }
@@ -238,4 +240,27 @@ require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
 add_filter('pre_option_link_manager_enabled', '__return_true');
 
 // remover tag categoria
-require_once get_template_directory() . '/inc/remove-slug-category-tag.php';
+// require_once get_template_directory() . '/inc/remove-slug-category-tag.php';
+
+
+function add_excerpt_to_pages()
+{
+	add_post_type_support('page', 'excerpt');
+}
+add_action('init', 'add_excerpt_to_pages');
+
+
+// ////////////////////////////////////////////
+// ////// REMOVER APOS DESENVOLVIMENTO ////////
+// ////////////////////////////////////////////
+
+function disable_cache_headers()
+{
+	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+	header("Cache-Control: post-check=0, pre-check=0", false);
+	header("Pragma: no-cache");
+}
+add_action('send_headers', 'disable_cache_headers');
+// ////////////////////////////////////////////
+// ////// REMOVER APOS DESENVOLVIMENTO ////////
+// ////////////////////////////////////////////

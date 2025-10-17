@@ -15,7 +15,26 @@
 
 <footer id="colophon" class="site-footer flex-column flex-md-row footer justify-content-center d-flex">
 	<div class="site-info container">
-		<nav >
+
+		<div class="site-branding text-center">
+			<?php the_custom_logo(); ?>
+			<?php if (is_front_page() && is_home()): ?>
+				<h1 class="site-title mb-0 ms-2">
+					<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+						<?php bloginfo('name'); ?>
+					</a>
+				</h1>
+			<?php else: ?>
+				<p class="site-title mb-0 ms-2">
+					<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+						<?php bloginfo('name'); ?>
+					</a>
+				</p>
+			<?php endif; ?>
+		</div>
+
+
+		<nav>
 			<?php
 			wp_nav_menu(array(
 				'theme_location' => 'menu-footer',

@@ -14,7 +14,7 @@ $cases_query = new WP_Query($args);
   <div class="row">
     <?php while ($cases_query->have_posts()):
       $cases_query->the_post(); ?>
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-md-4 mb-5 mb-md-0">
         <article class="card  border rounded h-100">
           <figure class="m-0 card-container">
             <?php if (has_post_thumbnail()): ?>
@@ -27,9 +27,9 @@ $cases_query = new WP_Query($args);
                 class="img-fluid card-image rounded-top w-100" alt="Imagem padrão">
             <?php endif; ?>
           </figure>
-          <div class="card-body case-body p-3">
+          <div class="card-body p-3">
             <h3 class="card-title mb-0">
-              <a href="<?php the_permalink(); ?>" class="card-link text-decoration-none">
+              <a href="<?php the_permalink(); ?>" class="card-link ">
               <?php the_title(); ?>
             </a></h3>
             <p class="card-excerpt mb-0"><?php echo get_the_excerpt(); ?></p>

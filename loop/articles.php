@@ -14,7 +14,7 @@ $articles_query = new WP_Query($args);
   <div class="row">
     <?php while ($articles_query->have_posts()):
       $articles_query->the_post(); ?>
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-md-4 mb-5 mb-md-0">
         <article class="card border rounded h-100">
           <figure class="m-0 card-container">
             <?php if (has_post_thumbnail()): ?>
@@ -27,7 +27,7 @@ $articles_query = new WP_Query($args);
                 class="img-fluid card-image rounded-top w-100" alt="Imagem padrão">
             <?php endif; ?>
           </figure>
-          <div class="card-body card-body p-3">
+          <div class="card-body p-3">
             <h3 class="card-title mb-0">
               <a href="<?php the_permalink(); ?>" class="card-link">
               <?php the_title(); ?>

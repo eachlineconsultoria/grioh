@@ -31,8 +31,17 @@ body {
   font-family: var(--font-base);
 }
 
+a,
 a:visited {
   color: var(--cinza-escuro);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--ativo);
+  text-decoration: var(--ativo) wavy underline;
+}
+a:focus {
+  color: var(--focado);
 }
 
 .custom-logo {
@@ -78,7 +87,6 @@ a:visited {
 .link {
   display: inline-block;
   font-weight: bold;
-  text-decoration: none;
   color: var(--cinza-escuro);
   position: relative;
 }
@@ -87,7 +95,6 @@ a:visited {
   content: "";
   background-color: transparent;
   position: absolute;
-  width: calc(100% - 38px);
   height: 2px;
   left: 0;
   bottom: 0;
@@ -110,6 +117,8 @@ a.link-primario:hover,
 a.link-primario:focus,
 a.link-primario:visited {
   color: var(--cinza-escuro);
+    text-decoration: var(--cinza-escuro) wavy underline
+
 }
 
 /* Link branco */
@@ -159,24 +168,6 @@ a.link-branco:hover:after {
   box-shadow: none;
 }
 
-.menu-footer .nav-link:after {
-  width: 100%;
-  left: 0;
-}
-.menu-principal .nav-link:after {
-  left: 0.5rem;
-  width: calc(100% - 1rem);
-}
-.menu-footer .nav-link:after,
-.menu-principal .nav-link:after {
-  content: "";
-
-  height: 2px;
-  position: absolute;
-  bottom: 4px;
-  background-color: transparent;
-}
-
 .menu-footer .nav-link:hover,
 .menu-footer .nav-link:focus,
 .menu-principal .nav-link:hover,
@@ -184,6 +175,7 @@ a.link-branco:hover:after {
 .menu-principal-icones .nav-link:hover,
 .menu-principal-icones .nav-link:focus {
   color: var(--focado);
+  text-decoration: var(--focado) wavy underline;
 }
 
 .menu-footer .nav-link:hover:after,
@@ -195,11 +187,10 @@ a.link-branco:hover:after {
 .menu-principal-icones .current-menu-item .nav-link {
   color: var(--ativo);
 }
-
-.menu-principal .current-menu-item .nav-link:after {
-  background: var(--ativo);
+.menu-principal .current-menu-item .nav-link:focus,
+.menu-principal .current-menu-item .nav-link:hover{
+    text-decoration: var(--ativo) wavy underline
 }
-
 .menu-footer {
   gap: 2rem;
 }
@@ -213,7 +204,6 @@ a.link-branco:hover:after {
 }
 
 .hero-icon {
-  left: calc(var(--bs-gutter-x) * 0.5);
   bottom: 0;
 }
 
@@ -268,7 +258,6 @@ a.link-branco:hover:after {
 
 .card-title a {
   color: var(--cinza-escuro);
-  text-decoration: none;
 }
 
 .card-title a:hover,
@@ -282,6 +271,7 @@ a.link-branco:hover:after {
 
 .card-footer {
   background: transparent;
+  padding-bottom: 1rem;
 }
 
 .card-link {
@@ -293,7 +283,6 @@ a.link-branco:hover:after {
   display: none;
   position: absolute;
   height: 2px;
-  width: calc(100% - 28px);
   left: 0;
   bottom: 0;
   background-color: var(--ativo);
@@ -315,6 +304,7 @@ a.link-branco:hover:after {
 
 .cta a {
   text-decoration: none;
+  color: var(--cinza-escuro);
 }
 
 /* ==========================================================================
@@ -334,7 +324,13 @@ a.link-branco:hover:after {
   font-size: 0.75rem;
   margin-top: 1rem;
 }
-
+.newsletter a {
+  color: var(--cinza-escuro);
+}
+.newsletter a:hover,
+.newsletter a:focus {
+  color: var(--ativo);
+}
 /* ==========================================================================
    VAGAS
    ========================================================================== */
@@ -354,7 +350,9 @@ a.link-branco:hover:after {
 .footer {
   margin: 6rem auto;
 }
-
+.footer .site-branding {
+  margin-bottom: 4rem;
+}
 .footer-links,
 .footer-credits {
   font-size: 0.75rem;
@@ -379,4 +377,12 @@ a.link-branco:hover:after {
   width: 100%;
   background: var(--cinza-claro);
   margin: 4rem 0;
+}
+
+.footer-links a {
+  color: var(--cinza-escuro);
+}
+.footer-links a:hover,
+.footer-links a:focus {
+  color: var(--ativo);
 }
