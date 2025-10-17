@@ -19,21 +19,8 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
-	
+
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/aplicacao.css">
-
-
-<!-- // ////////////////////////////////////////////
-// ////// REMOVER APOS DESENVOLVIMENTO ////////
-// //////////////////////////////////////////// -->
-
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
-
-<!-- // ////////////////////////////////////////////
-// ////// REMOVER APOS DESENVOLVIMENTO ////////
-// //////////////////////////////////////////// -->
 
 </head>
 
@@ -62,8 +49,7 @@
 					<?php endif; ?>
 				</div>
 
-				<nav id="site-navigation"
-					class="main-navigation navbar text-center jtext-md-end navbar-expand-lg pt-5 pt-md-0">
+				<nav id="site-navigation" class="main-navigation navbar text-center jtext-md-end navbar-expand-lg pt-5 pt-md-0">
 					<button class="mb-3 navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-menu"
 						aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle navigation">
 						<i class="fa-solid fa-bars"></i> Menu

@@ -29,6 +29,13 @@ function eachline_setup()
 	 */
 	load_theme_textdomain('eachline', get_template_directory() . '/languages');
 
+	function eachline_theme_setup()
+	{
+		load_theme_textdomain('eachline', get_template_directory() . '/languages');
+	}
+	add_action('after_setup_theme', 'eachline_theme_setup');
+
+
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support('automatic-feed-links');
 
@@ -137,34 +144,36 @@ function eachline_widgets_init()
 		'after_title' => '</h2>',
 	));
 
-	// Rodapé 1
+
+
+	// Bignumbers
 	register_sidebar(array(
-		'name' => esc_html__('Rodapé: redes sociais', 'eachline'),
-		'id' => 'footer-social',
-		'description' => esc_html__('Área de widgets de posicionamento das redes sociais.', 'eachline'),
-
-		// Remove divs e wrappers
-		'before_widget' => '',
-		'after_widget' => '',
-
-		// Opcional: pode manter os títulos se quiser
-		'before_title' => '',
-		'after_title' => '',
+		'name' => esc_html__('Seção: Big numbers', 'eachline'),
+		'id' => 'bignumbers',
+		'description' => esc_html__('Área de widgets da página de sobre.', 'eachline'),
+		'before_widget' => '<div id="%1$s" class="col-6 col-md widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
 	));
-
-
-	// Rodapé 2
-	// register_sidebar(array(
-	// 	'name'          => esc_html__('Rodapé 2', 'eachline'),
-	// 	'id'            => 'footer-2',
-	// 	'description'   => esc_html__('Área de widgets do rodapé - coluna 2.', 'eachline'),
-	// 	'before_widget' => '<div id="%1$s" class="widget %2$s">',
-	// 	'after_widget'  => '</div>',
-	// 	'before_title'  => '<h3 class="widget-title">',
-	// 	'after_title'   => '</h3>',
-	// ));
 }
 add_action('widgets_init', 'eachline_widgets_init');
+
+
+// Rodapé: Redes sociais
+register_sidebar(array(
+	'name' => esc_html__('Rodapé: redes sociais', 'eachline'),
+	'id' => 'footer-social',
+	'description' => esc_html__('Área de widgets de posicionamento das redes sociais.', 'eachline'),
+
+	// Remove divs e wrappers
+	'before_widget' => '',
+	'after_widget' => '',
+
+	// Opcional: pode manter os títulos se quiser
+	'before_title' => '',
+	'after_title' => '',
+));
 
 
 /**
@@ -248,19 +257,3 @@ function add_excerpt_to_pages()
 	add_post_type_support('page', 'excerpt');
 }
 add_action('init', 'add_excerpt_to_pages');
-
-
-// ////////////////////////////////////////////
-// ////// REMOVER APOS DESENVOLVIMENTO ////////
-// ////////////////////////////////////////////
-
-function disable_cache_headers()
-{
-	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-	header("Cache-Control: post-check=0, pre-check=0", false);
-	header("Pragma: no-cache");
-}
-add_action('send_headers', 'disable_cache_headers');
-// ////////////////////////////////////////////
-// ////// REMOVER APOS DESENVOLVIMENTO ////////
-// ////////////////////////////////////////////

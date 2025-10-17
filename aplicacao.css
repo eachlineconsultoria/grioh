@@ -117,8 +117,7 @@ a.link-primario:hover,
 a.link-primario:focus,
 a.link-primario:visited {
   color: var(--cinza-escuro);
-    text-decoration: var(--cinza-escuro) wavy underline
-
+  text-decoration: var(--cinza-escuro) wavy underline;
 }
 
 /* Link branco */
@@ -183,13 +182,16 @@ a.link-branco:hover:after {
   background: var(--focado);
 }
 
+.menu-footer .current-menu-item .nav-link,
 .menu-principal .current-menu-item .nav-link,
 .menu-principal-icones .current-menu-item .nav-link {
   color: var(--ativo);
 }
+.menu-footer .current-menu-item .nav-link:focus,
+.menu-footer .current-menu-item .nav-link:hover,
 .menu-principal .current-menu-item .nav-link:focus,
-.menu-principal .current-menu-item .nav-link:hover{
-    text-decoration: var(--ativo) wavy underline
+.menu-principal .current-menu-item .nav-link:hover {
+  text-decoration: var(--ativo) wavy underline;
 }
 .menu-footer {
   gap: 2rem;
@@ -224,6 +226,18 @@ a.link-branco:hover:after {
 }
 
 /* ==========================================================================
+   BIGNUMBERS
+   ========================================================================== */
+
+.bignumbers p {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.bignumbers :is(h1, h2, h3, h4, h5, h6) {
+  font-size: 1rem;
+}
+/* ==========================================================================
    PARCEIROS
    ========================================================================== */
 .partners-list {
@@ -238,6 +252,40 @@ a.link-branco:hover:after {
   background-color: var(--branco);
 }
 
+/* ==========================================================================
+   TESTIMONIALS
+   ========================================================================== */
+.testimoniaL blockquote {
+}
+.testimoniaL footer {
+  font-size: 1.25rem;
+}
+
+.testimonial-picture:after {
+  content: "";
+  position: absolute;
+  background: transparent url(assets/img/picture-sign.svg) center no-repeat;
+  right: 2rem;
+  bottom: 2rem;
+  width: 12rem;
+  height: 3rem;
+  z-index: 2;
+  object-fit: cover;
+}
+.testimonial-quote {
+  margin-bottom: 3rem;
+}
+.testimonial-text {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.testimoniaL-author {
+  /* font-style: normal; */
+}
+.testimonial-role {
+}
+.testimonial-company {
+}
 /* ==========================================================================
    CARDS
    ========================================================================== */

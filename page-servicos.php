@@ -77,6 +77,23 @@ get_header();
     </section>
   <?php endif; ?>
 
+  <?php get_template_part('section/bignumbers'); ?>
+
+  <?php if (is_active_sidebar('bignumbers')): ?>
+    <div class="container bignumbers">
+      <div class="row">
+        <?php dynamic_sidebar('bignumbers'); ?>
+      </div>
+    </div>
+  <?php endif; ?>
+
+  <?php require_once get_template_directory() . '/section/cta.php'; ?>
+
+  <?php require_once get_template_directory() . '/section/testimonial.php'; ?>
+
+  <?php require_once get_template_directory() . '/section/cases.php'; ?>
+
+
 </main>
 
 <?php get_footer(); ?>

@@ -1,4 +1,9 @@
-<?php
+  <section id="partners" class="container section-container cases">
+    <header class="section-header d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between">
+      <h2 class="section-title">Clientes</h2>
+      <a href="<?php $slug = 'historias-sucesso'; $category = get_category_by_slug($slug); if ($category) {echo get_category_link($category->term_id);}?>" class="card-link link link-primario">Acesse todos os cases<i class="ms-2 fa-solid fa-arrow-right"></i></a>
+    </header>
+    <?php
 $args = array(
   'post_type' => 'post',
   'posts_per_page' => 3,
@@ -45,3 +50,4 @@ $cases_query = new WP_Query($args);
     wp_reset_postdata(); ?>
   </div>
 <?php endif; ?>
+  </section>
