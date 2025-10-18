@@ -93,11 +93,70 @@ get_header();
           <?php the_content() ?>
         </div>
         <div class="col-12 col-md">
-          <?php if (is_active_sidebar('aside-contact')): ?>
-            <aside class="border rounded aside-contact">
+
+          <aside class="border rounded aside-contact">
+
+            <h3>Redes sociais</h3>
+            <p class="mb-2">Conecte-se conosco nas redes sociais para acompanhar nossos trabalhos.</p>
+            <ul class="aside-social m-0 p-0 ">
+              <?php
+              $contact_info = get_field('contact_social'); // isso traz um array associativo
+              if ($contact_info && !empty($contact_info['contact_instagram'])):
+                $instagram = $contact_info['contact_instagram'];
+                ?>
+                <li class="aside-social-item-instagram">
+                  <a href="https://instagram.com/<?php echo esc_attr($instagram); ?>" target="_blank" rel="noopener">
+                    <span class="fa-stack fa-2x">
+                      <i class="fa-solid fa-square fa-stack-2x"></i>
+                      <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                    </span>
+
+                    <div>
+                      <strong class="aside-social-name">Instagram</strong>
+                      <span class="aside-social-at">@<?php echo esc_html($instagram); ?></span>
+                    </div>
+                  </a>
+                </li>
+              <?php endif; ?>
+
+
+              <?php
+              $contact_info = get_field('contact_social'); // isso traz um array associativo
+              if ($contact_info && !empty($contact_info['contact_linkedin'])):
+                $linkedin = $contact_info['contact_linkedin'];
+                ?>
+                <li class="aside-social-item-linkedin"> <a
+                    href="https://linkedin.com/company/<?php echo esc_attr($linkedin); ?>" target="_blank" rel="noopener">
+                    <span class="fa-stack fa-2x">
+                      <i class="fa-solid fa-square fa-stack-2x"></i>
+                      <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                    </span>
+
+                    <div>
+                      <strong class="aside-social-name">LinkedIn</strong>
+                      <span class="aside-social-at">@<?php echo esc_html($linkedin); ?></span>
+                    </div>
+                  </a>
+                </li>
+              <?php endif; ?>
+
+            </ul>
+
+            <hr class="my-3">
+
+            <h3>Imprensa</h3>
+            <p class="mb-0">Acompanhe as notícias na imprensa sobre nós.
+              <div class="d-block w-100"></div>
+              <a class="mt-3 button button-primary " href="/imprensa">Clipping<i class="ms-2 fa-solid fa-arrow-right"></i></a>
+
+
+            </p>
+
+            <p>Para material institucional, acesse <a href="sobre/manual-marca">nosso manual da marca</a>.</p>
+            <?php if (is_active_sidebar('aside-contact')): ?>
               <?php dynamic_sidebar('aside-contact'); ?>
-            </aside>
-          <?php endif; ?>
+            <?php endif; ?>
+          </aside>
         </div>
       </div>
     </div>

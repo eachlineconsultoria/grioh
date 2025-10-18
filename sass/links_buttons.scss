@@ -32,11 +32,16 @@
 .button {
   font-weight: bold;
   text-transform: uppercase;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   display: inline-block;
   border: 2px solid transparent;
   cursor: pointer;
-
+  border-radius: var(--radius-sm);
+  &:hover,
+  &:focus {
+    color: var(--color-white);
+    text-decoration: none;
+  }
   &-primary {
     background: var(--color-primary);
     color: var(--color-white);
@@ -44,7 +49,6 @@
     &:hover,
     &:focus {
       background: var(--color-secondary);
-      color: var(--color-white);
       border-color: var(--color-secondary);
     }
   }
@@ -54,7 +58,7 @@
     border-color: var(--color-secondary);
     &:hover,
     &:focus {
-      background: var(--color-white);
+      background: var(--color-primary);
       color: var(--color-primary);
       border-color: var(--color-primary);
     }

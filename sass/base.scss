@@ -14,10 +14,13 @@ a:visited {
 }
 a:hover {
   color: var(--color-primary);
-  text-decoration: var(--color-primary) wavy underline;
+  text-decoration: currentColor wavy underline;
 }
 a:focus {
   color: var(--color-secondary);
+}
+a:visited{
+  color: currentColor
 }
 
 .custom-logo {

@@ -737,15 +737,15 @@ textarea {
    ========================================================================== */
 :root {
   --font-body: "Atkinson Hyperlegible", sans-serif;
-  /* Cores principais */
+  /* main colors */
   --color-primary: #b4009e;
   --color-secondary: #4668c5;
   --color-tertiary: #ff7029;
-  /* Cores neutras */
+  /* neutrals color */
   --color-white: #fff;
   --color-light: #ddd;
   --color-dark: #111;
-  /* Bordas / radius */
+  /* borders / radius */
   --radius-sm: 4px;
   /* Bootstrap override */
   --bs-border-radius: var(--radius-sm);
@@ -753,7 +753,15 @@ textarea {
   --bs-border-radius-lg: var(--radius-sm);
   --bs-border-radius-xl: var(--radius-sm);
   --bs-border-radius-xxl: var(--radius-sm);
-  --bs-border-radius-2xl: var(--radius-sm); }
+  --bs-border-radius-2xl: var(--radius-sm);
+  /* social color */
+  --instagram: #E1306C;
+  --linkedin: #0A66C2;
+  --bluesky: #007BB5;
+  --x: #000;
+  --pinterest: #CC2127;
+  --facebook: #3B5998;
+  --email: #333; }
 
 /* ==========================================================================
    BASE E ESTILOS GERAIS
@@ -769,10 +777,13 @@ a:visited {
 
 a:hover {
   color: var(--color-primary);
-  text-decoration: var(--color-primary) wavy underline; }
+  text-decoration: currentColor wavy underline; }
 
 a:focus {
   color: var(--color-secondary); }
+
+a:visited {
+  color: currentColor; }
 
 .custom-logo {
   max-height: 84px;
@@ -823,24 +834,27 @@ a:focus {
 .button {
   font-weight: bold;
   text-transform: uppercase;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   display: inline-block;
   border: 2px solid transparent;
-  cursor: pointer; }
+  cursor: pointer;
+  border-radius: var(--radius-sm); }
+  .button:hover, .button:focus {
+    color: var(--color-white);
+    text-decoration: none; }
   .button-primary {
     background: var(--color-primary);
     color: var(--color-white);
     border-color: var(--color-primary); }
     .button-primary:hover, .button-primary:focus {
       background: var(--color-secondary);
-      color: var(--color-white);
       border-color: var(--color-secondary); }
   .button-secondary {
     background: var(--color-secondary);
     color: var(--color-white);
     border-color: var(--color-secondary); }
     .button-secondary:hover, .button-secondary:focus {
-      background: var(--color-white);
+      background: var(--color-primary);
       color: var(--color-primary);
       border-color: var(--color-primary); }
   .button-dark {
@@ -1013,6 +1027,8 @@ a:focus {
    ========================================================================== */
 .aside-contact {
   padding: 1.5rem 2rem; }
+  .aside-contact p a {
+    text-decoration: currentColor wavy underline !important; }
   .aside-contact .wp-block-heading {
     margin-bottom: 0; }
   .aside-contact .widget {
@@ -1026,38 +1042,35 @@ a:focus {
     font-size: 1.25rem;
     font-weight: bold; }
 
-.aside-social li {
-  width: 100% !important;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-light);
-  padding: 0.5rem 1rem !important;
-  background: transparent; }
-  .aside-social li a {
-    color: var(--color-dark) !important;
-    padding: 0;
+.aside-social {
+  list-style-type: none; }
+  .aside-social li {
     width: 100%;
-    display: block;
-    position: relative; }
-    .aside-social li a svg {
-      width: 2.625rem;
-      height: 2.625rem; }
-    .aside-social li a span {
-      margin-top: -1rem;
-      font-size: 1rem;
-      font-weight: bold; }
-      .aside-social li a span:after {
-        content: "@eachlineconsultoria";
-        display: block;
-        color: var(--color-dark);
-        font-size: 0.75rem;
-        height: 0.75rem;
-        width: 100%;
-        line-height: 1;
-        font-weight: normal;
-        bottom: 0rem;
-        z-index: 5;
-        left: 48px;
-        position: absolute; }
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-light);
+    padding: 0.5rem;
+    background: transparent;
+    margin-bottom: 1rem; }
+    .aside-social li a {
+      display: flex;
+      justify-content: start;
+      color: var(--color-dark) !important;
+      padding: 0;
+      width: 100%; }
+      .aside-social li a > div {
+        display: flex;
+        align-self: center;
+        flex-direction: column; }
+  .aside-social-name {
+    font-size: 1rem;
+    font-weight: bold; }
+  .aside-social-at {
+    font-size: 0.825rem;
+    font-weight: normal; }
+  .aside-social-item-instagram .fa-square {
+    color: var(--instagram); }
+  .aside-social-item-linkedin .fa-square {
+    color: var(--linkedin); }
 
 /* ==========================================================================
    RODAPÉ
