@@ -10,7 +10,6 @@ get_header();
 ?>
 
 <main>
-
   <?php require_once get_template_directory() . '/section/hero.php'; ?>
 
   <?php if (get_field('services_section')): ?>
@@ -76,16 +75,33 @@ get_header();
       <?php endif; ?>
     </section>
   <?php endif; ?>
+  <section id="form" class="container section-container forms">
+    <div class="container">
 
-  <?php get_template_part('section/bignumbers'); ?>
+      <header class="section-header">
+        <h2 class="section-title">
+          <?php if ($desc = get_field('form_title')): ?>
+            <?php echo esc_html($desc); ?>
+          <?php endif; ?>
 
-  <?php if (is_active_sidebar('bignumbers')): ?>
-    <div class="container bignumbers">
+        </h2>
+
+      </header>
       <div class="row">
-        <?php dynamic_sidebar('bignumbers'); ?>
+        <div class="col-12 col-md-8">
+
+          <?php the_content() ?>
+        </div>
+        <div class="col-12 col-md">
+          <?php if (is_active_sidebar('aside-contact')): ?>
+            <aside class="border rounded aside-contact">
+              <?php dynamic_sidebar('aside-contact'); ?>
+            </aside>
+          <?php endif; ?>
+        </div>
       </div>
     </div>
-  <?php endif; ?>
+  </section>
 
   <?php require_once get_template_directory() . '/section/cta.php'; ?>
 

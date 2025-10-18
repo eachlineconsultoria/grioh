@@ -135,13 +135,16 @@ function eachline_widgets_init()
 
 	// Sidebar principal
 	register_sidebar(array(
-		'name' => esc_html__('Sidebar', 'eachline'),
-		'id' => 'sidebar-1',
+		'name' => esc_html__('Página de contato', 'eachline'),
+		'id' => 'aside-contact',
 		'description' => esc_html__('Adicione widgets à sidebar principal.', 'eachline'),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget' => '</section>',
-		'before_title' => '<h2 class="widget-title">',
-		'after_title' => '</h2>',
+	// Remove divs e wrappers
+	'before_widget' => '',
+	'after_widget' => '',
+
+	// Opcional: pode manter os títulos se quiser
+	'before_title' => '',
+	'after_title' => '',
 	));
 
 
@@ -257,3 +260,8 @@ function add_excerpt_to_pages()
 	add_post_type_support('page', 'excerpt');
 }
 add_action('init', 'add_excerpt_to_pages');
+
+
+
+// Remove as tags <p> e <br> automáticas do Contact Form 7
+add_filter('wpcf7_autop_or_not', '__return_false');

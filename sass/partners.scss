@@ -1,0 +1,17 @@
+
+
+/* ==========================================================================
+   PARCEIROS
+   ========================================================================== */
+.partners {
+  &-list {
+    gap: 2rem;
+  }
+  &-item a {
+    width: 7.75rem;
+    height: 7.75rem;
+    background: transparent no-repeat center;
+    background-size: 85%;
+    background-color: var(--color-white);
+  }
+}

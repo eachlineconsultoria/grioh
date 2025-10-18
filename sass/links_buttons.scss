@@ -1,0 +1,73 @@
+/* ==========================================================================
+   LINKS E BOTÕES
+   ========================================================================== */
+
+.link {
+  &-text {
+    display: inline-block;
+    font-weight: bold;
+    color: var(--color-dark) !important;
+    position: relative;
+  }
+  &-primary {
+    color: var(--color-primary) !important;
+    &:hover,
+    &:focus,
+    &:visited {
+      color: var(--color-secondary) !important;
+      text-decoration: var(--color-dark) wavy underline;
+    }
+  }
+  &-white {
+    color: var(--color-white) !important;
+    &:hover,
+    &:focus,
+    &:visited {
+      color: var(--color-white) !important;
+      text-decoration: var(--color-white) wavy underline;
+    }
+  }
+}
+
+.button {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  display: inline-block;
+  border: 2px solid transparent;
+  cursor: pointer;
+
+  &-primary {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+    &:hover,
+    &:focus {
+      background: var(--color-secondary);
+      color: var(--color-white);
+      border-color: var(--color-secondary);
+    }
+  }
+  &-secondary {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border-color: var(--color-secondary);
+    &:hover,
+    &:focus {
+      background: var(--color-white);
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+  }
+  &-dark {
+    background: var(--color-dark);
+    color: var(--color-white);
+    border-color: var(--color-dark);
+    &:hover,
+    &:focus {
+      background: var(--color-white);
+      color: var(--color-dark);
+      border-color: var(--color-dark);
+    }
+  }
+}

@@ -1,0 +1,36 @@
+/* ==========================================================================
+  MENU E NAVEGAÇÃO
+========================================================================== */
+.menu {
+  &-footer,
+  &-principal,
+  &-principal-icones {
+    .current-menu-item {
+      .nav-link {
+        color: var(--color-primary);
+        &:hover,
+        &:focus {
+          color: var(--color-primary);
+          text-decoration: var(--color-primary) wavy underline;
+        }
+      }
+    }
+    .nav-link {
+      color: var(--color-dark);
+      font-weight: bold;
+      position: relative;
+      &:hover,
+      &:focus {
+        color: var(--color-secondary);
+        text-decoration: var(--color-secondary) wavy underline;
+      }
+    }
+  }
+}
+.nav-link:focus-visible {
+  box-shadow: none;
+}
+
+.menu-footer {
+  gap: 2rem;
+}

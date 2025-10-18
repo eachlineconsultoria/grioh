@@ -40,7 +40,7 @@ $articles_query = new WP_Query($args);
 
           </div>
           <footer class="border-0 card-footer card-footer">
-            <a href="<?php the_permalink(); ?>" class=" link link-primario">
+            <a href="<?php the_permalink(); ?>" class="card-link link-text link-primary">
               Leia o texto<i class="ms-2 fa-solid fa-arrow-right"></i>
             </a>
           </footer>

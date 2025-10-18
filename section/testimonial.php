@@ -24,7 +24,7 @@ if ($depoimento_query->have_posts()):
       <div class="container">
         <div class="row">
           <?php if ($foto_url): ?>
-            <figure class="testimonial-picture position-relative col-12 col-md-4 mb-md-0  mb-3">
+            <figure class="testimonial-image position-relative col-12 col-md-4 mb-md-0  mb-3">
               <img src="<?php echo esc_url($foto_url); ?>" alt="<?php echo esc_attr($nome); ?>"
                 class="rounded img-fluid object-fit-cover">
             </figure>
@@ -33,7 +33,7 @@ if ($depoimento_query->have_posts()):
           <blockquote class="m-0 testimonial-quote align-self-center col-12 col-md-8">
             <?php echo $conteudo; ?>
             <footer>
-              <cite class="testimonial-author mb-3 fw-bold d-block fst-normal"><?php echo esc_html($nome); ?></cite>
+              <cite class="testimonial-author fw-bold d-block fst-normal"><?php echo esc_html($nome); ?></cite>
               <p>
                 <span class="testimonial-role">
                   <?php echo esc_html($cargo); ?>,
@@ -41,9 +41,9 @@ if ($depoimento_query->have_posts()):
                 <span class="testimonial-company">
                   <?php echo esc_html($empresa); ?>
                 </span>
-              <p>
+              </p>
             </footer>
-            <a href="<?php echo esc_html($link); ?>" class="w-100 d-inline-block link link-primario">
+            <a href="<?php echo esc_html($link); ?>" class="w-100 d-inline-blockcard-link link-text link-primary">
               Leia o case completo<i class="ms-2 fa-solid fa-arrow-right"></i>
             </a>
           </blockquote>

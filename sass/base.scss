@@ -1,0 +1,30 @@
+
+/* ==========================================================================
+   BASE E ESTILOS GERAIS
+   ========================================================================== */
+body {
+  font-family: var(--font-body);
+  color: var(--color-dark);
+}
+
+a,
+a:visited {
+  color: var(--color-dark);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-primary);
+  text-decoration: var(--color-primary) wavy underline;
+}
+a:focus {
+  color: var(--color-secondary);
+}
+
+.custom-logo {
+  max-height: 84px;
+  width: auto;
+}
+
+.navbar-toggler {
+  padding: 1rem;
+}

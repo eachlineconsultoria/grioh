@@ -24,7 +24,7 @@ get_header();
       if ($category) {
         echo get_category_link($category->term_id);
       } ?>"
-        class="card-link link link-primario">Leia todos os artigos<i class="ms-2 fa-solid fa-arrow-right"></i></a>
+        class="card-link link-text link-primary">Leia todos os artigos<i class="ms-2 fa-solid fa-arrow-right"></i></a>
     </header>
     <?php require_once get_template_directory() . '/loop/articles.php'; ?>
   </section>

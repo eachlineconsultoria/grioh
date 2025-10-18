@@ -16,7 +16,7 @@
 <footer id="colophon" class="site-footer flex-column flex-md-row footer justify-content-center d-flex">
 	<div class="site-info container">
 
-		<div class="site-branding text-center">
+		<div class="footer-branding text-center">
 			<?php the_custom_logo(); ?>
 			<?php if (is_front_page() && is_home()): ?>
 				<h1 class="site-title mb-0 ms-2">
@@ -52,7 +52,7 @@
 			wp_nav_menu(array(
 				'theme_location' => 'footer-links',
 				'container' => false,
-				'menu_class' => 'mb-3 mb-md-0 d-flex justify-content-start',
+				'menu_class' => 'footer-credits mb-3 mb-md-0 d-flex justify-content-start',
 
 			));
 			?>

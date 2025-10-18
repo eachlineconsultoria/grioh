@@ -69,7 +69,7 @@ add_action( 'wp_enqueue_scripts', 'eachline_woocommerce_scripts' );
  *
  * @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
  */
-add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+add_filter( 'woocommerce_enqueue_styles', '-return_empty_array' );
 
 /**
  * Add 'woocommerce-active' class to the body tag.

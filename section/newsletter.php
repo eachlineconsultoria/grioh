@@ -10,10 +10,10 @@
     <div class=" flex-row d-flex flex-row row">
       <label for="emailNewsletter" class="visually-hidden form-label">Email</label>
       <div class="col-7">
-        <input class="rounded h-100 input-newsletter" type="email" id="emailNewsletter" placeholder="Insira seu email">
+        <input class="rounded h-100 newsletter-input" type="email" id="emailNewsletter" placeholder="Insira seu email">
       </div>
       <div class="col-5">
-        <button class="rounded h-100 botao-secundario">Assinar<i class="ms-2 fa-solid fa-arrow-right"></i></button>
+        <button class="rounded w-100 h-100 button button-secondary">Assinar<i class="ms-2 fa-solid fa-arrow-right"></i></button>
       </div>
     </div>
   </form>

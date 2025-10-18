@@ -1,0 +1,466 @@
+/* ==========================================================================
+   VARIÁVEIS GLOBAIS
+   ========================================================================== */
+:root {
+  /* Tipografia */
+  --font-base: "Atkinson Hyperlegible", sans-serif;
+
+  /* Cores */
+  --color-primary: #b4009e;
+  --color-secondary: #4668c5;
+  --color-white: #fff;
+  --color-light: #ddd;
+  --color-dark: #111;
+
+  /* Diversos */
+  --radius-sm: 4px;
+
+  /* Override Bootstrap */
+  --bs-border-radius: var(--radius-sm);
+  --bs-border-radius-sm: var(--radius-sm);
+  --bs-border-radius-lg: var(--radius-sm);
+  --bs-border-radius-xl: var(--radius-sm);
+  --bs-border-radius-xxl: var(--radius-sm);
+  --bs-border-radius-2xl: var(--radius-sm);
+}
+
+/* ==========================================================================
+   BASE E GERAL
+   ========================================================================== */
+body {
+  font-family: var(--font-base);
+}
+
+a,
+a:visited {
+  color: var(--color-dark);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-primary);
+  text-decoration: var(--color-primary) wavy underline;
+}
+a:focus {
+  color: var(--color-secondary);
+}
+
+.custom-logo {
+  max-height: 84px;
+  width: auto;
+}
+
+.navbar-toggler {
+  padding: 1rem;
+}
+
+/* ==========================================================================
+   SEÇÕES GENÉRICAS
+   ========================================================================== */
+.section-container {
+  margin: 6rem auto;
+}
+
+.section-header {
+  margin-bottom: 4rem;
+  gap: 1.5rem;
+  display: grid;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.section-description {
+  margin: 1.5rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* ==========================================================================
+   LINKS E BOTÕES
+   ========================================================================== */
+/* Links genéricos */
+.link {
+  display: inline-block;
+  font-weight: bold;
+  color: var(--color-dark);
+  position: relative;
+}
+
+.link:after {
+  content: "";
+  background-color: transparent;
+  position: absolute;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+}
+
+.link:hover:after {
+  background-color: var(--color-dark);
+}
+
+.link-block {
+  padding: 1rem 3rem;
+}
+
+/* Link primário */
+a.link-primary {
+  color: var(--color-primary);
+}
+
+a.link-primary:hover,
+a.link-primary:focus,
+a.link-primary:visited {
+  color: var(--color-dark);
+  text-decoration: var(--color-dark) wavy underline;
+}
+
+/* Link branco */
+a.link-branco {
+  color: --color-white;
+}
+
+a.link-branco:hover,
+a.link-branco:focus,
+a.link-branco:visited {
+  color: --color-white;
+}
+
+a.link-branco:hover:after {
+  background-color: --color-white !important;
+}
+
+/* Botão secundário */
+.button-block {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  display: inline-block;
+}
+.button-primario {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: 2px solid var(--color-primary);
+}
+.button-secundario {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border: 2px solid var(--color-secondary);
+}
+
+.button-secundario:hover,
+.button-secundario:focus {
+  background: var(--color-white);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.button-primario:hover,
+.button-primario:focus {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border-color: var(--color-secondary);
+}
+
+/* ==========================================================================
+   MENU E NAVEGAÇÃO
+   ========================================================================== */
+.menu-footer .nav-link,
+.menu-principal .nav-link,
+.menu-principal-icones .nav-link {
+  color: var(--color-dark);
+  font-weight: bold;
+  position: relative;
+}
+
+.nav-link:focus-visible {
+  box-shadow: none;
+}
+
+.menu-footer .nav-link:hover,
+.menu-footer .nav-link:focus,
+.menu-principal .nav-link:hover,
+.menu-principal .nav-link:focus,
+.menu-principal-icones .nav-link:hover,
+.menu-principal-icones .nav-link:focus {
+  color: var(--color-secondary);
+  text-decoration: var(--color-secondary) wavy underline;
+}
+
+.menu-footer .nav-link:hover:after,
+.menu-principal .nav-link:hover:after {
+  background: var(--color-secondary);
+}
+
+.menu-footer .current-menu-item .nav-link,
+.menu-principal .current-menu-item .nav-link,
+.menu-principal-icones .current-menu-item .nav-link {
+  color: var(--color-primary);
+}
+.menu-footer .current-menu-item .nav-link:focus,
+.menu-footer .current-menu-item .nav-link:hover,
+.menu-principal .current-menu-item .nav-link:focus,
+.menu-principal .current-menu-item .nav-link:hover {
+  text-decoration: var(--color-primary) wavy underline;
+}
+.menu-footer {
+  gap: 2rem;
+}
+
+/* ==========================================================================
+   SEÇÃO PRINCIPAL DAS PÁGINAS
+   ========================================================================== */
+.hero-content,
+.hero-picture {
+  min-height: 46rem;
+}
+
+.hero-icon {
+  bottom: 0;
+}
+
+.hero-picture:after {
+  content: "";
+  position: absolute;
+  background: transparent url(assets/img/picture-sign.svg) center no-repeat;
+  right: 2rem;
+  bottom: 2rem;
+  width: 12rem;
+  height: 3rem;
+  z-index: 2;
+  object-fit: cover;
+}
+
+.hero-link {
+  /* width: 8.5rem; */
+}
+
+/* ==========================================================================
+   BIGNUMBERS
+   ========================================================================== */
+
+.bignumbers p {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.bignumbers :is(h1, h2, h3, h4, h5, h6) {
+  font-size: 1rem;
+}
+/* ==========================================================================
+   PARCEIROS
+   ========================================================================== */
+.partners-list {
+  gap: 2rem;
+}
+
+.partners-item a {
+  width: 7.75rem;
+  height: 7.75rem;
+  background: transparent no-repeat center;
+  background-size: 85%;
+  background-color: var(--color-white);
+}
+
+/* ==========================================================================
+   DEPOIMENTOS
+   ========================================================================== */
+.testimoniaL blockquote {
+}
+.testimoniaL footer {
+  font-size: 1.25rem;
+}
+
+.testimonial-picture:after {
+  content: "";
+  position: absolute;
+  background: transparent url(assets/img/picture-sign.svg) center no-repeat;
+  right: 2rem;
+  bottom: 2rem;
+  width: 12rem;
+  height: 3rem;
+  z-index: 2;
+  object-fit: cover;
+}
+.testimonial-quote {
+  margin-bottom: 3rem;
+}
+.testimonial-text {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.testimoniaL-author {
+  /* font-style: normal; */
+}
+.testimonial-role {
+}
+.testimonial-company {
+}
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+.card-image {
+  height: 264px;
+}
+
+.card-body {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.card-title a {
+  color: var(--color-dark);
+}
+
+.card-title a:hover,
+.card-title a:focus {
+  color: var(--color-primary);
+}
+
+.card-description {
+  font-size: 1.125rem;
+}
+
+.card-footer {
+  background: transparent;
+  padding-bottom: 1rem;
+}
+
+.card-link {
+  position: relative;
+}
+
+.card-link:after {
+  content: "";
+  display: none;
+  position: absolute;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: var(--color-primary);
+}
+
+.card-link:hover:after {
+  display: block;
+}
+
+/* ==========================================================================
+   CTA
+   ========================================================================== */
+.cta {
+  background: var(--color-light);
+  padding: 5.75rem 0;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.cta a {
+  text-decoration: none;
+  color: var(--color-dark);
+}
+
+/* ==========================================================================
+   NEWSLETTER
+   ========================================================================== */
+.newsletter input[type="email"] {
+  width: 100%;
+  padding: 1rem !important;
+  border-color: var(--color-light);
+}
+
+.input-newsletter:focus {
+  outline: 2px solid var(--color-dark);
+}
+
+.newsletter-info {
+  font-size: 0.75rem;
+  margin-top: 1rem;
+}
+.newsletter a {
+  color: var(--color-dark);
+}
+.newsletter a:hover,
+.newsletter a:focus {
+  color: var(--color-primary);
+}
+/* ==========================================================================
+   VAGAS
+   ========================================================================== */
+.vagas {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  padding: 5.75rem 0;
+}
+
+.vagas .section-title {
+  font-size: 2rem;
+}
+
+/* ==========================================================================
+   ASIDE
+   ========================================================================== */
+.aside-contato {
+  padding: 1.5rem 2rem;
+}
+.aside-contato .wp-block-heading {
+  margin-bottom: 0;
+}
+.aside-contato .widget {
+  margin-bottom: 1rem;
+}
+.aside-contato .widget hr {
+  border-top-width: 1px;
+  margin: 2rem 0;
+}
+/* ==========================================================================
+   RODAPE
+   ========================================================================== */
+.footer {
+  margin: 6rem auto;
+}
+.footer .site-branding {
+  margin-bottom: 4rem;
+}
+.footer-links,
+.footer-credits {
+  font-size: 0.75rem;
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.footer-links ul {
+  list-style: none;
+  margin: 0 0 1.5rem 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+.footer-links li {
+  display: inline;
+}
+
+.footer-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--color-light);
+  margin: 4rem 0;
+}
+
+.footer-links a {
+  color: var(--color-dark);
+}
+.footer-links a:hover,
+.footer-links a:focus {
+  color: var(--color-primary);
+}

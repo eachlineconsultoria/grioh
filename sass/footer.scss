@@ -1,0 +1,43 @@
+/* ==========================================================================
+   RODAPÉ
+   ========================================================================== */
+.footer {
+  margin: 6rem auto;
+  &-branding {
+    margin-bottom: 4rem;
+  }
+  &-links,
+  &-credits {
+    font-size: 0.75rem;
+  }
+  &-links {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    a {
+      color: var(--color-dark);
+      &:hover,
+      &:focus {
+        color: var(--color-primary);
+      }
+    }
+  }
+  & ul {
+    list-style: none;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    gap: 1.5rem;
+    & li {
+      display: inline;
+    }
+  }
+  &-divider {
+    height: 1px;
+    width: 100%;
+    background: var(--color-light);
+    margin: 4rem 0;
+  }
+}
+
+// --------------------------------------

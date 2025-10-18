@@ -1,0 +1,28 @@
+
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  &-content,
+  &-image {
+    min-height: 46rem;
+  }
+}
+.hero-icon {
+  bottom: 0;
+}
+.hero-image::after {
+  content: "";
+  position: absolute;
+  background: transparent url(assets/img/picture-sign.svg) center no-repeat;
+  right: 2rem;
+  bottom: 1rem;
+  width: 12rem;
+  height: 3rem;
+  z-index: 2;
+  object-fit: cover;
+}
+.hero-link {
+  /* largura ou estilos específicos, se necessário */
+}

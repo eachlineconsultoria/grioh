@@ -1,0 +1,27 @@
+/* ==========================================================================
+   SEÇÕES GENÉRICAS
+   ========================================================================== */
+.section {
+  &-container {
+    margin: 6rem auto;
+  }
+  &-header {
+    margin-bottom: 4rem;
+    gap: 1.5rem;
+    display: grid;
+  }
+
+  &-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  &-description {
+    margin: 1.5rem 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: left;
+  }
+}

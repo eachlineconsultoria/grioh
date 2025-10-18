@@ -1,0 +1,25 @@
+
+/* ==========================================================================
+   NEWSLETTER
+   ========================================================================== */
+.newsletter {
+  &-input {
+    width: 100%;
+    padding: 1rem !important;
+    border-color: var(--color-light);
+  }
+  &-input:focus {
+    outline: 2px solid var(--color-dark);
+  }
+  &-info {
+    font-size: 0.75rem;
+    margin-top: 1rem;
+  }
+  &-link {
+    color: var(--color-dark);
+  }
+  &-link:hover,
+  &-link:focus {
+    color: var(--color-primary);
+  }
+}

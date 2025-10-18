@@ -1,0 +1,27 @@
+/* ==========================================================================
+   VARIÁVEIS GLOBAIS
+   ========================================================================== */
+:root {
+  --font-body: "Atkinson Hyperlegible", sans-serif;
+
+  /* Cores principais */
+  --color-primary: #b4009e;
+  --color-secondary: #4668c5;
+  --color-tertiary: #ff7029;
+
+  /* Cores neutras */
+  --color-white: #fff;
+  --color-light: #ddd;
+  --color-dark: #111;
+
+  /* Bordas / radius */
+  --radius-sm: 4px;
+
+  /* Bootstrap override */
+  --bs-border-radius: var(--radius-sm);
+  --bs-border-radius-sm: var(--radius-sm);
+  --bs-border-radius-lg: var(--radius-sm);
+  --bs-border-radius-xl: var(--radius-sm);
+  --bs-border-radius-xxl: var(--radius-sm);
+  --bs-border-radius-2xl: var(--radius-sm);
+}

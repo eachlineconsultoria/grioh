@@ -1,0 +1,52 @@
+/*!
+Theme Name: Eachline
+Theme URI: http://underscores.me/
+Author: Wagner Beethoven
+Author URI: http://wagnerbeethoven.com.br
+Description: Description
+Version: 1.0.0
+Tested up to: 5.4
+Requires PHP: 5.6
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: eachline
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
+
+Eachline is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+
+--------------------------------------------------------------*/
+
+@import "sass/underscore/abstracts/abstracts";
+@import "sass/underscore/generic/normalize";
+@import "sass/underscore/generic/box-sizing";
+@import "sass/underscore/base/base";
+@import "sass/underscore/components/components";
+@import "sass/underscore/plugins/jetpack/infinite-scroll";
+@import "sass/underscore/utilities/accessibility";
+@import "sass/underscore/utilities/alignments";
+
+/* --------------------------------------------------------------*/
+
+@import "sass/variables";
+@import "sass/base";
+@import "sass/sections";
+@import "sass/links_buttons";
+@import "sass/nav";
+@import "sass/hero";
+@import "sass/bignumbers";
+@import "sass/partners";
+@import "sass/testimonials";
+@import "sass/cards";
+@import "sass/cta";
+@import "sass/newsletter";
+@import "sass/jobs";
+@import "sass/aside";
+@import "sass/footer";
+@import "sass/form";

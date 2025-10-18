@@ -144,7 +144,7 @@ ul.products li.product .button {
 	float: left;
 }
 
-.single-product div.product .woocommerce-product-gallery .woocommerce-product-gallery__trigger {
+.single-product div.product .woocommerce-product-gallery .woocommerce-product-gallery-trigger {
 	position: absolute;
 	top: 2em;
 	right: 1em;
