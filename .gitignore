@@ -1,2 +1,3 @@
 node_modules
-.sass-cache/1e26dc34b46833d31bf97b363947fdb65b5218dc/bignumbers.scssc
+.sass-cache/
+*.scssc
