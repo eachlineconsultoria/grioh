@@ -1,0 +1,47 @@
+.contact {
+  &-way {
+    margin: 4rem 0;
+    & :is(h1, h2, h3, h4, h5, h6) {
+      margin-bottom: 1rem;
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+    &-list {
+      list-style: none;
+    }
+    &-name {
+      font-size: 0.75rem;
+      color: #646464;
+      font-weight: normal;
+    }
+    &-description {
+      font-weight: bold;
+    }
+    &-item {
+      &-phone {
+        .fa-whatsapp {
+          color: #075e54;
+        }
+      }
+
+      &-location {
+        .fa-map-pin {
+          color: #d51818;
+        }
+      }
+
+      &-email {
+        .fa-envelope {
+          color: #8732cd;
+        }
+      }
+      & > div {
+        padding: 1rem;
+        a {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}

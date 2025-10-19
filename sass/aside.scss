@@ -42,6 +42,9 @@
       color: var(--color-dark) !important;
       padding: 0;
       width: 100%;
+      .fa-stack{
+        width: 3.5rem;
+      }
       & > div {
         display: flex;
         align-self: center;

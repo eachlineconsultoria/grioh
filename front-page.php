@@ -11,7 +11,6 @@ get_header();
   <?php require_once get_template_directory() . '/section/partners.php'; ?>
 
   <?php require_once get_template_directory() . '/section/cases.php'; ?>
-  <?php require_once get_template_directory() . '/section/cta.php'; ?>
 
 
 

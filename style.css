@@ -1057,6 +1057,8 @@ a:visited {
       color: var(--color-dark) !important;
       padding: 0;
       width: 100%; }
+      .aside-social li a .fa-stack {
+        width: 3.5rem; }
       .aside-social li a > div {
         display: flex;
         align-self: center;
@@ -1078,7 +1080,7 @@ a:visited {
 .footer {
   margin: 6rem auto; }
   .footer-branding {
-    margin-bottom: 4rem; }
+    margin: 6rem auto; }
   .footer-links, .footer-credits {
     font-size: 0.75rem; }
   .footer-links {
@@ -1115,5 +1117,31 @@ form .form-control {
   form .form-control:focus {
     box-shadow: 0 0 0 0.25rem rgba(69, 103, 196, 0.25);
     border-color: var(--color-secondary); }
+
+.contact-way {
+  margin: 4rem 0; }
+  .contact-way :is(h1, h2, h3, h4, h5, h6) {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 1.25rem; }
+  .contact-way-list {
+    list-style: none; }
+  .contact-way-name {
+    font-size: 0.75rem;
+    color: #646464;
+    font-weight: normal; }
+  .contact-way-description {
+    font-weight: bold; }
+  .contact-way-item-phone .fa-whatsapp {
+    color: #075e54; }
+  .contact-way-item-location .fa-map-pin {
+    color: #d51818; }
+  .contact-way-item-email .fa-envelope {
+    color: #8732cd; }
+  .contact-way-item > div {
+    padding: 1rem; }
+    .contact-way-item > div a {
+      display: flex;
+      flex-direction: column; }
 
 /*# sourceMappingURL=style.css.map */

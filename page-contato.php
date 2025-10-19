@@ -106,7 +106,7 @@ get_header();
                 ?>
                 <li class="aside-social-item-instagram">
                   <a href="https://instagram.com/<?php echo esc_attr($instagram); ?>" target="_blank" rel="noopener">
-                    <span class="fa-stack fa-2x">
+                    <span class="fa-stack fa-2x me-3">
                       <i class="fa-solid fa-square fa-stack-2x"></i>
                       <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
                     </span>
@@ -127,7 +127,7 @@ get_header();
                 ?>
                 <li class="aside-social-item-linkedin"> <a
                     href="https://linkedin.com/company/<?php echo esc_attr($linkedin); ?>" target="_blank" rel="noopener">
-                    <span class="fa-stack fa-2x">
+                    <span class="fa-stack fa-2x me-3">
                       <i class="fa-solid fa-square fa-stack-2x"></i>
                       <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
                     </span>
@@ -146,8 +146,9 @@ get_header();
 
             <h3>Imprensa</h3>
             <p class="mb-0">Acompanhe as notícias na imprensa sobre nós.
-              <div class="d-block w-100"></div>
-              <a class="mt-3 button button-primary " href="/imprensa">Clipping<i class="ms-2 fa-solid fa-arrow-right"></i></a>
+            <div class="d-block w-100"></div>
+            <a class="mt-3 button button-primary " href="/imprensa">Clipping<i
+                class="ms-2 fa-solid fa-arrow-right"></i></a>
 
 
             </p>
@@ -159,10 +160,79 @@ get_header();
           </aside>
         </div>
       </div>
+
+
+      <div class="row contact-way">
+        <h3 class="col-12">Outras formas de contato</h3>
+        <ul class="contact-way-list p-0 row">
+          <!-- Contact email -->
+          <?php
+          $contact_way_email = get_field('contact_way'); // isso traz um array associativo
+          if ($contact_way_email && !empty($contact_way_email['contact_email'])):
+            $contact_email = $contact_way_email['contact_email'];
+            ?>
+            <li class="contact-way-item contact-way-item-email col-12 col-md">
+              <div class="border rounded d-flex justify-content-start">
+                <i class="fa-regular fa-2x me-3 fa-envelope"></i>
+                <a href="mailto:<?php echo esc_attr($contact_email); ?>" target="_blank" rel="noopener">
+
+                  <strong class="contact-way-name">Email</strong>
+                  <span class="contact-way-description"><?php echo esc_html($contact_email); ?></span>
+                </a>
+              </div>
+            </li>
+          <?php endif; ?>
+
+          <!-- Contact phone number -->
+          <?php
+          $contact_way_email = get_field('contact_way'); // isso traz um array associativo
+          if ($contact_way_email && !empty($contact_way_email['contact_tel'])):
+            $contact_tel = $contact_way_email['contact_tel'];
+            ?>
+            <li class="contact-way-item contact-way-item-phone col-12 col-md">
+              <div class="border rounded d-flex justify-content-start">
+                <i class="fa-brands fa-whatsapp fa-2x me-3"></i>
+
+                <a href="http://wa.me/+<?php echo esc_attr($contact_tel); ?>" target="_blank" rel="noopener">
+
+                  <strong class="contact-way-name">Telefone/WhatsApp</strong>
+                  <span class="contact-way-description"><?php echo esc_html($contact_tel); ?></span>
+                </a>
+              </div>
+            </li>
+          <?php endif; ?>
+
+
+          <!-- Contact location -->
+
+          <?php
+          $contact_way = get_field('contact_way');
+
+          if ($contact_way && !empty($contact_way['contact_location'])):
+            $location = $contact_way['contact_location'];
+            $place = $location['contact_place'] ?? '';
+            $map_link = $location['contact_map'] ?? '';
+            ?>
+
+            <li class="contact-way-item contact-way-item-location col-12 col-md">
+              <div class="border rounded d-flex justify-content-start">
+                <i class="fa-solid fa-2x me-3 fa-map-pin"></i>
+                <a href="<?php echo esc_url($map_link); ?>" target="_blank" rel="noopener">
+                  <strong class="contact-way-name">Localização</strong>
+                  <span class="contact-way-description">
+                    <?php echo esc_html($place); ?>
+                  </span>
+                </a>
+              </div>
+            </li>
+
+          <?php endif; ?>
+        </ul>
+
+
+      </div>
     </div>
   </section>
-
-  <?php require_once get_template_directory() . '/section/cta.php'; ?>
 
   <?php require_once get_template_directory() . '/section/testimonial.php'; ?>
 

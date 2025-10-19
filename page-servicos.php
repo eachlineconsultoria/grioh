@@ -87,8 +87,6 @@ get_header();
     </div>
   <?php endif; ?>
 
-  <?php require_once get_template_directory() . '/section/cta.php'; ?>
-
   <?php require_once get_template_directory() . '/section/testimonial.php'; ?>
 
   <?php require_once get_template_directory() . '/section/cases.php'; ?>
