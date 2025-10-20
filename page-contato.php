@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Página de Serviços
+ * Template Name: Página de Contato
  * Description: Template que exibe os serviços a partir de subpáginas.
  *
  * @package Eachline

@@ -1,0 +1,93 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  text-transform: lowercase;
+}
+
+body,
+main {
+  width: 100vw;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover,
+a:focus {
+  text-decoration: wavy underline currentColor;
+  font-weight: bold;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+p {
+  font-size: 1rem;
+}
+
+strong {
+  font-size: 1.25rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.container,
+.contact {
+  width: 648px;
+}
+
+.container {
+  margin: 2.5rem auto 0;
+}
+
+.contact {
+  border-top: 1px solid #000;
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  list-style: none;
+}
+
+.email,
+.tel,
+.instagram,
+.linkedin {
+  padding-bottom: 1rem;
+  width: 49%;
+  float: left;
+}
+.tel a:hover,
+.tel a:focus {
+  color: #075e54;
+}
+.instagram a:hover,
+.instagram a:focus {
+  color: #e1306c;
+}
+.linkedin a:hover,
+.linkedin a:focus {
+  color: #0a66c2;
+}
+.social {
+  width: 100%;
+}
+
+.instagram a,
+.linkedin a {
+  display: flex;
+  align-items: center;
+}
+
+.svg {
+  margin-right: 0.5rem;
+  width: auto;
+  height: 1rem;
+  float: left;
+}

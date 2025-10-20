@@ -1118,6 +1118,12 @@ form .form-control {
     box-shadow: 0 0 0 0.25rem rgba(69, 103, 196, 0.25);
     border-color: var(--color-secondary); }
 
+.content > :is(h1, h2, h3, h4, h5, h6) {
+  margin-bottom: 2rem; }
+.content h2, .content-title {
+  font-size: 3rem;
+  font-weight: bold; }
+
 .contact-way {
   margin: 4rem 0; }
   .contact-way :is(h1, h2, h3, h4, h5, h6) {

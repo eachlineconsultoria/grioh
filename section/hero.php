@@ -17,10 +17,11 @@
 
         <h1 class="section-title"><?php echo esc_html($title); ?></h1>
 
-        <p class="section-description"><?php echo esc_html($description); ?></p>
+        <p class="section-description"><?php echo ($description); ?></p>
 
         <a href="<?php echo esc_url($button_link); ?>" class="hero-link link-text link-primary">
-          <?php echo esc_html($button_text); ?>
+
+          <?php echo esc_html(get_field('main_section_button')['custom_button_text'] ?? ''); ?>
 
           <?php if ($custom_section_icon): ?>
             <i class="ms-2  <?php echo $custom_section_icon; ?>"></i>
@@ -55,7 +56,7 @@
 
       <figure class="hero-image col-12 col-md-6 position-relative">
         <?php if (has_post_thumbnail()): ?>
-          <img src="<?php echo esc_url(get_the_post_thumbnail_url()); ?>"
+          <img src="<?php echo esc_url(get_the_post_thumbnail_url(null, 'large')); ?>"
             class="img-fluid w-100 h-100 rounded object-fit-cover" alt="">
         <?php endif; ?>
       </figure>
