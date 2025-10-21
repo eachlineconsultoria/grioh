@@ -25,7 +25,7 @@ get_header();
       $paged = 1;
     }
 
-    $limite_de_posts = 1;
+    $limite_de_posts = 9;
     $exibir_paginacao = true;
     include get_template_directory() . '/section/cases.php';
     ?>
