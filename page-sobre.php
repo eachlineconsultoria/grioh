@@ -1,8 +1,7 @@
 <?php
 /**
- * Template Name: Página de Contato
+ * Template Name: Sobre
  * Description: Template que exibe os serviços a partir de subpáginas.
- *
  * @package Eachline
  */
 
@@ -14,7 +13,11 @@ get_header();
 
   <article class="content section-container container">
     <?php the_content(); ?>
-
+  </article>
+  
+  <?php include get_template_directory() . '/section/cta.php'; ?>
+  
+  <section class=" section-container container">
     <h3>Liderança</h3>
     <?php
     $args = array(
@@ -39,25 +42,25 @@ get_header();
       </div>
     <?php endif; ?>
 
-  </article>
-  
-
+  </section>
   <?php if (get_field('prizes_section')): ?>
 
     <?php
     $link_category_slug = 'premios-e-reconhecimentos'; // ou 'premios-e-reconhecimentos'
     $section_id = 'prizes'; // ID da seção no HTML
     $custom_class = 'prizes'; // classes adicionais
+    $limit = '6'; // quantidade de links a serem exibidos
   
     include get_template_directory() . '/section/section-links.php';
     ?>
   <?php endif; ?>
-  
+
   <?php if (get_field('partners_section')): ?>
     <?php
     $link_category_slug = 'parceiros'; // ou 'premios-e-reconhecimentos'
     $section_id = 'partners'; // ID da seção no HTML
     $custom_class = 'partners'; // classes adicionais
+    $limit = '6'; // quantidade de links a serem exibidos
   
     include get_template_directory() . '/section/section-links.php';
     ?>

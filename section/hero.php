@@ -1,6 +1,4 @@
 <?php if (get_field('main_section')):
-
-  // Pega campos ACF
   $title = get_field('custom_header_title');
   $description = get_field('custom_header_description');
   $button_text = get_field('custom_button_text');
@@ -23,11 +21,18 @@
 
           <?php echo esc_html(get_field('main_section_button')['custom_button_text'] ?? ''); ?>
 
-          <?php if ($custom_section_icon): ?>
-            <i class="ms-2  <?php echo $custom_section_icon; ?>"></i>
+          <?php
+          $main_section_button = get_field('main_section_button');
+          $custom_section_icon = $main_section_button['custom_section_icon'] ?? '';
+
+          if ($custom_section_icon): ?>
+            <i class="ms-2 <?php echo esc_html($custom_section_icon); ?>"></i>
           <?php else: ?>
             <i class="ms-2 fa-solid fa-arrow-right"></i>
           <?php endif; ?>
+
+
+
         </a>
 
         <?php if ($icon_choice): ?>

@@ -18,6 +18,7 @@ if (!isset($link_category_slug) || empty($link_category_slug)) {
 $section_id = $section_id ?? 'section-' . sanitize_title($link_category_slug);
 $custom_class = $custom_class ?? '';
 $limit = $limit ?? 6;
+$orderby = $orderby ?? 'RAND';
 
 // Recupera a categoria
 $link_cat = get_term_by('slug', $link_category_slug, 'link_category');
@@ -29,7 +30,7 @@ if (!$link_cat || is_wp_error($link_cat)) {
 
 $bookmarks = get_bookmarks(array(
   'category' => $link_cat->term_id,
-  'orderby' => 'RAND',
+  'orderby' => $orderby,
   'order' => 'ASC',
   'limit' => $limit
 ));

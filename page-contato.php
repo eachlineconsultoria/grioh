@@ -1,9 +1,7 @@
 <?php
 /**
- * Template Name: Página de Contato
+ * Template Name: Contato
  * Description: Template que exibe os serviços a partir de subpáginas.
- *
- * @package Eachline
  */
 
 get_header();

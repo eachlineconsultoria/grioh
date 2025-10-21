@@ -8,20 +8,27 @@ get_header();
 
   <?php require_once get_template_directory() . '/section/hero.php'; ?>
 
-  <?php if (get_field('partners_section')): ?>
+  <?php
+  // parceiros
+  if (get_field('partners_section')):
 
-    <?php
-    $link_category_slug = 'parceiros'; // ou 'premios-e-reconhecimentos'
-    $section_id = 'partners'; // ID da seção no HTML
-    $custom_class = 'partners'; // classes adicionais
-  
+
+    $link_category_slug = 'parceiros';
+    $section_id = 'partners';
+    $custom_class = 'partners';
+    $limit = '6';
+
     include get_template_directory() . '/section/section-links.php';
     ?>
   <?php endif; ?>
 
-  <?php require_once get_template_directory() . '/section/cases.php'; ?>
+  <?php
+  // Cases
+  $limit = 1;
+  require_once get_template_directory() . '/section/cases.php';
 
-  <?php require_once get_template_directory() . '/section/cta.php'; ?>
+  // CTA
+  require_once get_template_directory() . '/section/cta.php'; ?>
 
   <section id="articles" class="container section-container articles">
     <header

@@ -39,10 +39,10 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "sass/placeholders";
 @import "sass/sections";
 @import "sass/links_buttons";
-@import "sass/nav";
+@import "sass/nav/nav";
+@import "sass/nav/pagination";
 @import "sass/hero";
 @import "sass/bignumbers";
-@import "sass/links";
 @import "sass/testimonials";
 @import "sass/cards";
 @import "sass/newsletter";
