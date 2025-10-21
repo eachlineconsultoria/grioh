@@ -25,3 +25,55 @@
     text-align: left;
   }
 }
+.cta,
+.press,
+.jobs {
+  margin: 0;
+}
+/* ==========================================================================
+   CTA
+   ========================================================================== */
+.cta {
+  background: var(--color-light);
+  padding: 5.75rem 0;
+  font-size: 3rem;
+  font-weight: bold;
+  a {
+    text-decoration: none;
+    color: var(--color-dark);
+  }
+}
+
+/* ==========================================================================
+   jobs
+   ========================================================================== */
+.jobs {
+  background: var(--equals);
+  color: var(--color-white);
+  padding: 5.75rem 0;
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* ==========================================================================
+   CLIPPING + EVENTOS
+   ========================================================================== */
+.press {
+  background: var(--arrow);
+  padding: 5.75rem 0;
+  font-weight: bold;
+  .section-title {
+    font-size: 2rem;
+  }
+  & a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--color-dark);
+
+    &:hover {
+      color: var(--color-dark);
+      text-decoration: currentColor wavy underline;
+    }
+  }
+}

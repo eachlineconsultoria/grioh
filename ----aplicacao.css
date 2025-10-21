@@ -394,15 +394,15 @@ a.link-branco:hover:after {
   color: var(--color-primary);
 }
 /* ==========================================================================
-   VAGAS
+   jobs
    ========================================================================== */
-.vagas {
+.jobs {
   background: var(--color-secondary);
   color: var(--color-white);
   padding: 5.75rem 0;
 }
 
-.vagas .section-title {
+.jobs .section-title {
   font-size: 2rem;
 }
 

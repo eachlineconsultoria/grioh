@@ -4,6 +4,13 @@
 :root {
   --font-body: "Atkinson Hyperlegible", sans-serif;
 
+  /* brand colors */
+  --square: #f363f7;
+  --equals: #0077c9;
+  --circle: #ff7029;
+  --arrow: #ffc62e;
+  --logo-text: #000;
+
   /* main colors */
   --color-primary: #b4009e;
   --color-secondary: #4668c5;
@@ -26,12 +33,12 @@
   --bs-border-radius-2xl: var(--radius-sm);
 
   /* social color */
-  --instagram: #E1306C;
-  --linkedin: #0A66C2;
-  --bluesky: #007BB5;
+  --instagram: #e1306c;
+  --linkedin: #0a66c2;
+  --bluesky: #007bb5;
   --x: #000;
-  --pinterest: #CC2127;
-  --facebook: #3B5998;
+  --pinterest: #cc2127;
+  --facebook: #3b5998;
   --mastodon: ##5a48dd;
   --email: #333;
 }

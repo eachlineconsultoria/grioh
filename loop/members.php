@@ -33,7 +33,7 @@ $email = get_field('email', $post_id);
   <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
 
-      <div class="modal-body">
+      <div class="modal-body  modal-member-body">
         <div class="row">
           <div class="col-md-4">
             <?php if (has_post_thumbnail()): ?>
@@ -43,14 +43,14 @@ $email = get_field('email', $post_id);
           </div>
           <div class="col-md-8">
 
-            <div class="modal-header border-0 p-0">
+            <div class="modal-header modal-member-header border-0 p-0">
               <h5 class="modal-member-title modal-title" id="<?php echo esc_attr($modal_id); ?>Label"><?php the_title(); ?></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
 
 
             <p class="modal-member-role"><?php echo get_the_excerpt(); ?></p>
-            <div><?php the_content(); ?></div>
+            <div class="modal-member-content"><?php the_content(); ?></div>
 
             <div class="modal-social mt-3 d-flex gap-3 flex-wrap">
               <?php if ($twitter): ?>

@@ -12,10 +12,11 @@
 ?>
 <?php require_once get_template_directory() . '/section/jobs.php'; ?>
 <?php require_once get_template_directory() . '/section/newsletter.php'; ?>
-  <?php require_once get_template_directory() . '/section/cta.php'; ?>
+<?php require_once get_template_directory() . '/section/press.php'; ?>
 
 
 <footer id="colophon" class="site-footer flex-column flex-md-row footer justify-content-center d-flex">
+
 	<div class="site-info container">
 
 		<div class="footer-branding text-center">
@@ -35,7 +36,6 @@
 			<?php endif; ?>
 		</div>
 
-
 		<nav>
 			<?php
 			wp_nav_menu(array(
@@ -47,6 +47,7 @@
 			));
 			?>
 		</nav>
+
 		<div class="footer-divider"></div>
 
 		<div class="footer-links flex-column flex-md-row d-flex justify-content-center justify-content-md-between">
@@ -64,15 +65,16 @@
 				<?php dynamic_sidebar('footer-social'); ?>
 			<?php endif; ?>
 		</div>
+
 		<div class="footer-credits d-flex justify-content-between">
 			<span>&copy; <?php the_date('Y'); ?>. Eachline — Todos os direitos reservados.</span>
 
 			<a href="http://wagnerbeethoven.com.br" title="Desenvolvido por Wagner Beethoven"><img
 					src="<?php echo get_template_directory_uri(); ?>/assets/img/author.svg"></a>
 		</div>
-	</div><!-- .site-info -->
-</footer><!-- #colophon -->
+	</div>
 
+</footer>
 
 <?php wp_footer(); ?>
 

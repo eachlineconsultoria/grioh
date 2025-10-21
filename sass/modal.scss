@@ -1,12 +1,23 @@
 .modal {
   &-member {
+    &-body {
+      padding: 2rem;
+    }
+
     &-title {
       font-size: 3rem;
+      line-height: 1;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
     }
-    &-description {
+    &-role {
       font-size: 1.125rem;
     }
+    &-header {
+      align-items: start;
+    }
   }
+
   &-social {
     &-twitter {
       @extend .x;

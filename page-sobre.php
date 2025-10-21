@@ -40,21 +40,7 @@ get_header();
     <?php endif; ?>
 
   </article>
-
-
-
-
-  <?php if (get_field('partners_section')): ?>
-
-    <?php
-    $link_category_slug = 'parceiros'; // ou 'premios-e-reconhecimentos'
-    $section_id = 'partners'; // ID da seção no HTML
-    $custom_class = 'partners'; // classes adicionais
   
-    include get_template_directory() . '/section/section-links.php';
-    ?>
-  <?php endif; ?>
-
 
   <?php if (get_field('prizes_section')): ?>
 
@@ -66,6 +52,17 @@ get_header();
     include get_template_directory() . '/section/section-links.php';
     ?>
   <?php endif; ?>
+  
+  <?php if (get_field('partners_section')): ?>
+    <?php
+    $link_category_slug = 'parceiros'; // ou 'premios-e-reconhecimentos'
+    $section_id = 'partners'; // ID da seção no HTML
+    $custom_class = 'partners'; // classes adicionais
+  
+    include get_template_directory() . '/section/section-links.php';
+    ?>
+  <?php endif; ?>
+
 
 </main>
 

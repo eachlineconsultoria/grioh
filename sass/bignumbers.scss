@@ -2,6 +2,9 @@
    BIGNUMBERS
    ========================================================================== */
 .bignumbers {
+  .widget_block {
+    text-align: center;
+  }
   &-value,
   p {
     font-size: 3rem;
