@@ -8,7 +8,16 @@ get_header();
 
   <?php require_once get_template_directory() . '/section/hero.php'; ?>
 
-  <?php require_once get_template_directory() . '/section/partners.php'; ?>
+  <?php if (get_field('partners_section')): ?>
+
+    <?php
+    $link_category_slug = 'parceiros'; // ou 'premios-e-reconhecimentos'
+    $section_id = 'partners'; // ID da seção no HTML
+    $custom_class = 'partners'; // classes adicionais
+  
+    include get_template_directory() . '/section/section-links.php';
+    ?>
+  <?php endif; ?>
 
   <?php require_once get_template_directory() . '/section/cases.php'; ?>
 
@@ -22,8 +31,8 @@ get_header();
       $category = get_category_by_slug($slug);
       if ($category) {
         echo get_category_link($category->term_id);
-      } ?>"
-        class="card-link link-text link-primary">Leia todos os artigos<i class="ms-2 fa-solid fa-arrow-right"></i></a>
+      } ?>" class="card-link link-text link-primary">Leia todos os artigos<i
+          class="ms-2 fa-solid fa-arrow-right"></i></a>
     </header>
     <?php require_once get_template_directory() . '/loop/articles.php'; ?>
   </section>

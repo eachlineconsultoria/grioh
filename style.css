@@ -761,6 +761,7 @@ textarea {
   --x: #000;
   --pinterest: #CC2127;
   --facebook: #3B5998;
+  --mastodon: ##5a48dd;
   --email: #333; }
 
 /* ==========================================================================
@@ -791,6 +792,30 @@ a:visited {
 
 .navbar-toggler {
   padding: 1rem; }
+
+.instagram, .aside-social-item-instagram .fa-square {
+  color: var(--instagram) !important; }
+
+.linkedin, .aside-social-item-linkedin .fa-square, .modal-social-linkedin {
+  color: var(--linkedin) !important; }
+
+.bluesky, .modal-social-bluesky {
+  color: var(--bluesky) !important; }
+
+.x, .modal-social-twitter {
+  color: var(--x) !important; }
+
+.pinterest, .modal-social-pinterest {
+  color: var(--pinterest) !important; }
+
+.facebook, .modal-social-facebook {
+  color: var(--facebook) !important; }
+
+.mastodon, .modal-social-mastodon {
+  color: var(--facebook) !important; }
+
+.email {
+  color: var(--email) !important; }
 
 /* ==========================================================================
    SEÇÕES GENÉRICAS
@@ -925,14 +950,18 @@ a:visited {
 /* ==========================================================================
    PARCEIROS
    ========================================================================== */
-.partners-list {
+.link-list {
   gap: 2rem; }
-.partners-item a {
-  width: 7.75rem;
-  height: 7.75rem;
-  background: transparent no-repeat center;
-  background-size: 85%;
-  background-color: var(--color-white); }
+  .link-list-item {
+    width: 7.75rem;
+    height: 7.75rem; }
+    .link-list-item a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: transparent no-repeat center;
+      background-color: var(--color-white);
+      background-size: cover; }
 
 /* ==========================================================================
    DEPOIMENTOS (TESTIMONIAL)
@@ -980,6 +1009,15 @@ a:visited {
   padding-top: 0; }
 .card-link {
   position: relative; }
+
+.card-member:hover {
+  cursor: pointer; }
+.card-member .card-body {
+  row-gap: 0; }
+.card-member .card-title {
+  font-size: 2rem; }
+.card-member .card-text {
+  font-size: 1.125rem; }
 
 /* ==========================================================================
    CTA
@@ -1069,10 +1107,6 @@ a:visited {
   .aside-social-at {
     font-size: 0.825rem;
     font-weight: normal; }
-  .aside-social-item-instagram .fa-square {
-    color: var(--instagram); }
-  .aside-social-item-linkedin .fa-square {
-    color: var(--linkedin); }
 
 /* ==========================================================================
    RODAPÉ
@@ -1123,6 +1157,11 @@ form .form-control {
 .content h2, .content-title {
   font-size: 3rem;
   font-weight: bold; }
+
+.modal-member-title {
+  font-size: 3rem; }
+.modal-member-description {
+  font-size: 1.125rem; }
 
 .contact-way {
   margin: 4rem 0; }

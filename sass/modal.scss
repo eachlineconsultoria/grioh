@@ -1,0 +1,30 @@
+.modal {
+  &-member {
+    &-title {
+      font-size: 3rem;
+    }
+    &-description {
+      font-size: 1.125rem;
+    }
+  }
+  &-social {
+    &-twitter {
+      @extend .x;
+    }
+    &-linkedin {
+      @extend .linkedin;
+    }
+    &-pinterest {
+      @extend .pinterest;
+    }
+    &-bluesky {
+      @extend .bluesky;
+    }
+    &-facebook {
+      @extend .facebook;
+    }
+    &-mastodon {
+      @extend .mastodon;
+    }
+  }
+}

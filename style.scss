@@ -36,12 +36,13 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 @import "sass/variables";
 @import "sass/base";
+@import "sass/placeholders";
 @import "sass/sections";
 @import "sass/links_buttons";
 @import "sass/nav";
 @import "sass/hero";
 @import "sass/bignumbers";
-@import "sass/partners";
+@import "sass/links";
 @import "sass/testimonials";
 @import "sass/cards";
 @import "sass/cta";
@@ -51,5 +52,6 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "sass/footer";
 @import "sass/form";
 @import "sass/article";
+@import "sass/modal";
 
 @import "sass/pages/contact";

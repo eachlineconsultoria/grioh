@@ -34,3 +34,20 @@
     position: relative;
   }
 }
+
+.card {
+  &-member {
+    &:hover {
+      cursor: pointer;
+    }
+    .card-body {
+      row-gap: 0;
+    }
+    .card-title {
+      font-size: 2rem;
+    }
+    .card-text {
+      font-size: 1.125rem;
+    }
+  }
+}

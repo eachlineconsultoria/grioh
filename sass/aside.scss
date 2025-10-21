@@ -63,12 +63,12 @@
 
   &-item-instagram {
     .fa-square {
-      color: var(--instagram);
+      @extend .instagram;
     }
   }
   &-item-linkedin {
     .fa-square {
-      color: var(--linkedin);
+      @extend .linkedin;
     }
   }
 }

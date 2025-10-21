@@ -38,10 +38,34 @@ get_header();
         </div>
       </div>
     <?php endif; ?>
+
   </article>
 
 
 
+
+  <?php if (get_field('partners_section')): ?>
+
+    <?php
+    $link_category_slug = 'parceiros'; // ou 'premios-e-reconhecimentos'
+    $section_id = 'partners'; // ID da seção no HTML
+    $custom_class = 'partners'; // classes adicionais
+  
+    include get_template_directory() . '/section/section-links.php';
+    ?>
+  <?php endif; ?>
+
+
+  <?php if (get_field('prizes_section')): ?>
+
+    <?php
+    $link_category_slug = 'premios-e-reconhecimentos'; // ou 'premios-e-reconhecimentos'
+    $section_id = 'prizes'; // ID da seção no HTML
+    $custom_class = 'prizes'; // classes adicionais
+  
+    include get_template_directory() . '/section/section-links.php';
+    ?>
+  <?php endif; ?>
 
 </main>
 

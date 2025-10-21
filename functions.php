@@ -261,7 +261,5 @@ function add_excerpt_to_pages()
 }
 add_action('init', 'add_excerpt_to_pages');
 
-
-
 // Remove as tags <p> e <br> automáticas do Contact Form 7
 add_filter('wpcf7_autop_or_not', '__return_false');
