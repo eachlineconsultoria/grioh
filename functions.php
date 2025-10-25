@@ -138,13 +138,13 @@ function eachline_widgets_init()
 		'name' => esc_html__('Página de contato', 'eachline'),
 		'id' => 'aside-contact',
 		'description' => esc_html__('Adicione widgets à sidebar principal.', 'eachline'),
-	// Remove divs e wrappers
-	'before_widget' => '',
-	'after_widget' => '',
+		// Remove divs e wrappers
+		'before_widget' => '',
+		'after_widget' => '',
 
-	// Opcional: pode manter os títulos se quiser
-	'before_title' => '',
-	'after_title' => '',
+		// Opcional: pode manter os títulos se quiser
+		'before_title' => '',
+		'after_title' => '',
 	));
 
 
@@ -263,3 +263,23 @@ add_action('init', 'add_excerpt_to_pages');
 
 // Remove as tags <p> e <br> automáticas do Contact Form 7
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+// Remove info title from archive
+function my_theme_archive_title($title)
+{
+	if (is_category()) {
+		$title = single_cat_title('', false);
+	} elseif (is_tag()) {
+		$title = single_tag_title('', false);
+	} elseif (is_author()) {
+		$title = '<span class="vcard">' . get_the_author() . '</span>';
+	} elseif (is_post_type_archive()) {
+		$title = post_type_archive_title('', false);
+	} elseif (is_tax()) {
+		$title = single_term_title('', false);
+	}
+
+	return $title;
+}
+
+add_filter('get_the_archive_title', 'my_theme_archive_title');

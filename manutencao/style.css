@@ -1,93 +1,189 @@
+/* RESET E BASE */
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
   font-family: "Atkinson Hyperlegible", sans-serif;
   text-transform: lowercase;
-}
-
-body,
-main {
-  width: 100vw;
-  height: 100vh;
-}
-
-a {
-  text-decoration: none;
+  background: #fff;
   color: #000;
 }
 
-a:hover,
-a:focus {
-  text-decoration: wavy underline currentColor;
-  font-weight: bold;
+/* LAYOUT PRINCIPAL */
+main {
+  text-align: left;
+  max-width: 680px;
+  width: 100%;
 }
 
-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+/* LOGO */
+.logo {
+  max-width: 220px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
+
+/* TEXTOS */
+strong {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
 }
 
 p {
   font-size: 1rem;
-}
-
-strong {
-  font-size: 1.25rem;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.container,
-.contact {
-  width: 648px;
+  line-height: 1.6;
+  color: #111;
 }
 
 .container {
-  margin: 2.5rem auto 0;
+  margin: 2rem auto;
+  padding: 0;
 }
 
+/* LINKS */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  text-decoration: wavy underline;
+  font-weight: bold;
+  outline: none;
+}
+
+/* CONTATOS */
 .contact {
   border-top: 1px solid #000;
   margin-top: 2.5rem;
-  padding-top: 1.25rem;
-  list-style: none;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding-inline: 1rem;
 }
 
-.email,
-.tel,
-.instagram,
-.linkedin {
-  padding-bottom: 1rem;
-  width: 49%;
-  float: left;
-}
-.tel a:hover,
-.tel a:focus {
-  color: #075e54;
-}
-.instagram a:hover,
-.instagram a:focus {
-  color: #e1306c;
-}
-.linkedin a:hover,
-.linkedin a:focus {
-  color: #0a66c2;
-}
-.social {
-  width: 100%;
-}
-
-.instagram a,
-.linkedin a {
+.contact-item {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  flex: 1 1 45%;
+  justify-content: center;
 }
 
-.svg {
-  margin-right: 0.5rem;
+.icon {
+  height: 1.25rem;
   width: auto;
-  height: 1rem;
-  float: left;
+}
+
+/* CORES DE HOVER ESPECÍFICAS */
+.contact-item:nth-child(2) a:hover {
+  color: #075e54; /* WhatsApp */
+}
+
+.contact-item:nth-child(3) a:hover {
+  color: #e1306c; /* Instagram */
+}
+
+.contact-item:nth-child(4) a:hover {
+  color: #0a66c2; /* LinkedIn */
+}
+
+/* RODAPÉ */
+footer {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+/* -------------------------------
+   RESPONSIVIDADE
+---------------------------------*/
+
+/* Tablets (até 768px) */
+@media (max-width: 768px) {
+  body {
+    padding: 2rem 1rem;
+  }
+
+  strong {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .contact-item {
+    flex: 1 1 100%;
+    justify-content: flex-start;
+  }
+
+  main {
+    max-width: 95%;
+  }
+}
+
+/* Celulares (até 480px) */
+@media (max-width: 480px) {
+  .logo {
+    max-width: 160px;
+  }
+
+  strong {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .contact {
+    gap: 0.75rem;
+    padding-inline: 0.5rem;
+  }
+
+  .contact-item {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .icon {
+    height: 1rem;
+  }
+
+  footer {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+  }
 }

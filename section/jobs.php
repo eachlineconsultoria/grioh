@@ -1,4 +1,4 @@
-<?php if (get_field('jobs_section')): ?>
+<?php //if (get_field('jobs_section')): ?>
   <section id="jobs" class="section-container jobs">
     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between">
       <h2 class="section-title text-center text-md-start">Pronto para a jornada extraordinária conosco?</h2>
@@ -14,4 +14,4 @@
       </a>
     </div>
   </section>
-<?php endif; ?>
+<?php // endif; ?>

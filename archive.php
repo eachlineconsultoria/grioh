@@ -1,50 +1,77 @@
 <?php
-/**
- * The template for displaying archive pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Eachline
- */
+/*
+Template Name: Arquivos
+*/
 
-get_header();
-?>
+get_header(); ?>
 
-	<main id="primary" class="site-main">
+<div id="main-content" class="main-content">
 
-		<?php if ( have_posts() ) : ?>
+  <?php
+  if (is_front_page() && twentyfourteen_has_featured_posts()) {
+    // Include the featured content template.
+    get_template_part('featured-content');
+  }
+  ?>
+  <div id="primary" class="content-area">
+    <div id="content" class="site-content container" role="main">
 
-			<header class="page-header">
-				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
+      <?php
+      // Start the Loop.
+      while (have_posts()):
+        the_post();
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+        ?>
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content--_.php (where -_ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+          <?php
+          // Page thumbnail and title.
+          the_post_thumbnail();
+          the_title('<header class="entry-header"><h1 class="entry-title">', '</h1></header><!-- .entry-header -->');
+          ?>
 
-			endwhile;
+          <div class="entry-content">
+            <?php the_content(); ?>
 
-			the_posts_navigation();
+            <?php get_search_form(); ?>
 
-		else :
+            <h2>Archives by Month:</h2>
+            <ul>
+              <?php wp_get_archives('type=monthly'); ?>
+            </ul>
+            <h2>Páginas:</h2>
+            <ul>
+                <?php wp_list_pages('title_li='); ?>
+            </ul>
 
-			get_template_part( 'template-parts/content', 'none' );
+            <h2>Archives by Subject:</h2>
+            <ul>
+              <?php wp_list_categories(); ?>
+            </ul>
+            <h2>Autores:</h2>
+            <ul>
+              <?php wp_list_authors('show_fullname=1&optioncount=1&orderby=post_count'); ?>
+            </ul>
 
-		endif;
-		?>
+            <?php edit_post_link(__('Edit', 'twentyfourteen'), '<span class="edit-link">', '</span>'); ?>
 
-	</main><!-- #main -->
+          </div><!-- .entry-content -->
+        </article><!-- #post-## -->
+
+        <?php
+
+        // If comments are open or we have at least one comment, load up the comment template.
+        if (comments_open() || get_comments_number()) {
+          comments_template();
+        }
+      endwhile;
+      ?>
+
+
+    </div><!-- #content -->
+  </div><!-- #primary -->
+  <?php get_sidebar('content'); ?>
+</div><!-- #main-content -->
 
 <?php
 get_sidebar();

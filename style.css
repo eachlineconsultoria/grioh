@@ -942,7 +942,7 @@ LINKS E BOTÕES
     border-color: var(--color-secondary); }
     .button-secondary:hover, .button-secondary:focus {
       background: var(--color-primary);
-      color: var(--color-primary);
+      color: var(--color-white);
       border-color: var(--color-primary); }
   .button-dark {
     background: var(--color-dark);
