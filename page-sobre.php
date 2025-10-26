@@ -18,7 +18,7 @@ get_header();
   <?php include get_template_directory() . '/section/cta.php'; ?>
   
   <section class=" section-container container">
-    <h3>Liderança</h3>
+    <h3m class="section-title">Liderança</h3>
     <?php
     $args = array(
       'post_type' => 'membro',
@@ -29,7 +29,7 @@ get_header();
 
     if ($query->have_posts()):
       ?>
-      <div class="container equipe-loop">
+      <div class="container team-loop">
         <div class="row g-4">
           <?php
           while ($query->have_posts()):

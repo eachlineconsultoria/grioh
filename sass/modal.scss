@@ -16,9 +16,14 @@
     &-header {
       align-items: start;
     }
+    &-content {
+      font-size: 1rem;
+      font-weight: normal;
+    }
   }
 
   &-social {
+    font-size: 1rem;
     &-twitter {
       @extend .x;
     }

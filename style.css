@@ -1093,11 +1093,11 @@ LINKS E BOTÕES
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 1rem; }
-.card-title a {
-  color: var(--color-dark);
-  text-decoration: none; }
-.card-title a:hover, .card-title a:focus {
-  color: var(--color-primary); }
+  .card-title a {
+    color: var(--color-dark);
+    text-decoration: none; }
+    .card-title a:hover, .card-title a:focus {
+      color: var(--color-primary); }
 .card-description {
   font-size: 1.125rem; }
 .card-footer {
@@ -1106,7 +1106,6 @@ LINKS E BOTÕES
   padding-top: 0; }
 .card-link {
   position: relative; }
-
 .card-member:hover {
   cursor: pointer; }
 .card-member .card-body {
@@ -1242,6 +1241,11 @@ form .form-control {
   font-size: 1.125rem; }
 .modal-member-header {
   align-items: start; }
+.modal-member-content {
+  font-size: 1rem;
+  font-weight: normal; }
+.modal-social {
+  font-size: 1rem; }
 
 .contact-way {
   margin: 4rem 0; }

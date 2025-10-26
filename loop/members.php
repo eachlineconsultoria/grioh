@@ -17,8 +17,10 @@ $twitter = get_field('x_twitter', $post_id);
   <div class="card border-0 h-100 text-center card-member" data-bs-toggle="modal"
     data-bs-target="#<?php echo esc_attr($modal_id); ?>">
     <?php if (has_post_thumbnail()): ?>
-      <img src="<?php echo get_the_post_thumbnail_url($post_id, 'medium'); ?>" class="card-img-top"
-        alt="<?php the_title(); ?>">
+      <figure class="ratio m-0 ratio-1x1">
+        <img src="<?php echo get_the_post_thumbnail_url($post_id, 'medium'); ?>"
+          class="card-img-top object-fit-cover img-fluid" alt="<?php the_title(); ?>">
+      </figure>
     <?php endif; ?>
 
     <div class="p-0 pt-3 text-start card-body">
@@ -38,14 +40,18 @@ $twitter = get_field('x_twitter', $post_id);
         <div class="row">
           <div class="col-md-4">
             <?php if (has_post_thumbnail()): ?>
-              <img src="<?php echo get_the_post_thumbnail_url($post_id, 'medium'); ?>" class="img-fluid rounded h-100 object-fit-cover mb-3"
-                alt="<?php the_title(); ?>">
+              <figure class="ratio ratio-1x1 m-0">
+                <img src="<?php echo get_the_post_thumbnail_url($post_id, 'medium'); ?>"
+                  class="img-fluid rounded h-100 object-fit-cover mb-3" alt="<?php the_title(); ?>">
+              </figure>
             <?php endif; ?>
           </div>
           <div class="col-md-8">
 
             <div class="modal-header modal-member-header border-0 p-0">
-              <h5 class="modal-member-title modal-title" id="<?php echo esc_attr($modal_id); ?>Label"><?php the_title(); ?></h5>
+              <h5 class="modal-member-title modal-title" id="<?php echo esc_attr($modal_id); ?>Label">
+                <?php the_title(); ?>
+              </h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
 
@@ -55,22 +61,28 @@ $twitter = get_field('x_twitter', $post_id);
 
             <div class="modal-social mt-3 d-flex gap-3 flex-wrap">
               <?php if ($instagram): ?>
-                <a class="modal-social-instagram" href="<?php echo esc_url($instagram); ?>" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+                <a class="modal-social-instagram" href="<?php echo esc_url($instagram); ?>" target="_blank"><i
+                    class="fab fa-instagram fa-lg"></i></a>
               <?php endif; ?>
               <?php if ($twitter): ?>
-                <a class="modal-social-twitter" href="<?php echo esc_url($twitter); ?>" target="_blank"><i class="fab fa-x-twitter fa-lg"></i></a>
+                <a class="modal-social-twitter" href="<?php echo esc_url($twitter); ?>" target="_blank"><i
+                    class="fab fa-x-twitter fa-lg"></i></a>
               <?php endif; ?>
               <?php if ($linkedin): ?>
-                <a class="modal-social-linkedin" href="<?php echo esc_url($linkedin); ?>" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a class="modal-social-linkedin" href="<?php echo esc_url($linkedin); ?>" target="_blank"><i
+                    class="fab fa-linkedin fa-lg"></i></a>
               <?php endif; ?>
               <?php if ($pinterest): ?>
-                <a class="modal-social-pinterest" href="<?php echo esc_url($pinterest); ?>" target="_blank"><i class="fab fa-pinterest fa-lg"></i></a>
+                <a class="modal-social-pinterest" href="<?php echo esc_url($pinterest); ?>" target="_blank"><i
+                    class="fab fa-pinterest fa-lg"></i></a>
               <?php endif; ?>
               <?php if ($bluesky): ?>
-                <a class="modal-social-bluesky" href="<?php echo esc_url($bluesky); ?>" target="_blank"><i class="fa-brands fa-bluesky fa-lg"></i></a>
+                <a class="modal-social-bluesky" href="<?php echo esc_url($bluesky); ?>" target="_blank"><i
+                    class="fa-brands fa-bluesky fa-lg"></i></a>
               <?php endif; ?>
               <?php if ($facebook): ?>
-                <a class="modal-social-facebook" href="<?php echo esc_url($facebook); ?>" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
+                <a class="modal-social-facebook" href="<?php echo esc_url($facebook); ?>" target="_blank"><i
+                    class="fab fa-facebook fa-lg"></i></a>
               <?php endif; ?>
               <?php if ($mastodon): ?>
                 <a class="modal-social-mastodon" href="<?php echo esc_url($mastodon); ?>" target="_blank"><i
