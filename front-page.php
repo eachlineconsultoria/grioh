@@ -12,7 +12,6 @@ get_header();
   // parceiros
   if (get_field('partners_section')):
 
-
     $link_category_slug = 'parceiros';
     $section_id = 'partners';
     $custom_class = 'partners';
@@ -22,13 +21,9 @@ get_header();
     ?>
   <?php endif; ?>
 
-  <?php
-  // Cases
-  $limit = 1;
-  require_once get_template_directory() . '/section/cases.php';
+  <?php /* Cases */  $limit = 1;require_once get_template_directory() . '/section/cases.php'; ?>
 
-  // CTA
-  require_once get_template_directory() . '/section/cta.php'; ?>
+  <?php /* CTA */ require_once get_template_directory() . '/section/cta.php'; ?>
 
   <section id="articles" class="container section-container articles">
     <header
@@ -43,10 +38,6 @@ get_header();
     </header>
     <?php require_once get_template_directory() . '/loop/articles.php'; ?>
   </section>
-
-
-
-
 </main>
 
 <?php

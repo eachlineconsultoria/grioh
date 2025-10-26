@@ -3,13 +3,14 @@ $post_id = get_the_ID();
 $modal_id = 'modal-member-' . $post_id;
 
 // Campos ACF
-$twitter = get_field('x_twitter', $post_id);
-$linkedin = get_field('linkedin', $post_id);
-$pinterest = get_field('pinterest', $post_id);
 $bluesky = get_field('bluesky', $post_id);
-$facebook = get_field('facebook', $post_id);
-$mastodon = get_field('mastodon', $post_id);
 $email = get_field('email', $post_id);
+$facebook = get_field('facebook', $post_id);
+$instagram = get_field('instagram', $post_id);
+$linkedin = get_field('linkedin', $post_id);
+$mastodon = get_field('mastodon', $post_id);
+$pinterest = get_field('pinterest', $post_id);
+$twitter = get_field('x_twitter', $post_id);
 ?>
 
 <div class="col-12 col-md-4">
@@ -53,6 +54,9 @@ $email = get_field('email', $post_id);
             <div class="modal-member-content"><?php the_content(); ?></div>
 
             <div class="modal-social mt-3 d-flex gap-3 flex-wrap">
+              <?php if ($instagram): ?>
+                <a class="modal-social-instagram" href="<?php echo esc_url($instagram); ?>" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+              <?php endif; ?>
               <?php if ($twitter): ?>
                 <a class="modal-social-twitter" href="<?php echo esc_url($twitter); ?>" target="_blank"><i class="fab fa-x-twitter fa-lg"></i></a>
               <?php endif; ?>

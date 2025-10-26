@@ -1,41 +1,48 @@
-<?php if (get_field('main_section')):
-  $title = get_field('custom_header_title');
-  $description = get_field('custom_header_description');
-  $button_text = get_field('custom_button_text');
-  $button_link = get_field('custom_button_link');
-  $icon_choice = get_field('custom_icon_choice');
-  $custom_section_icon = get_field('custom_section_icon');
+<?php
+$display = get_field('hero_container'); // grupo principal
+$hero = $display['display_hero'] ?? null; // subgrupo interno
 
-  ?>
+if ($hero): ?>
 
   <section id="hero" class="container custom-page-header hero container">
     <div class="row">
       <div
         class="section hero-content position-relative d-flex flex-column justify-content-center align-self-start col-12 col-md-6 mb-3 mb-md-0">
+        <h1 class="section-title">
+          <?php $group = get_field('hero_container');
+          echo esc_html($group['hero_title'] ?? ''); ?>
+        </h1>
+        <p class="section-description">
+          <?php $group = get_field('hero_container');
+          echo esc_html($group['hero_description'] ?? ''); ?>
+        </p>
 
-        <h1 class="section-title"><?php echo esc_html($title); ?></h1>
+        <?php
+        $hero_group = get_field('hero_container'); // grupo principal
+        $button = $hero_group['hero_button'] ?? []; // subgrupo hero_button
+      
+        $link = esc_url($button['hero_button_link'] ?? '#');
+        $text = esc_html($button['hero_button_text'] ?? '');
+        $icon = $button['hero_button_icon'] ?? '';
+        ?>
 
-        <p class="section-description"><?php echo ($description); ?></p>
+        <a href="<?php echo $link; ?>" class="hero-link link-text link-primary">
+          <?php echo $text; ?>
 
-        <a href="<?php echo esc_url($button_link); ?>" class="hero-link link-text link-primary">
-
-          <?php echo esc_html(get_field('main_section_button')['custom_button_text'] ?? ''); ?>
-
-          <?php
-          $main_section_button = get_field('main_section_button');
-          $custom_section_icon = $main_section_button['custom_section_icon'] ?? '';
-
-          if ($custom_section_icon): ?>
-            <i class="ms-2 <?php echo esc_html($custom_section_icon); ?>"></i>
+          <?php if ($icon): ?>
+            <i class="ms-2 <?php echo esc_attr($icon); ?>"></i>
           <?php else: ?>
             <i class="ms-2 fa-solid fa-arrow-right"></i>
           <?php endif; ?>
-
-
-
         </a>
 
-        <?php if ($icon_choice): ?>
+
+        <?php
+        $group = get_field('hero_container');
+        $icon_choice = $group['icon_choice'] ?? ''; // campo direto no grupo principal
+      
+        if ($icon_choice):
+          ?>
           <div class="hero-icon position-absolute">
             <?php
             $icon_base = get_template_directory_uri() . '/assets/img/icons/';
@@ -57,6 +64,8 @@
             ?>
           </div>
         <?php endif; ?>
+
+
       </div>
 
       <figure class="hero-image col-12 col-md-6 position-relative">
