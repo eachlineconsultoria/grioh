@@ -1,4 +1,3 @@
-
 /* ==========================================================================
    BASE E ESTILOS GERAIS
    ========================================================================== */
@@ -19,8 +18,8 @@ a:hover {
 a:focus {
   color: var(--color-secondary);
 }
-a:visited{
-  color: currentColor
+a:visited {
+  color: currentColor;
 }
 
 .custom-logo {
@@ -30,4 +29,11 @@ a:visited{
 
 .navbar-toggler {
   padding: 1rem;
+}
+figure{
+  margin-top: 0;
+}
+figure,
+img {
+  border-radius: var(--radius-sm);
 }

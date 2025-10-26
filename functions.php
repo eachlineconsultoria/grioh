@@ -52,7 +52,16 @@ function eachline_setup()
 	 *
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
+	// Ativa suporte a imagens destacadas (featured images)
 	add_theme_support('post-thumbnails');
+
+	// Opcional: define os tipos de post que terão suporte
+	function eachline_enable_thumbnails()
+	{
+		add_post_type_support('page', 'thumbnail'); // habilita em páginas
+		add_post_type_support('post', 'thumbnail'); // garante que posts também tenham
+	}
+	add_action('init', 'eachline_enable_thumbnails');
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(

@@ -10,9 +10,10 @@
  */
 
 ?>
-<?php require_once get_template_directory() . '/section/jobs.php'; ?>
+
 <?php require_once get_template_directory() . '/section/press.php'; ?>
 <?php require_once get_template_directory() . '/section/newsletter.php'; ?>
+<?php require_once get_template_directory() . '/section/jobs.php'; ?>
 
 <footer id="colophon" class="site-footer flex-column flex-md-row footer justify-content-center d-flex">
 

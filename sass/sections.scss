@@ -25,19 +25,19 @@
     text-align: left;
   }
 }
-.cta,
 .press,
 .jobs {
-  margin: 0;
+  padding: 5.75rem;
 }
 /* ==========================================================================
    CTA
    ========================================================================== */
 .cta {
   background: var(--color-light);
-  padding: 5.75rem 0;
   font-size: 3rem;
   font-weight: bold;
+  padding-top: 5.75rem;
+  padding-bottom: 5.75rem;
   a {
     text-decoration: none;
     color: var(--color-dark);
@@ -48,9 +48,17 @@
    jobs
    ========================================================================== */
 .jobs {
-  background: var(--equals);
-  color: var(--color-white);
-  padding: 5.75rem 0;
+  background: var(--color-dark);
+  &,
+  .link-text {
+    &,
+    &:hover,
+    &:focus,
+    &:visited {
+      color: var(--color-light) !important;
+    }
+  }
+
   .section-title {
     font-size: 2rem;
   }
@@ -61,8 +69,8 @@
    ========================================================================== */
 .press {
   background: var(--arrow);
-  padding: 5.75rem 0;
   font-weight: bold;
+
   .section-title {
     font-size: 2rem;
   }

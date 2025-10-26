@@ -799,6 +799,13 @@ a:visited {
 .navbar-toggler {
   padding: 1rem; }
 
+figure {
+  margin-top: 0; }
+
+figure,
+img {
+  border-radius: var(--radius-sm); }
+
 .instagram, .aside-social-item-instagram .fa-square {
   color: var(--instagram) !important; }
 
@@ -843,19 +850,19 @@ a:visited {
   font-weight: bold;
   text-align: left; }
 
-.cta,
 .press,
 .jobs {
-  margin: 0; }
+  padding: 5.75rem; }
 
 /* ==========================================================================
    CTA
    ========================================================================== */
 .cta {
   background: var(--color-light);
-  padding: 5.75rem 0;
   font-size: 3rem;
-  font-weight: bold; }
+  font-weight: bold;
+  padding-top: 5.75rem;
+  padding-bottom: 5.75rem; }
   .cta a {
     text-decoration: none;
     color: var(--color-dark); }
@@ -864,9 +871,13 @@ a:visited {
    jobs
    ========================================================================== */
 .jobs {
-  background: var(--equals);
-  color: var(--color-white);
-  padding: 5.75rem 0; }
+  background: var(--color-dark); }
+  .jobs, .jobs:hover, .jobs:focus, .jobs:visited,
+  .jobs .link-text,
+  .jobs .link-text:hover,
+  .jobs .link-text:focus,
+  .jobs .link-text:visited {
+    color: var(--color-light) !important; }
   .jobs .section-title {
     font-size: 2rem; }
 
@@ -875,7 +886,6 @@ a:visited {
    ========================================================================== */
 .press {
   background: var(--arrow);
-  padding: 5.75rem 0;
   font-weight: bold; }
   .press .section-title {
     font-size: 2rem; }
@@ -886,6 +896,12 @@ a:visited {
     .press a:hover {
       color: var(--color-dark);
       text-decoration: currentColor wavy underline; }
+
+/* ==========================================================================
+Integração WP 
+========================================================================== */
+.button-primary .wp-block-button__link {
+  background-color: transparent; }
 
 /* ==========================================================================
 LINKS E BOTÕES
@@ -899,12 +915,12 @@ LINKS E BOTÕES
   color: var(--color-primary) !important; }
   .link-primary:hover, .link-primary:focus, .link-primary:visited {
     color: var(--color-secondary) !important;
-    text-decoration: var(--color-dark) wavy underline; }
+    text-decoration: currentColor wavy underline; }
 .link-white {
   color: var(--color-white) !important; }
   .link-white:hover, .link-white:focus, .link-white:visited {
     color: var(--color-white) !important;
-    text-decoration: var(--color-white) wavy underline; }
+    text-decoration: currentColor wavy underline; }
 .link-list {
   gap: 2rem; }
   .link-list-item {
@@ -918,7 +934,7 @@ LINKS E BOTÕES
       background-color: var(--color-white);
       background-size: cover; }
 
-.button {
+.button, .button a {
   font-weight: bold;
   text-transform: uppercase;
   padding: 0.5rem 1rem;
@@ -926,29 +942,29 @@ LINKS E BOTÕES
   border: 2px solid transparent;
   cursor: pointer;
   border-radius: var(--radius-sm); }
-  .button:hover, .button:focus {
+  .button:hover, .button:focus, .button a:hover, .button a:focus {
     color: var(--color-white);
     text-decoration: none; }
-  .button-primary {
+  .button-primary, .button a-primary {
     background: var(--color-primary);
     color: var(--color-white);
     border-color: var(--color-primary); }
-    .button-primary:hover, .button-primary:focus {
+    .button-primary:hover, .button-primary:focus, .button-primary:visited, .button a-primary:hover, .button a-primary:focus, .button a-primary:visited {
       background: var(--color-secondary);
       border-color: var(--color-secondary); }
-  .button-secondary {
+  .button-secondary, .button a-secondary {
     background: var(--color-secondary);
     color: var(--color-white);
     border-color: var(--color-secondary); }
-    .button-secondary:hover, .button-secondary:focus {
+    .button-secondary:hover, .button-secondary:focus, .button-secondary:visited, .button a-secondary:hover, .button a-secondary:focus, .button a-secondary:visited {
       background: var(--color-primary);
       color: var(--color-white);
       border-color: var(--color-primary); }
-  .button-dark {
+  .button-dark, .button a-dark {
     background: var(--color-dark);
     color: var(--color-white);
     border-color: var(--color-dark); }
-    .button-dark:hover, .button-dark:focus {
+    .button-dark:hover, .button-dark:focus, .button-dark:visited, .button a-dark:hover, .button a-dark:focus, .button a-dark:visited {
       background: var(--color-white);
       color: var(--color-dark);
       border-color: var(--color-dark); }
@@ -1052,7 +1068,7 @@ LINKS E BOTÕES
 .testimonial-author {
   font-size: 1.25rem; }
 .testimonial-text {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold; }
 .testimonial-image:after {
   content: "";
