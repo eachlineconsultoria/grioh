@@ -156,6 +156,8 @@ function eachline_widgets_init()
 		'after_title' => '',
 	));
 
+
+
 	// Bignumbers
 	register_sidebar(array(
 		'name' => esc_html__('Seção: Big numbers', 'eachline'),
@@ -169,21 +171,6 @@ function eachline_widgets_init()
 }
 add_action('widgets_init', 'eachline_widgets_init');
 
-
-// Rodapé: Redes sociais
-register_sidebar(array(
-	'name' => esc_html__('Clipping + Eventos', 'eachline'),
-	'id' => 'clipping-eventos',
-	'description' => esc_html__('Seção de clipping e eventos.', 'eachline'),
-
-	// Remove divs e wrappers
-	'before_widget' => '',
-	'after_widget' => '',
-
-	// Opcional: pode manter os títulos se quiser
-	'before_title' => '',
-	'after_title' => '',
-));
 
 // Rodapé: Redes sociais
 register_sidebar(array(
@@ -235,50 +222,46 @@ add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+require get_template_directory() . '/functions/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/functions/template-tags.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/functions/template-functions.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
-
-require get_template_directory() . '/inc/post_type_section.php';
-
-require get_template_directory() . '/inc/category-image.php';
+require get_template_directory() . '/functions/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
  */
 if (defined('JETPACK__VERSION')) {
-	require get_template_directory() . '/inc/jetpack.php';
+	require get_template_directory() . '/functions/jetpack.php';
 }
 
 /**
  * Load WooCommerce compatibility file.
  */
 if (class_exists('WooCommerce')) {
-	require get_template_directory() . '/inc/woocommerce.php';
+	require get_template_directory() . '/functions/woocommerce.php';
 }
 
 // submenu do bootstrap
-require_once get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
+require_once get_template_directory() . '/functions/class-wp-bootstrap-navwalker.php';
 
 
 // ativação do menu
 add_filter('pre_option_link_manager_enabled', '__return_true');
 
 // remover tag categoria
-// require_once get_template_directory() . '/inc/remove-slug-category-tag.php';
+// require_once get_template_directory() . '/functions/remove-slug-category-tag.php';
 
 
 function add_excerpt_to_pages()

@@ -79,7 +79,7 @@ if (is_category() || is_tax()) {
                   <?php the_post_thumbnail('medium_large', ['class' => 'img-fluid card-image object-fit-cover rounded-top w-100']); ?>
                 </a>
               <?php else: ?>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/card-default.jpg"
+                <img src="<?php echo get_template_directory_uri(); ?>/img/card-default.jpg"
                   class="img-fluid card-image rounded-top w-100" alt="Imagem padrão">
               <?php endif; ?>
             </figure>

@@ -5,14 +5,13 @@ get_header();
 ?>
 
 <main>
-
   <?php require_once get_template_directory() . '/section/hero.php'; ?>
 
   <?php
 
     $link_category_slug = 'parceiros';
-    $section_id = 'clients';
-    $custom_class = 'clients';
+    $section_id = 'partners';
+    $custom_class = 'partners';
     $limit = 6;
 
     include get_template_directory() . '/section/section-links.php';
@@ -20,12 +19,12 @@ get_header();
   ?>
  
 
-  <?php /* Cases */ $limit = 1;
+ <?php /* Cases */ $limit = 1;
   require_once get_template_directory() . '/section/cases.php'; ?>
 
-  <?php /* CTA */ require_once get_template_directory() . '/section/cta.php'; ?>
+ <?php /* CTA */ require_once get_template_directory() . '/section/cta.php'; ?>
 
-  <?php
+ <?php
   // Configurações da seção
   $section_id = 'articles';
   $category_slug = 'artigos';

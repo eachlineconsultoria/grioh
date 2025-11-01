@@ -20,11 +20,10 @@
 
 	<?php wp_head(); ?>
 
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/aplicacao.css">
 
 </head>
 
-<body <?php body_class('sitew'); ?>>
+<body <?php body_class('site'); ?>>
 	<?php wp_body_open(); ?>
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'eachline'); ?></a>
 	<header id="masthead" class="site-header py-4">
@@ -62,7 +61,7 @@
 							'container' => false,
 							'menu_class' => 'navbar-nav ms-auto mb-2 mb-lg-0 menu-principal',
 							'fallback_cb' => 'WP_Bootstrap_Navwalker::fallback',
-							'walker' => new WP_Bootstrap_Navwalker(),
+							'walker' => new WP_Bootstrap_Navwalker(), // <- ERRO AQUI
 						));
 						?>
 
@@ -99,9 +98,12 @@
 				<div class="modal-body">
 					<form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
 						<div class="input-group">
-							<input type="search" class="form-control" placeholder="Buscar..."
-								value="<?php echo get_search_query(); ?>" name="s">
-							<button class="btn btn-primary" type="submit"><i class="fa-solid fa-search"></i></button>
+							<input id="site-search" type="search" class="form-control" name="s"
+								value="<?php echo esc_attr(get_search_query()); ?>" placeholder="Buscar..." />
+							<button class="btn btn-primary" type="submit">
+								<span class="visually-hidden">Buscar</span>
+								<i class="fa-solid fa-search" aria-hidden="true"></i>
+							</button>
 						</div>
 					</form>
 				</div>

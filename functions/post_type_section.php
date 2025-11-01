@@ -45,14 +45,14 @@ function registrar_taxonomia_secoes()
   );
 
   $args = array(
-    'hierarchical' => true,
-    'labels' => $labels,
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => false,
-    'show_in_rest' => true,  // ✅ habilita edição no Gutenberg e API
-  );
+  'public' => false,
+  'show_ui' => true,
+  'show_in_menu' => true,
+  'show_in_rest' => true,     
+  'menu_icon' => 'dashicons-screenoptions',
+  'supports' => [ 'title', 'editor', 'thumbnail', 'revisions' ],
+  'capability_type' => 'page',
+  'map_meta_cap' => true,);
 
   register_taxonomy('secao_categoria', array('secoes'), $args);
 }

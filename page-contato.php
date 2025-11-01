@@ -45,7 +45,7 @@ get_header();
                       <?php echo get_the_post_thumbnail($page->ID, 'medium_large', ['class' => 'img-fluid card-image object-fit-cover rounded-top w-100']); ?>
                     </a>
                   <?php else: ?>
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/case-default.jpg"
+                    <img src="<?php echo get_template_directory_uri(); ?>/img/case-default.jpg"
                       class="img-fluid card-image rounded-top w-100" alt="Imagem padrão">
                   <?php endif; ?>
                 </figure>

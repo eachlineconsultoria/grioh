@@ -12,7 +12,7 @@ $button = $hero_container['hero_button'] ?? [];
 $link = esc_url($button['hero_button_link'] ?? '#');
 $text = esc_html($button['hero_button_text'] ?? '');
 $icon = $button['hero_button_icon'] ?? '';
-$icon_base = get_template_directory_uri() . '/assets/img/icons/';
+$icon_base = get_template_directory_uri() . '/img/icons/';
 ?>
 <section id="hero" class="container custom-page-header hero container">
   <div class="row">

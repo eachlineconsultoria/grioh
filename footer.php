@@ -67,10 +67,12 @@
 		</div>
 
 		<div class="footer-credits d-flex justify-content-between">
-			<span>&copy; <?php the_date('Y'); ?>. Eachline — Todos os direitos reservados.</span>
+			<span>&copy; <?php echo esc_html(wp_date('Y')); ?>. Eachline — Todos os direitos reservados.</span>
 
-			<a href="http://wagnerbeethoven.com.br" title="Desenvolvido por Wagner Beethoven"><img
-					src="<?php echo get_template_directory_uri(); ?>/assets/img/author.svg"></a>
+			<a href="http://wagnerbeethoven.com.br" title="Desenvolvido por Wagner Beethoven">
+				<img role="img"
+					alt="Letras W e B em minusculo, acima da letra B, há tres traços posicionaos em um quarto de círculo"
+					src="<?php echo get_template_directory_uri(); ?>/img/author.svg" decoding="async" fetchpriority="low"></a>
 		</div>
 	</div>
 

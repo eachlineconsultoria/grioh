@@ -28,7 +28,7 @@ if ($query->have_posts()): ?>
                   'alt'   => esc_attr($title)
                 ]); ?>
               <?php else: ?>
-                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/card-default.jpg'); ?>"
+                <img src="<?php echo esc_url(get_template_directory_uri() . '/img/card-default.jpg'); ?>"
                      class="img-fluid card-image rounded-top w-100"
                      alt="Imagem padrão para o artigo <?php echo esc_attr($title); ?>">
               <?php endif; ?>

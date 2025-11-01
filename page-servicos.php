@@ -53,7 +53,7 @@ $services = [
                   <?php if ($thumbnail): ?>
                     <a href="<?php echo esc_url($permalink); ?>"><?php echo $thumbnail; ?></a>
                   <?php else: ?>
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/case-default.jpg'); ?>"
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/img/case-default.jpg'); ?>"
                          class="img-fluid card-image rounded-top w-100"
                          alt="Imagem padrão">
                   <?php endif; ?>

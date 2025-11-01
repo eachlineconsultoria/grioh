@@ -16,18 +16,17 @@ require get_template_directory() . '/section/breadcrumbs.php';
 
 // Dados da categoria/taxonomia
 $term = get_queried_object();
-$title = null;
-$description = null;
-$image_url = null;
-$link = null;
+$hero_data = null;
 
 if (is_category() || is_tax()) {
   $image_field = get_field('category_image', $term);
 
-  $title = $term->name ?? '';
-  $description = $term->description ?? '';
-  $image_url = $image_field['url'] ?? '';
-  $link = '#post-list';
+  $hero_data = [
+    'title' => $term->name ?? '',
+    'description' => $term->description ?? '',
+    'image_url' => $image_field['url'] ?? '',
+    'link' => '#post-list'
+  ];
 }
 
 // Query personalizada com paginação
@@ -55,33 +54,29 @@ $query = new WP_Query($args);
 ?>
 
 <!-- Hero Section -->
-<?php if (isset($term)): ?>
-  <section id="hero" class="container custom-page-header hero container">
-    <div class="row">
-      <div
-        class="section hero-content position-relative d-flex flex-column justify-content-center align-self-start col-12 col-md-6 mb-3 mb-md-0">
-
-        <?php if ($title): ?>
-          <h1 class="section-title"><?php echo esc_html($title); ?></h1>
+<?php if ($hero_data): ?>
+  <section id="hero" class="custom-page-header hero container my-5">
+    <div class="row align-items-center g-4">
+      <div class="col-12 col-lg-6">
+        <?php if ($hero_data['title']): ?>
+          <h1 class="section-title mb-3"><?php echo esc_html($hero_data['title']); ?></h1>
         <?php endif; ?>
 
-        <?php if ($description): ?>
-          <p class="section-description"><?php echo wp_kses_post($description); ?></p>
+        <?php if ($hero_data['description']): ?>
+          <div class="section-description mb-4"><?php echo wp_kses_post($hero_data['description']); ?></div>
         <?php endif; ?>
 
-        <?php if ($link): ?>
-          <a href="<?php echo esc_url($link); ?>" class="hero-link link-text link-primary" title="Ir para o conteúdo">
-            Acesse o conteúdo <i class="ms-2 fa-solid fa-arrow-down"></i>
-          </a>
-        <?php endif; ?>
-
+        <a href="<?php echo esc_url($hero_data['link']); ?>" class="btn btn-primary" title="Ver conteúdo">
+          Ver Conteúdo <i class="ms-2 fa-solid fa-arrow-down"></i>
+        </a>
       </div>
 
-      <?php if (!empty($image_url)): ?>
-        <div class=" col-12 col-md-6">
-          <figure class="hero-image mb-0 h-100">
-            <img src="<?php echo esc_url($image_url); ?>" class="img-fluid w-100 h-100 rounded object-fit-cover"
-              alt="<?php echo esc_attr($title); ?>">
+      <?php if (!empty($hero_data['image_url'])): ?>
+        <div class="col-12 col-lg-6">
+          <figure class="mb-0">
+            <img src="<?php echo esc_url($hero_data['image_url']); ?>"
+              class="img-fluid rounded shadow-sm object-fit-cover w-100" style="max-height: 400px;"
+              alt="<?php echo esc_attr($hero_data['title']); ?>" loading="lazy">
           </figure>
         </div>
       <?php endif; ?>
@@ -94,44 +89,22 @@ $query = new WP_Query($args);
   <?php if ($query->have_posts()): ?>
     <div class="row g-4">
       <?php while ($query->have_posts()):
-        $query->the_post(); 
-        
-        // Campos ACF
-        $events_type = get_field('events_type');
-        $events_date = get_field('events_date');
-        ?>
+        $query->the_post(); ?>
         <div class="col-12 col-md-6 col-lg-4">
           <article id="post-<?php the_ID(); ?>" <?php post_class('card h-100 shadow-sm'); ?>>
             <div class="card-body d-flex flex-column">
-              
-              <?php if ($events_type): ?>
-                <p class="text-muted small mb-2">
-                  <i class="fa-solid fa-tag me-1"></i>
-                  <?php echo esc_html($events_type); ?>
-                </p>
-              <?php endif; ?>
-
               <h2 class="h5 card-title mb-2">
-                <a href="<?php the_permalink(); ?>" class="link link-text"
+                <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark stretched-link"
                   title="<?php the_title_attribute(); ?>">
                   <?php the_title(); ?>
                 </a>
               </h2>
-
               <p class="card-text flex-grow-1"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
-
-              <?php if ($events_date): ?>
-                <p class="text-muted small mb-3">
-                  <i class="fa-regular fa-calendar me-1"></i>
-                  <?php echo esc_html($events_date); ?>
-                </p>
-              <?php endif; ?>
-
-              <div class="p-0 card-footer border-0 mt-auto">
-                <a class="link link-text" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                  Leia mais <i class="fa-solid fa-arrow-right"></i>
-                </a>
-              </div>
+<div class="card-footer"></div>
+              <a class=" link link-text" href="<?php the_permalink(); ?>" class="text-decoration-none text-dark stretched-link"
+                title="<?php the_title_attribute(); ?>">
+                Leia mais <div class="fa-solid fa-arrow-right"></div>
+              </a>
             </div>
           </article>
         </div>
