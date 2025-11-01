@@ -806,6 +806,22 @@ figure,
 img {
   border-radius: var(--radius-sm); }
 
+.proportion, .hero-image {
+  position: relative;
+  width: 100%; }
+  .proportion:before, .hero-image:before {
+    display: block;
+    padding-top: var(--bs-aspect-ratio);
+    content: ""; }
+  .proportion > *, .hero-image > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+  .proportion-16x9, .hero-image {
+    --bs-aspect-ratio: calc(9 / 16 * 100%); }
+
 .instagram, .aside-social-item-instagram .fa-square {
   color: var(--instagram) !important; }
 
@@ -1027,13 +1043,11 @@ LINKS E BOTÕES
 /* ==========================================================================
    HERO
    ========================================================================== */
-.hero-content, .hero-image {
+.hero-content {
   min-height: 46rem; }
-
 .hero-icon {
   bottom: 0; }
-
-.hero-image::after {
+.hero-image:after {
   content: "";
   position: absolute;
   background: transparent url(assets/img/picture-sign.svg) center no-repeat;
@@ -1043,9 +1057,6 @@ LINKS E BOTÕES
   height: 3rem;
   z-index: 2;
   object-fit: cover; }
-
-.hero-link {
-  /* largura ou estilos específicos, se necessário */ }
 
 /* ==========================================================================
    BIGNUMBERS

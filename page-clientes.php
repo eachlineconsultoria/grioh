@@ -8,11 +8,19 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-
   <?php
   require_once get_template_directory() . '/section/hero.php';
   ?>
+  <?php
 
+    $link_category_slug = 'clientes';
+    $section_id = 'clients';
+    $custom_class = 'clients';
+    $limit = 6;
+
+    include get_template_directory() . '/section/section-links.php';
+
+  ?>
   <div class="container">
     <?php
     global $wp_query;
@@ -30,7 +38,6 @@ get_header();
     include get_template_directory() . '/section/cases.php';
     ?>
   </div>
-
 </main>
 
 <?php

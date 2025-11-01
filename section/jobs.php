@@ -1,7 +1,5 @@
 <?php
-$jobs_container = get_field('jobs_container');
 
-if (!empty($jobs_container['jobs_section'])):
 
   $title = trim($jobs_container['jobs_title'] ?? '');
   $fallback_title = 'Pronto para a jornada extraordinária conosco?';
@@ -26,4 +24,3 @@ if (!empty($jobs_container['jobs_section'])):
 
     </div>
   </section>
-<?php endif; ?>

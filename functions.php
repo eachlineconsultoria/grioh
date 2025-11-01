@@ -156,8 +156,6 @@ function eachline_widgets_init()
 		'after_title' => '',
 	));
 
-
-
 	// Bignumbers
 	register_sidebar(array(
 		'name' => esc_html__('Seção: Big numbers', 'eachline'),
@@ -171,6 +169,21 @@ function eachline_widgets_init()
 }
 add_action('widgets_init', 'eachline_widgets_init');
 
+
+// Rodapé: Redes sociais
+register_sidebar(array(
+	'name' => esc_html__('Clipping + Eventos', 'eachline'),
+	'id' => 'clipping-eventos',
+	'description' => esc_html__('Seção de clipping e eventos.', 'eachline'),
+
+	// Remove divs e wrappers
+	'before_widget' => '',
+	'after_widget' => '',
+
+	// Opcional: pode manter os títulos se quiser
+	'before_title' => '',
+	'after_title' => '',
+));
 
 // Rodapé: Redes sociais
 register_sidebar(array(
@@ -238,6 +251,10 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+require get_template_directory() . '/inc/post_type_section.php';
+
+require get_template_directory() . '/inc/category-image.php';
 
 /**
  * Load Jetpack compatibility file.

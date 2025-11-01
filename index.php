@@ -9,18 +9,16 @@ get_header();
   <?php require_once get_template_directory() . '/section/hero.php'; ?>
 
   <?php
-  if (get_field('partners_section')):
 
     $link_category_slug = 'parceiros';
-    $section_id = 'partners';
-    $custom_class = 'partners';
+    $section_id = 'clients';
+    $custom_class = 'clients';
     $limit = 6;
 
     include get_template_directory() . '/section/section-links.php';
 
-  endif;
   ?>
-
+ 
 
   <?php /* Cases */ $limit = 1;
   require_once get_template_directory() . '/section/cases.php'; ?>

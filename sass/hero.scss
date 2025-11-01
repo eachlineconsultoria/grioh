@@ -1,28 +1,31 @@
-
-
 /* ==========================================================================
    HERO
    ========================================================================== */
 .hero {
-  &-content,
-  &-image {
+  &-content {
     min-height: 46rem;
   }
+  &-icon {
+    bottom: 0;
+  }
+  &-image {
+    @extend .proportion;
+    @extend .proportion-16x9;
+    
+   
+    &:after {
+      content: "";
+      position: absolute;
+      background: transparent url(assets/img/picture-sign.svg) center no-repeat;
+      right: 2rem;
+      bottom: 1rem;
+      width: 12rem;
+      height: 3rem;
+      z-index: 2;
+      object-fit: cover;
+    }
+  }
 }
-.hero-icon {
-  bottom: 0;
-}
-.hero-image::after {
-  content: "";
-  position: absolute;
-  background: transparent url(assets/img/picture-sign.svg) center no-repeat;
-  right: 2rem;
-  bottom: 1rem;
-  width: 12rem;
-  height: 3rem;
-  z-index: 2;
-  object-fit: cover;
-}
-.hero-link {
-  /* largura ou estilos específicos, se necessário */
-}
+
+
+
