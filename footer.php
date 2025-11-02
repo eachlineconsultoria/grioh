@@ -11,9 +11,9 @@
 
 ?>
 
-<?php require_once get_template_directory() . '/section/press.php'; ?>
-<?php require_once get_template_directory() . '/section/newsletter.php'; ?>
-<?php require_once get_template_directory() . '/section/jobs.php'; ?>
+<?php get_template_part('template-parts/section/press'); ?>
+<?php get_template_part('template-parts/section/newsletter'); ?>
+<?php get_template_part('template-parts/section/jobs'); ?>
 
 <footer id="colophon" class="site-footer flex-column flex-md-row footer justify-content-center d-flex">
 

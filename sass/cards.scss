@@ -2,12 +2,16 @@
    CARDS
    ========================================================================== */
 .card {
-  &-image {
+  &-img {
     height: 264px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   }
   &-body {
     display: grid;
     row-gap: 1rem;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    border: 1px solid var(--color-light);
+    border-top: 0;
   }
   &-title {
     font-size: 1.25rem;

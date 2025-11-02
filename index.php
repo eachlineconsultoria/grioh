@@ -5,27 +5,62 @@ get_header();
 ?>
 
 <main>
-  <?php require_once get_template_directory() . '/section/hero.php'; ?>
+  <?php get_template_part('template-parts/section/hero'); ?>
+
 
   <?php
-
-    $link_category_slug = 'parceiros';
-    $section_id = 'partners';
-    $custom_class = 'partners';
-    $limit = 6;
-
-    include get_template_directory() . '/section/section-links.php';
-
+  // clientes
+  eachline_posts_by_category(
+    'cases',
+    'Clientes',
+    'post',
+    3,
+    false,
+    '<p>Confira novidades e atualizações.</p>',
+    true,
+    'Acesse os cases'
+  );
   ?>
- 
 
- <?php /* Cases */ $limit = 1;
-  require_once get_template_directory() . '/section/cases.php'; ?>
+  <?php get_template_part('template-parts/section/cta'); ?>
 
- <?php /* CTA */ require_once get_template_directory() . '/section/cta.php'; ?>
 
- <?php
-  // Configurações da seção
+  <?php
+  // parceiros
+  
+  get_template_part(
+    'template-parts/section/section-links',
+    null,
+    [
+      'link_category_slug' => 'parceiros',
+      'section_id' => 'partners',
+      'custom_class' => 'partners',
+      'limit' => 6,
+    ]
+  ); ?>
+
+  <?php
+  // artigos
+  
+  eachline_posts_by_category(
+    'artigos',
+    'Artigos',
+    'post',
+    3,
+    false,
+    '<p>Confira novidades e atualizações.</p>',
+    true,
+    'Ler artigos'
+  );
+  ?>
+
+  <?php /* Cases $limit = 1;
+require_once get_template_directory() . '/section/cases.php'; */ ?>
+
+  <?php /* CTA require_once get_template_directory() . '/section/cta.php';*/ ?>
+
+  <?php
+  /* Configurações da seção
   $section_id = 'articles';
   $category_slug = 'artigos';
   $section_title = 'Artigos';
@@ -49,7 +84,7 @@ get_header();
     </header>
 
     <?php
-    // Parâmetros que serão usados dentro do loop
+    /* // Parâmetros que serão usados dentro do loop
     $loop_args = [
       'post_type' => 'post',
       'posts_per_page' => $limit,
@@ -59,7 +94,7 @@ get_header();
     ];
 
     include get_template_directory() . '/loop/articles.php';
-    ?>
+    */ ?>
   </section>
 
 </main>

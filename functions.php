@@ -264,6 +264,7 @@ add_filter('pre_option_link_manager_enabled', '__return_true');
 // require_once get_template_directory() . '/functions/remove-slug-category-tag.php';
 
 
+
 function add_excerpt_to_pages()
 {
 	add_post_type_support('page', 'excerpt');
@@ -292,3 +293,8 @@ function my_theme_archive_title($title)
 }
 
 add_filter('get_the_archive_title', 'my_theme_archive_title');
+
+
+
+/* FUNÇÕES CORRETAS */
+require_once get_template_directory() . '/functions/post-category.php';
