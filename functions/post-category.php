@@ -28,7 +28,7 @@ function eachline_posts_by_category(
       echo "<header class='section-header d-flex justify-content-between align-items-center'>";
       if ($title) echo "<h2 class='section-title m-0'>$title</h2>";
       if ($show_link && $category) {
-        echo "<a href='" . esc_url($category_link) . "' class='link-text link-secondary'>$link_label<i class='fa-solid fa-arrow-right ms-1'></i></a>";
+        echo "<a href='" . esc_url($category_link) . "' class='link-text link-dark'>$link_label<i class='fa-solid fa-arrow-right ms-1'></i></a>";
       }
       echo "</header>";
     }

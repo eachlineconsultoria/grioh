@@ -7,4 +7,32 @@
     font-size: 3rem;
     font-weight: bold;
   }
+
+  &-thumbnail {
+    img {
+      object-position: center top;
+      height: 36rem;
+      width: 100%;
+    }
+  }
+
+  blockquote {
+    border-left: 2px solid #000;
+    margin-left: 0;
+    padding-left: 1.25rem;
+    font-style: italic;
+    font-size: 1.25rem;
+  }
+}
+.post {
+  &-footer {
+    &-icon {
+      background-image: url(img/icones.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 124px 24px;
+      height: 4.5rem;
+      margin-top: 1.5rem;
+    }
+  }
 }

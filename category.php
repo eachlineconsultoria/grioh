@@ -1,112 +1,174 @@
-<?php get_header();
-// Define limite e paginação
-$limite = isset($limite_de_posts) ? intval($limite_de_posts) : 3;
-
-// Captura o número da página atual (compatível com páginas estáticas)
-$paged = get_query_var('paged') ? get_query_var('paged') : get_query_var('page');
-$paged = $paged ? $paged : 1;
-$args = array(
-  'paged' => $paged
-);
-
-
-?>
 <?php
-require get_template_directory() . '/section/breadcrumbs.php';
+/**
+ * Template padrão de categoria
+ * Mostra posts da categoria atual com paginação.
+ */
 
-if (is_category() || is_tax()) {
-  $term = get_queried_object();
+get_header();
+get_template_part('template-parts/section/hero');
 
-  // Dados básicos
-  $title = esc_html($term->name ?? '');
-  $description = wp_kses_post($term->description ?? '');
+// Dados da categoria atual
+$category = get_queried_object();
+$cat_title = $category->name ?? 'Categoria';
+$cat_description = $category->description ?? '';
 
-  // Campo de imagem do ACF associado à taxonomia
-  $image_field = get_field('category_image', $term);
-  $image_url = $image_field['url'] ?? '';
+// Paginação
+$paged = get_query_var('paged') ? absint(get_query_var('paged')) : 1;
+$posts_per_page = 9;
 
-  // Âncora do botão
-  $link = '#post-list'; // altere para o ID da seção de destino
-}
+// Query da categoria atual
+$category_query = new WP_Query([
+  'post_type' => 'post',
+  'posts_per_page' => $posts_per_page,
+  'paged' => $paged,
+  'cat' => $category->term_id ?? 0,
+  'ignore_sticky_posts' => true
+]);
 ?>
 
-<?php if (isset($term)): ?>
-  <section id="hero" class="container custom-page-header hero container">
-    <div class="row">
-      <div
-        class="section hero-content position-relative d-flex flex-column justify-content-center align-self-start col-12 col-md-6 mb-3 mb-md-0">
-
-        <?php if ($title): ?>
-          <h1 class="section-title"><?php echo esc_html($title); ?></h1>
-        <?php endif; ?>
-
-        <?php if ($description): ?>
-          <p class="section-description"><?php echo wp_kses_post($description); ?></p>
-        <?php endif; ?>
-
-        <?php if ($link): ?>
-          <a href="<?php echo esc_url($link); ?>" class="hero-link link-text link-primary" title="Ir para o conteúdo">
-            Acesse o conteúdo <i class="ms-2 fa-solid fa-arrow-down"></i>
-          </a>
-        <?php endif; ?>
-
-      </div>
-
-      <?php if (!empty($image_url)): ?>
-        <div class=" col-12 col-md-6">
-          <figure class="hero-image mb-0 h-100">
-            <img src="<?php echo esc_url($image_url); ?>" class="img-fluid w-100 h-100 rounded object-fit-cover"
-              alt="<?php echo esc_attr($title); ?>">
-          </figure>
-        </div>
+<section id="content" class="section-container container <?php if (is_archive()): ?> py-5 <?php endif; ?> my-5">
+  <?php if (!(is_archive())): ?>
+    <header class="d-flex flex-column mb-4">
+      <h1 class="section-title mb-2"><?php echo esc_html($cat_title); ?></h1>
+      <?php if ($cat_description): ?>
+        <p class="section-description text-muted"><?php echo wp_kses_post($cat_description); ?></p>
       <?php endif; ?>
-    </div>
-  </section>
-<?php endif; ?>
-<div class="container">
+    </header>
+  <?php endif; ?>
+  <?php if (is_category('cases')): ?>
+    <?php
+    get_template_part(
+      'template-parts/section/section-links',
+      'section-links',
+      [
+        'link_category_slug' => 'parceiros',
+        'section_id' => 'partners',
+        'custom_title' => 'Convira quem confia em nós!',
+        'custom_description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      ]
+    );
+    ?>
+  <?php endif; ?>
+  <?php if ($category_query->have_posts()): ?>
+    <div class="post-list row">
+      <?php while ($category_query->have_posts()):
+        $category_query->the_post(); ?>
+        <article id="post-<?php the_ID(); ?>" <?php post_class('col-md-4 mb-4'); ?>>
+          <div class="card h-100 border-0">
+            <?php if (has_post_thumbnail()): ?>
+              <a href="<?php the_permalink(); ?>" class="d-block overflow-hidden ratio ratio-16x9">
+                <?php the_post_thumbnail('large', [
+                  'class' => 'h-100 object-fit-cover card-img img-fluid',
+                  'alt' => get_the_title(),
+                ]); ?>
+              </a>
+            <?php endif; ?>
 
-  <ul id="post-list" class="mt-5 list-unstyled row">
-    <?php if (have_posts()):
-      while (have_posts()):
-        the_post(); ?>
-        <li class="col-12 col-md-2 col-lg-4 mb-4">
-          <article id="post-<?php the_ID(); ?>" <?php post_class('card border rounded h-100'); ?>>
-
-            <figure class="m-0 card-container">
-              <?php if (has_post_thumbnail()): ?>
-
-                <a href="<?php the_permalink(); ?>">
-                  <?php the_post_thumbnail('medium_large', ['class' => 'img-fluid card-image object-fit-cover rounded-top w-100']); ?>
-                </a>
-              <?php else: ?>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/card-default.jpg"
-                  class="img-fluid card-image rounded-top w-100" alt="Imagem padrão">
-              <?php endif; ?>
-            </figure>
-            <div class="card-body p-3">
+            <div class="card-body">
               <header>
-                <h2 class="entry-title card-title mb-0">
-                  <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"
-                    rel="bookmark"><?php the_title(); ?></a>
-                </h2>
-
+                <h3 class="card-title h5 mb-2">
+                  <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
+                    <?php the_title(); ?>
+                  </a>
+                </h3>
               </header>
-              <p class="card-meta mb-0">
-                Por <strong><?php the_author(); ?></strong> &bull; <?php the_time('d/m/Y'); ?>
+
+              <p class="card-text text-muted small mb-3">
+                <?php echo wp_trim_words(get_the_excerpt(), 25, '...'); ?>
               </p>
-              <p class="card-excerpt mb-0"><?php echo get_the_excerpt(); ?></p>
+
+              <footer class="footer-card">
+                <a href="<?php the_permalink(); ?>" class="link-text link-primary">
+                  Ler artigo <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+              </footer>
             </div>
-          </article>
-        </li>
-      <?php endwhile; endif; ?>
-  </ul>
-</div>
+          </div>
+        </article>
+      <?php endwhile; ?>
+    </div>
 
-<?php if (isset($exibir_paginacao) && $exibir_paginacao): ?>
-  <?php
-  $total_pages = $cases_query->max_num_pages;
-  $current_page = max(1, $paged);
 
-  include get_template_directory() . '/template-parts/pagination.php';
+    <!-- Paginação -->
+    <?php
+    $total_pages = $category_query->max_num_pages;
+    $current_page = max(1, $paged);
+
+    if ($total_pages > 1): ?>
+      <nav class="pagination mt-4" aria-label="Paginação">
+        <ul class="pagination-list justify-content-center align-items-center">
+
+          <!-- Primeira -->
+          <?php if ($current_page > 1): ?>
+            <li class="page-item me-3">
+              <a class="page-link pagination-text" href="<?php echo esc_url(get_pagenum_link(1)); ?>"
+                aria-label="Primeira página">
+                <i class="fa-solid fa-arrow-left-long me-2"></i> Primeira
+              </a>
+            </li>
+          <?php endif; ?>
+
+          <!-- Anterior -->
+          <?php if ($current_page > 1): ?>
+            <li class="page-item me-3">
+              <a class="page-link pagination-text" href="<?php echo esc_url(get_pagenum_link($current_page - 1)); ?>"
+                aria-label="Página anterior">
+                <i class="fa-solid fa-arrow-left me-2"></i> Anterior
+              </a>
+            </li>
+          <?php endif; ?>
+
+          <!-- Números -->
+          <?php
+          $links = paginate_links([
+            'total' => $total_pages,
+            'current' => $current_page,
+            'type' => 'array',
+            'end_size' => 1,
+            'mid_size' => 2,
+            'prev_next' => false,
+          ]);
+          if ($links) {
+            foreach ($links as $link) {
+              $active = strpos($link, 'current') !== false ? 'active' : '';
+              echo '<li class="page-item me-3 ' . esc_attr($active) . '">' . wp_kses_post($link) . '</li>';
+            }
+          }
+          ?>
+
+          <!-- Próxima -->
+          <?php if ($current_page < $total_pages): ?>
+            <li class="page-item me-3">
+              <a class="page-link pagination-text" href="<?php echo esc_url(get_pagenum_link($current_page + 1)); ?>"
+                aria-label="Próxima página">
+                Próxima <i class="fa-solid fa-arrow-right ms-2"></i>
+              </a>
+            </li>
+
+            <li class="page-item me-0">
+              <a class="page-link pagination-text" href="<?php echo esc_url(get_pagenum_link($total_pages)); ?>"
+                aria-label="Última página">
+                Última <i class="fa-solid fa-arrow-right-long ms-2"></i>
+              </a>
+            </li>
+          <?php endif; ?>
+        </ul>
+
+        <p class="text-center mt-4 small text-muted">
+          Página <?php echo esc_html($current_page); ?> de <?php echo esc_html($total_pages); ?>
+        </p>
+      </nav>
+    <?php endif; ?>
+
+  <?php else: ?>
+    <p class="text-center text-muted">Nenhum post encontrado nesta categoria.</p>
+  <?php endif; ?>
+</section>
+
+<?php
+
+
+
+wp_reset_postdata();
+get_footer();
 ?>
-<?php endif; ?><?php get_footer(); ?>

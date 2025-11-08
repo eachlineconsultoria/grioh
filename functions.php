@@ -253,11 +253,9 @@ if (class_exists('WooCommerce')) {
 	require get_template_directory() . '/functions/woocommerce.php';
 }
 
-// submenu do bootstrap
 require_once get_template_directory() . '/functions/class-wp-bootstrap-navwalker.php';
+require_once get_template_directory() . '/functions/related-posts.php';
 
-
-// ativação do menu
 add_filter('pre_option_link_manager_enabled', '__return_true');
 
 // remover tag categoria

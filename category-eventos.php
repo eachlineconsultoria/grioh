@@ -94,14 +94,14 @@ $query = new WP_Query($args);
           <article id="post-<?php the_ID(); ?>" <?php post_class('card h-100 shadow-sm'); ?>>
             <div class="card-body d-flex flex-column">
               <h2 class="h5 card-title mb-2">
-                <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark stretched-link"
+                <a href="<?php the_permalink(); ?>"
                   title="<?php the_title_attribute(); ?>">
                   <?php the_title(); ?>
                 </a>
               </h2>
               <p class="card-text flex-grow-1"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
 <div class="card-footer"></div>
-              <a class=" link link-text" href="<?php the_permalink(); ?>" class="text-decoration-none text-dark stretched-link"
+              <a class=" link link-text" href="<?php the_permalink(); ?>"
                 title="<?php the_title_attribute(); ?>">
                 Leia mais <div class="fa-solid fa-arrow-right"></div>
               </a>

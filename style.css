@@ -937,6 +937,11 @@ LINKS E BOTÕES
   .link-white:hover, .link-white:focus, .link-white:visited {
     color: var(--color-white) !important;
     text-decoration: currentColor wavy underline; }
+.link-dark {
+  color: var(--color-dark) !important; }
+  .link-dark:hover, .link-dark:focus, .link-dark:visited {
+    color: var(--color-dark) !important;
+    text-decoration: currentColor wavy underline; }
 .link-list {
   gap: 2rem; }
   .link-list-item {
@@ -1244,6 +1249,24 @@ form .form-control {
 .content h2, .content-title {
   font-size: 3rem;
   font-weight: bold; }
+.content-thumbnail img {
+  object-position: center top;
+  height: 36rem;
+  width: 100%; }
+.content blockquote {
+  border-left: 2px solid #000;
+  margin-left: 0;
+  padding-left: 1.25rem;
+  font-style: italic;
+  font-size: 1.25rem; }
+
+.post-footer-icon {
+  background-image: url(img/icones.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 124px 24px;
+  height: 4.5rem;
+  margin-top: 1.5rem; }
 
 .modal-member-body {
   padding: 2rem; }

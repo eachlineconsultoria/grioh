@@ -43,7 +43,7 @@ global $post;
         </li>
       <?php endforeach; ?>
 
-      <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement"
+      <li class="breadcrumb-item active fw-bold" aria-current="page" itemprop="itemListElement"
           itemscope itemtype="https://schema.org/ListItem">
         <span class="fw-bold" itemprop="name"><?php echo esc_html(get_the_title()); ?></span>
         <meta itemprop="position" content="<?php echo $position; ?>" />
@@ -78,7 +78,7 @@ global $post;
         <?php }
       } ?>
 
-      <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement"
+      <li class="breadcrumb-item active fw-bold" aria-current="page" itemprop="itemListElement"
           itemscope itemtype="https://schema.org/ListItem">
         <span itemprop="name"><?php echo esc_html(get_the_title()); ?></span>
         <meta itemprop="position" content="<?php echo $position; ?>" />
@@ -90,7 +90,7 @@ global $post;
     // Categorias e arquivos
     // ------------------------------
     elseif (is_category()) { ?>
-      <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement"
+      <li class="breadcrumb-item active fw-bold" aria-current="page" itemprop="itemListElement"
           itemscope itemtype="https://schema.org/ListItem">
         <span itemprop="name"><?php single_cat_title(); ?></span>
         <meta itemprop="position" content="<?php echo $position; ?>" />
@@ -99,7 +99,7 @@ global $post;
 
     elseif (is_post_type_archive()) {
       $post_type_obj = get_post_type_object(get_post_type()); ?>
-      <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement"
+      <li class="breadcrumb-item active fw-bold" aria-current="page" itemprop="itemListElement"
           itemscope itemtype="https://schema.org/ListItem">
         <span itemprop="name"><?php echo esc_html($post_type_obj->labels->name); ?></span>
         <meta itemprop="position" content="<?php echo $position; ?>" />
@@ -110,7 +110,7 @@ global $post;
     // Busca e 404
     // ------------------------------
     elseif (is_search()) { ?>
-      <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement"
+      <li class="breadcrumb-item active fw-bold" aria-current="page" itemprop="itemListElement"
           itemscope itemtype="https://schema.org/ListItem">
         <span itemprop="name">Busca por “<?php echo esc_html(get_search_query()); ?>”</span>
         <meta itemprop="position" content="<?php echo $position; ?>" />
@@ -118,7 +118,7 @@ global $post;
     <?php }
 
     elseif (is_404()) { ?>
-      <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement"
+      <li class="breadcrumb-item active fw-bold" aria-current="page" itemprop="itemListElement"
           itemscope itemtype="https://schema.org/ListItem">
         <span itemprop="name">Página não encontrada</span>
         <meta itemprop="position" content="<?php echo $position; ?>" />

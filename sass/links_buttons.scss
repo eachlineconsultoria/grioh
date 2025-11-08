@@ -33,7 +33,15 @@ LINKS E BOTÕES
       text-decoration: currentColor wavy underline;
     }
   }
-
+&-dark{
+    color: var(--color-dark) !important;
+    &:hover,
+    &:focus,
+    &:visited {
+      color: var(--color-dark) !important;
+      text-decoration: currentColor wavy underline;
+    }
+}
   &-list {
     gap: 2rem;
     &-item {

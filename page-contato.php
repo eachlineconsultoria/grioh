@@ -8,7 +8,7 @@ get_header();
 ?>
 
 <main>
-  <?php require_once get_template_directory() . '/section/hero.php'; ?>
+  <?php get_template_part('template-parts/section/hero'); ?>
 
   <?php if (get_field('services_section')): ?>
     <section id="services" class="container section-container services">
@@ -232,9 +232,6 @@ get_header();
     </div>
   </section>
 
-  <?php require_once get_template_directory() . '/section/testimonial.php'; ?>
-
-  <?php require_once get_template_directory() . '/section/cases.php'; ?>
 
 
 </main>

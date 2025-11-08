@@ -1,5 +1,4 @@
-<?php
-require get_template_directory() . '/section/breadcrumbs.php';
+
 
 
 $hero_container = get_field('hero_container'); // grupo principal

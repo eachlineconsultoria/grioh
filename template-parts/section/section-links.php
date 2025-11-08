@@ -8,14 +8,18 @@
  * - $custom_class (string): classes adicionais da section
  * - $limit (int): quantidade máxima de links (padrão: 6)
  * - $orderby (string): tipo de ordenação (padrão: 'RAND')
+ * - $custom_title (string): título customizado opcional
+ * - $custom_description (string): descrição customizada opcional
  */
 
-// Recebe parâmetros passados via get_template_part( ..., null, [ ... ] )
-$link_category_slug = $args['link_category_slug'] ?? '';
-$section_id         = $args['section_id']         ?? 'section-' . sanitize_title($link_category_slug);
-$custom_class       = $args['custom_class']       ?? '';
-$limit              = (int)($args['limit']        ?? 6);
-$orderby            = $args['orderby']            ?? 'RAND';
+ // Recebe parâmetros passados via get_template_part( ..., null, [ ... ] )
+$link_category_slug  = $args['link_category_slug']  ?? '';
+$section_id          = $args['section_id']          ?? 'section-' . sanitize_title($link_category_slug);
+$custom_class        = $args['custom_class']        ?? '';
+$limit               = (int)($args['limit']         ?? 6);
+$orderby             = $args['orderby']             ?? 'RAND';
+$custom_title        = $args['custom_title']        ?? '';
+$custom_description  = $args['custom_description']  ?? '';
 
 // Validação
 if (empty($link_category_slug)) {
@@ -45,12 +49,14 @@ if (empty($bookmarks)) {
 ?>
 
 <section id="<?php echo esc_attr($section_id); ?>" class="container section-container <?php echo esc_attr($custom_class); ?>">
-  <header class="section-header text-center mb-5">
-    <h2 class="section-title mb-0"><?php echo esc_html($link_cat->name); ?></h2>
+  <header class="section-header mb-5">
+    <h2 class="section-title mb-0">
+      <?php echo esc_html($custom_title ?: $link_cat->name); ?>
+    </h2>
 
-    <?php if (!empty($link_cat->description)) : ?>
-      <div class="section-description my-0 mx-auto">
-        <?php echo wp_kses_post(trim($link_cat->description)); ?>
+    <?php if (!empty($custom_description) || !empty($link_cat->description)) : ?>
+      <div class="section-description my-0">
+        <?php echo wp_kses_post(trim($custom_description ?: $link_cat->description)); ?>
       </div>
     <?php endif; ?>
   </header>

@@ -1,5 +1,4 @@
-<?php
-function registrar_cpt_secoes()
+<?php /*function registrar_cpt_secoes()
 {
   $labels = array(
     'name' => 'Seções',
@@ -57,3 +56,4 @@ function registrar_taxonomia_secoes()
   register_taxonomy('secao_categoria', array('secoes'), $args);
 }
 add_action('init', 'registrar_taxonomia_secoes');
+*/ ?>
