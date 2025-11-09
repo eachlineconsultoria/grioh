@@ -1,140 +1,203 @@
 <?php
 /**
- * Template Name: Página de Eventos
- * Description: Lista de eventos com paginação
+ * Template padrão de categoria
+ * Mostra posts da categoria atual com paginação.
  */
 
 get_header();
+get_template_part('template-parts/section/hero');
 
-// Configuração de paginação
-$posts_per_page = 9; // 3 colunas × 3 linhas
-$paged = get_query_var('paged') ? get_query_var('paged') : get_query_var('page');
-$paged = max(1, intval($paged));
+// Dados da categoria atual
+$category = get_queried_object();
+$cat_title = $category->name ?? 'Categoria';
+$cat_description = $category->description ?? '';
 
-// Breadcrumbs
-require get_template_directory() . '/section/breadcrumbs.php';
+// Paginação
+$paged = get_query_var('paged') ? absint(get_query_var('paged')) : 1;
+$posts_per_page = 9;
 
-// Dados da categoria/taxonomia
-$term = get_queried_object();
-$hero_data = null;
-
-if (is_category() || is_tax()) {
-  $image_field = get_field('category_image', $term);
-
-  $hero_data = [
-    'title' => $term->name ?? '',
-    'description' => $term->description ?? '',
-    'image_url' => $image_field['url'] ?? '',
-    'link' => '#post-list'
-  ];
-}
-
-// Query personalizada com paginação
-$args = [
+// Query da categoria atual
+$category_query = new WP_Query([
   'post_type' => 'post',
   'posts_per_page' => $posts_per_page,
   'paged' => $paged,
-  'post_status' => 'publish'
-];
-
-// Se estiver em categoria/taxonomia, filtrar por ela
-if (is_category()) {
-  $args['cat'] = $term->term_id;
-} elseif (is_tax()) {
-  $args['tax_query'] = [
-    [
-      'taxonomy' => $term->taxonomy,
-      'field' => 'term_id',
-      'terms' => $term->term_id
-    ]
-  ];
-}
-
-$query = new WP_Query($args);
+  'cat' => $category->term_id ?? 0,
+  'ignore_sticky_posts' => true
+]);
 ?>
 
-<!-- Hero Section -->
-<?php if ($hero_data): ?>
-  <section id="hero" class="custom-page-header hero container my-5">
-    <div class="row align-items-center g-4">
-      <div class="col-12 col-lg-6">
-        <?php if ($hero_data['title']): ?>
-          <h1 class="section-title mb-3"><?php echo esc_html($hero_data['title']); ?></h1>
-        <?php endif; ?>
-
-        <?php if ($hero_data['description']): ?>
-          <div class="section-description mb-4"><?php echo wp_kses_post($hero_data['description']); ?></div>
-        <?php endif; ?>
-
-        <a href="<?php echo esc_url($hero_data['link']); ?>" class="btn btn-primary" title="Ver conteúdo">
-          Ver Conteúdo <i class="ms-2 fa-solid fa-arrow-down"></i>
-        </a>
-      </div>
-
-      <?php if (!empty($hero_data['image_url'])): ?>
-        <div class="col-12 col-lg-6">
-          <figure class="mb-0">
-            <img src="<?php echo esc_url($hero_data['image_url']); ?>"
-              class="img-fluid rounded shadow-sm object-fit-cover w-100" style="max-height: 400px;"
-              alt="<?php echo esc_attr($hero_data['title']); ?>" loading="lazy">
-          </figure>
-        </div>
+<section id="content" class="section-container container <?php if (is_archive()): ?> py-5 <?php endif; ?> my-5">
+  <?php if (!(is_archive())): ?>
+    <header class="d-flex flex-column mb-4">
+      <h1 class="section-title mb-2"><?php echo esc_html($cat_title); ?></h1>
+      <?php if ($cat_description): ?>
+        <p class="section-description text-muted"><?php echo wp_kses_post($cat_description); ?></p>
       <?php endif; ?>
-    </div>
-  </section>
-<?php endif; ?>
+    </header>
+  <?php endif; ?>
+  <?php if (is_category('cases')): ?>
 
-<!-- Posts Grid -->
-<section id="post-list" class="container my-5">
-  <?php if ($query->have_posts()): ?>
-    <div class="row g-4">
-      <?php while ($query->have_posts()):
-        $query->the_post(); ?>
-        <div class="col-12 col-md-6 col-lg-4">
-          <article id="post-<?php the_ID(); ?>" <?php post_class('card h-100 shadow-sm'); ?>>
-            <div class="card-body d-flex flex-column">
-              <h2 class="h5 card-title mb-2">
-                <a href="<?php the_permalink(); ?>"
-                  title="<?php the_title_attribute(); ?>">
-                  <?php the_title(); ?>
-                </a>
-              </h2>
-              <p class="card-text flex-grow-1"><?php echo wp_trim_words(get_the_excerpt(), 15); ?></p>
-<div class="card-footer"></div>
-              <a class=" link link-text" href="<?php the_permalink(); ?>"
-                title="<?php the_title_attribute(); ?>">
-                Leia mais <div class="fa-solid fa-arrow-right"></div>
+
+
+    <?php
+    get_template_part(
+      'template-parts/section/section-links',
+      'section-links',
+      [
+        'link_category_slug' => 'parceiros',
+        'section_id' => 'partners',
+        'custom_title' => 'Convira quem confia em nós!',
+        'custom_description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      ]
+    );
+    ?>
+  <?php endif; ?>
+  <?php if ($category_query->have_posts()): ?>
+    <?php if (is_category('cases')): ?>
+      <header class="section-header mb-5">
+        <h2 class="section-title mb-0">
+          Histórias de Sucesso
+        </h2>
+
+        <div class="section-description my-0">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. </div>
+      </header>
+    <?php endif; ?>
+
+    <?php if (is_category('artigos')): ?>
+      <header class="section-header mb-5">
+        <h2 class="section-title mb-0">
+          Confira nossos textos
+        </h2>
+
+        <div class="section-description my-0">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. </div>
+      </header>
+    <?php endif; ?>
+
+    <div class="post-list row">
+      <?php while ($category_query->have_posts()):
+        $category_query->the_post(); ?>
+        <article id="post-<?php the_ID(); ?>" <?php post_class('col-md-4 mb-4'); ?>>
+          <div class="card h-100 border-0">
+            <?php if (has_post_thumbnail()): ?>
+              <a href="<?php the_permalink(); ?>" class="d-block overflow-hidden ratio ratio-16x9">
+                <?php the_post_thumbnail('large', [
+                  'class' => 'h-100 object-fit-cover card-img img-fluid',
+                  'alt' => get_the_title(),
+                ]); ?>
               </a>
+            <?php endif; ?>
+
+            <div class="card-body">
+              <header>
+                <h3 class="card-title h5 mb-2">
+                  <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
+                    <?php the_title(); ?>
+                  </a>
+                </h3>
+              </header>
+
+              <p class="card-text text-muted small mb-3">
+                <?php echo wp_trim_words(get_the_excerpt(), 25, '...'); ?>
+              </p>
+
+              <footer class="footer-card">
+                <a href="<?php the_permalink(); ?>" class="link-text link-primary">
+                  Continue lendo <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+              </footer>
             </div>
-          </article>
-        </div>
+          </div>
+        </article>
       <?php endwhile; ?>
     </div>
 
+
     <!-- Paginação -->
-    <?php if ($query->max_num_pages > 1): ?>
-      <nav class="mt-5" aria-label="Navegação de páginas">
-        <?php
-        echo paginate_links([
-          'total' => $query->max_num_pages,
-          'current' => $paged,
-          'prev_text' => '<i class="fa-solid fa-chevron-left"></i> Anterior',
-          'next_text' => 'Próxima <i class="fa-solid fa-chevron-right"></i>',
-          'type' => 'list',
-          'class' => 'pagination justify-content-center'
-        ]);
-        ?>
+    <?php
+    $total_pages = $category_query->max_num_pages;
+    $current_page = max(1, $paged);
+
+    if ($total_pages > 1): ?>
+      <nav class="pagination mt-4" aria-label="Paginação">
+        <ul class="pagination-list justify-content-center align-items-center">
+
+          <!-- Primeira -->
+          <?php if ($current_page > 1): ?>
+            <li class="page-item me-3">
+              <a class="page-link pagination-text" href="<?php echo esc_url(get_pagenum_link(1)); ?>"
+                aria-label="Primeira página">
+                <i class="fa-solid fa-arrow-left-long me-2"></i> Primeira
+              </a>
+            </li>
+          <?php endif; ?>
+
+          <!-- Anterior -->
+          <?php if ($current_page > 1): ?>
+            <li class="page-item me-3">
+              <a class="page-link pagination-text" href="<?php echo esc_url(get_pagenum_link($current_page - 1)); ?>"
+                aria-label="Página anterior">
+                <i class="fa-solid fa-arrow-left me-2"></i> Anterior
+              </a>
+            </li>
+          <?php endif; ?>
+
+          <!-- Números -->
+          <?php
+          $links = paginate_links([
+            'total' => $total_pages,
+            'current' => $current_page,
+            'type' => 'array',
+            'end_size' => 1,
+            'mid_size' => 2,
+            'prev_next' => false,
+          ]);
+          if ($links) {
+            foreach ($links as $link) {
+              $active = strpos($link, 'current') !== false ? 'active' : '';
+              echo '<li class="page-item me-3 ' . esc_attr($active) . '">' . wp_kses_post($link) . '</li>';
+            }
+          }
+          ?>
+
+          <!-- Próxima -->
+          <?php if ($current_page < $total_pages): ?>
+            <li class="page-item me-3">
+              <a class="page-link pagination-text" href="<?php echo esc_url(get_pagenum_link($current_page + 1)); ?>"
+                aria-label="Próxima página">
+                Próxima <i class="fa-solid fa-arrow-right ms-2"></i>
+              </a>
+            </li>
+
+            <li class="page-item me-0">
+              <a class="page-link pagination-text" href="<?php echo esc_url(get_pagenum_link($total_pages)); ?>"
+                aria-label="Última página">
+                Última <i class="fa-solid fa-arrow-right-long ms-2"></i>
+              </a>
+            </li>
+          <?php endif; ?>
+        </ul>
+
+        <p class="text-center mt-4 small text-muted">
+          Página <?php echo esc_html($current_page); ?> de <?php echo esc_html($total_pages); ?>
+        </p>
       </nav>
     <?php endif; ?>
 
-    <?php wp_reset_postdata(); ?>
-
   <?php else: ?>
-    <div class="alert alert-info text-center">
-      <i class="fa-solid fa-circle-info me-2"></i>
-      Nenhum evento encontrado.
-    </div>
+    <p class="text-center text-muted">Nenhum post encontrado nesta categoria.</p>
   <?php endif; ?>
 </section>
 
-<?php get_footer(); ?>
+<?php
+
+
+
+wp_reset_postdata();
+get_footer();
+?>

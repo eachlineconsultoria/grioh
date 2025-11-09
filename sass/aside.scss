@@ -3,6 +3,8 @@
    ========================================================================== */
 .aside-contact {
   padding: 1.5rem 2rem;
+  
+    min-height: calc(100% - 3rem);
   p {
     a {
       text-decoration: currentColor wavy underline !important;

@@ -1,80 +1,106 @@
 <?php
+/**
+ * Exibe posts de uma categoria específica com layout padrão de cards
+ *
+ * @param string $category_slug Slug da categoria
+ * @param string $title Título da seção
+ * @param string $post_type Tipo de post (default: 'post')
+ * @param int $posts_per_page Quantidade de posts (default: 3)
+ * @param bool $show_excerpt Exibe resumo (default: true)
+ * @param string $description Texto descritivo (default: '')
+ * @param bool $show_link Mostra link "Ver mais" (default: true)
+ * @param string $link_text Texto do link da seção (default: 'Ver todos')
+ * @param string $card_link_text Texto do link de cada card (default: 'Ler mais')
+ */
 function eachline_posts_by_category(
-  $slug,
+  $category_slug,
   $title = '',
   $post_type = 'post',
-  $limit = 3,
-  $show_text_block = false,
-  $text_block = '',
-  $show_link = false,
-  $link_label = 'Ver todos'
+  $posts_per_page = 3,
+  $show_excerpt = true,
+  $description = '',
+  $show_link = true,
+  $link_text = 'Ver todos',
+  $card_link_text = 'Ler mais'
 ) {
-  $args = [
-    'post_type'      => $post_type,
-    'posts_per_page' => $limit,
-    'category_name'  => $slug,
-  ];
+  // 🔹 Busca categoria
+  $category = get_category_by_slug($category_slug);
+  if (!$category) return;
 
-  $query = new WP_Query($args);
+  // 🔹 Query otimizada
+  $query = new WP_Query([
+    'post_type'           => $post_type,
+    'posts_per_page'      => $posts_per_page,
+    'cat'                 => $category->term_id,
+    'post_status'         => 'publish',
+    'ignore_sticky_posts' => true,
+  ]);
 
-  if ($query->have_posts()) :
-    $category = get_category_by_slug($slug);
-    $category_link = $category ? get_category_link($category->term_id) : '#';
+  if (!$query->have_posts()) return;
 
-    echo "<section id='$slug' class='container section-container section-posts $slug'>";
+  // 🔹 Link da categoria
+  $category_link = get_category_link($category->term_id);
+  ?>
 
-    // Header
-    if ($title || $show_link) {
-      echo "<header class='section-header d-flex justify-content-between align-items-center'>";
-      if ($title) echo "<h2 class='section-title m-0'>$title</h2>";
-      if ($show_link && $category) {
-        echo "<a href='" . esc_url($category_link) . "' class='link-text link-dark'>$link_label<i class='fa-solid fa-arrow-right ms-1'></i></a>";
-      }
-      echo "</header>";
-    }
+  <section class="section-container container category-section my-5">
+    <header class="section-header d-flex justify-content-between align-items-center flex-wrap mb-4">
+      <div>
+        <?php if ($title): ?>
+          <h2 class="section-title mb-2"><?php echo esc_html($title); ?></h2>
+        <?php endif; ?>
 
-    // Texto opcional
-    if ($show_text_block && !empty($text_block)) {
-      echo "<div class='section-text mb-4'>$text_block</div>";
-    }
+        <?php if ($description): ?>
+          <div class="section-description text-muted"><?php echo wp_kses_post($description); ?></div>
+        <?php endif; ?>
+      </div>
 
-    // Loop dinâmico
-    echo '<div class="post-list row">';
-    while ($query->have_posts()) : $query->the_post();
+      <?php if ($show_link): ?>
+        <a href="<?php echo esc_url($category_link); ?>" 
+           class="link-text link-primary fw-semibold">
+          <?php echo esc_html($link_text); ?> <i class="fa-solid fa-arrow-right ms-1"></i>
+        </a>
+      <?php endif; ?>
+    </header>
 
-      /**
-       * Aqui vem a mágica:
-       * Primeiro tenta carregar um template específico para a categoria.
-       * Se não encontrar, carrega o padrão pelo post_type.
-       * Se ainda assim não houver, cai no fallback 'content.php'.
-       */
-      $template_paths = [
-        "template-parts/loop/{$slug}.php",
-        "template-parts/content-{$post_type}.php",
-        "template-parts/content.php",
-      ];
+    <div class="row post-list">
+      <?php while ($query->have_posts()): $query->the_post(); ?>
+        <article id="post-<?php the_ID(); ?>" <?php post_class('col-md-4 mb-4'); ?>>
+          <div class="card h-100 border-0 shadow-sm">
+            
+            <?php if (has_post_thumbnail()): ?>
+              <a href="<?php the_permalink(); ?>" class="d-block overflow-hidden ratio ratio-16x9">
+                <?php the_post_thumbnail('large', [
+                  'class' => 'card-img-top object-fit-cover img-fluid',
+                  'alt'   => get_the_title(),
+                ]); ?>
+              </a>
+            <?php endif; ?>
 
-      $template_found = false;
-      foreach ($template_paths as $template) {
-        $path = locate_template($template);
-        if ($path) {
-          include $path;
-          $template_found = true;
-          break;
-        }
-      }
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title h5 mb-2">
+                <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
+                  <?php the_title(); ?>
+                </a>
+              </h3>
 
-      if (!$template_found) {
-        // Fallback definitivo
-        echo '<article><h3>' . get_the_title() . '</h3></article>';
-      }
+              <?php if ($show_excerpt): ?>
+                <p class="card-text text-muted small mb-3">
+                  <?php echo wp_trim_words(get_the_excerpt(), 25, '...'); ?>
+                </p>
+              <?php endif; ?>
 
-    endwhile;
-    echo '</div>'; // .post-list
+              <footer class="mt-auto">
+                <a href="<?php the_permalink(); ?>" class="link-text link-primary">
+                  <?php echo esc_html($card_link_text); ?> <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+              </footer>
+            </div>
+          </div>
+        </article>
+      <?php endwhile; ?>
+    </div>
+  </section>
 
-    echo '</section>';
-  endif;
-
+  <?php
   wp_reset_postdata();
 }
-?>

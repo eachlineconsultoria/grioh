@@ -34,7 +34,7 @@
 
       <footer class="footer-card">
         <a href="<?php the_permalink(); ?>" class="link-text link-primary">
-          Ler artigo<i class="fa-solid fa-arrow-right ms-1"></i>
+          Leia o case<i class="fa-solid fa-arrow-right ms-1"></i>
         </a>
       </footer>
 

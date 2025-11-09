@@ -7,24 +7,23 @@ get_header();
 <main>
   <?php get_template_part('template-parts/section/hero'); ?>
 
-
-  <!-- // clientes -->
   <?php
   eachline_posts_by_category(
     'cases',
     'Clientes',
     'post',
     3,
-    false,
-    '<p>Confira novidades e atualizações.</p>',
     true,
-    'Acesse os cases'
+    '<p>Confira nossos projetos de sucesso.</p>',
+    true,
+    'Ver todos os cases',
+    'Ler o case completo'
   );
+
   ?>
 
   <?php get_template_part('template-parts/section/cta'); ?>
 
-  <!-- // parceiros -->
   <?php
 
   get_template_part(
@@ -38,21 +37,20 @@ get_header();
     ]
   ); ?>
 
-  <!-- // artigos -->
   <?php
-
   eachline_posts_by_category(
     'artigos',
     'Artigos',
     'post',
     3,
-    false,
+    true,
     '<p>Confira novidades e atualizações.</p>',
     true,
-    'Ler artigos'
+    'Ver todos os artigos',
+    'Continue lendo'
   );
+
   ?>
-  </section>
 
 </main>
 

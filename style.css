@@ -926,7 +926,8 @@ LINKS E BOTÕES
   display: inline-block;
   font-weight: bold;
   color: var(--color-dark) !important;
-  position: relative; }
+  position: relative;
+  color: var(--color-dark) !important; }
 .link-primary {
   color: var(--color-primary) !important; }
   .link-primary:hover, .link-primary:focus, .link-primary:visited {
@@ -1055,7 +1056,7 @@ LINKS E BOTÕES
 .hero-image:after {
   content: "";
   position: absolute;
-  background: transparent url(assets/img/picture-sign.svg) center no-repeat;
+  background: transparent url(img/picture-sign.svg) center no-repeat;
   right: 2rem;
   bottom: 1rem;
   width: 12rem;
@@ -1089,7 +1090,7 @@ LINKS E BOTÕES
 .testimonial-image:after {
   content: "";
   position: absolute;
-  background: transparent url(assets/img/picture-sign.svg) center no-repeat;
+  background: transparent url(img/picture-sign.svg) center no-repeat;
   right: 2rem;
   bottom: 1rem;
   width: 12rem;
@@ -1156,7 +1157,8 @@ LINKS E BOTÕES
    ASIDE
    ========================================================================== */
 .aside-contact {
-  padding: 1.5rem 2rem; }
+  padding: 1.5rem 2rem;
+  min-height: calc(100% - 3rem); }
   .aside-contact p a {
     text-decoration: currentColor wavy underline !important; }
   .aside-contact .wp-block-heading {
@@ -1208,7 +1210,7 @@ LINKS E BOTÕES
   .footer-branding {
     margin: 6rem auto; }
   .footer-links, .footer-credits {
-    font-size: 0.75rem; }
+    font-size: 0.825rem; }
   .footer-links {
     display: flex;
     align-items: center;

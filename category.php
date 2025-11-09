@@ -36,6 +36,9 @@ $category_query = new WP_Query([
     </header>
   <?php endif; ?>
   <?php if (is_category('cases')): ?>
+
+
+
     <?php
     get_template_part(
       'template-parts/section/section-links',
@@ -50,6 +53,32 @@ $category_query = new WP_Query([
     ?>
   <?php endif; ?>
   <?php if ($category_query->have_posts()): ?>
+    <?php if (is_category('cases')): ?>
+      <header class="section-header mb-5">
+        <h2 class="section-title mb-0">
+          Histórias de Sucesso
+        </h2>
+
+        <div class="section-description my-0">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. </div>
+      </header>
+    <?php endif; ?>
+    
+    <?php if (is_category('artigos')): ?>
+      <header class="section-header mb-5">
+        <h2 class="section-title mb-0">
+          Confira nossos artigos
+        </h2>
+
+        <div class="section-description my-0">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. </div>
+      </header>
+    <?php endif; ?>
+    
     <div class="post-list row">
       <?php while ($category_query->have_posts()):
         $category_query->the_post(); ?>
@@ -79,7 +108,7 @@ $category_query = new WP_Query([
 
               <footer class="footer-card">
                 <a href="<?php the_permalink(); ?>" class="link-text link-primary">
-                  Ler artigo <i class="fa-solid fa-arrow-right ms-1"></i>
+                  Continue lendo <i class="fa-solid fa-arrow-right ms-1"></i>
                 </a>
               </footer>
             </div>

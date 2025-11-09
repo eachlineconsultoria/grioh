@@ -14,9 +14,9 @@ $services = [
 ];
 ?>
 
-<main id="main-content">
+<main id="main-content" class="site-main">
 
-  <?php require get_template_directory() . '/section/hero.php'; ?>
+  <?php get_template_part('template-parts/section/hero'); ?>
 
   <?php if (!empty($services['show'])): ?>
     <section id="services" class="container section-container services">
@@ -80,6 +80,69 @@ $services = [
       <?php endif; ?>
     </section>
   <?php endif; ?>
+<section id="servicos" class="container section-container my-5">
+  <header class="section-header text-center text-md-start mb-4">
+    <h2 class="section-title">Todos os serviços</h2>
+    <p class="section-description">Confira os serviços disponíveis e saiba mais sobre cada um.</p>
+  </header>
+
+  <?php
+  // Loop padrão da categoria "servicos"
+  $servicos_query = new WP_Query([
+    'post_type'      => 'post',
+    'posts_per_page' => -1,
+    'category_name'  => 'servicos',
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+  ]);
+
+  if ($servicos_query->have_posts()): ?>
+    <div class="row g-4">
+      <?php while ($servicos_query->have_posts()): $servicos_query->the_post(); ?>
+        <article id="post-<?php the_ID(); ?>" <?php post_class('col-md-4 col-sm-6'); ?>>
+          <div class="card h-100 border-0">
+
+            <?php if (has_post_thumbnail()): ?>
+              <a href="<?php the_permalink(); ?>" class="ratio ratio-16x9 d-block overflow-hidden">
+                <?php the_post_thumbnail('large', [
+                  'class' => 'card-img-top object-fit-cover img-fluid rounded-0 rounded-top',
+                  'alt'   => esc_attr(get_the_title()),
+                ]); ?>
+              </a>
+            <?php else: ?>
+              <img src="<?php echo esc_url(get_template_directory_uri() . '/img/case-default.jpg'); ?>"
+                   alt="Imagem padrão"
+                   class="img-fluid rounded-top object-fit-cover w-100">
+            <?php endif; ?>
+
+            <div class="card-body rounded-bottom d-flex flex-column">
+              <h3 class="card-title h5 mb-2">
+                <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
+                  <?php the_title(); ?>
+                </a>
+              </h3>
+
+              <p class="card-text text-muted flex-grow-1">
+                <?php echo wp_trim_words(get_the_excerpt(), 25, '...'); ?>
+              </p>
+
+              <a href="<?php the_permalink(); ?>" class="link-text link-primary mt-2">
+                Saiba mais <i class="fa-solid fa-arrow-right ms-1"></i>
+              </a>
+            </div>
+
+          </div>
+        </article>
+      <?php endwhile; ?>
+    </div>
+
+  <?php else: ?>
+    <p class="text-center text-muted my-5">Nenhum serviço encontrado no momento.</p>
+  <?php endif; ?>
+
+  <?php wp_reset_postdata(); ?>
+</section>
+
 
   <?php
   get_template_part('section/bignumbers');
@@ -93,9 +156,22 @@ $services = [
   <?php endif; ?>
 
   <?php
-  require get_template_directory() . '/section/testimonial.php';
-  require get_template_directory() . '/section/cases.php';
+  get_template_part('template-parts/section/testimonial');  ?>
+
+<!-- // clientes -->
+  <?php
+  eachline_posts_by_category(
+    'cases',
+    'Clientes',
+    'post',
+    3,
+    false,
+    '<p>Confira novidades e atualizações.</p>',
+    true,
+    'Acesse os cases'
+  );
   ?>
+
 
 </main>
 

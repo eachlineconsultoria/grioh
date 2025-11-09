@@ -11,37 +11,40 @@
  */
 
 get_header();
+get_template_part('template-parts/section/hero');
+
 ?>
 
 <main id="main-content" class="site-main">
 
-  <?php require_once get_template_directory() . '/section/hero.php'; ?>
 
   <?php if (have_posts()): ?>
-    <?php while (have_posts()): the_post(); ?>
+    <?php while (have_posts()):
+      the_post(); ?>
 
-      <article id="page-<?php the_ID(); ?>" <?php post_class('container section-container page-content'); ?>>
+      <article id="page-<?php the_ID(); ?>" <?php post_class('"post-content content site-main py-5 container section-container page-content'); ?>>
 
         <div id="content" class="entry-content">
-          <?php
+          <div class=" col-12 col-md-8 mx-auto entry-content mb-5">
+            <?php
           the_content();
 
           // Paginação interna de páginas divididas com <!--nextpage-->
           wp_link_pages([
             'before' => '<div class="page-links">' . __('Páginas:', 'eachline'),
-            'after'  => '</div>',
+            'after' => '</div>',
           ]);
           ?>
+          </div>
         </div>
 
       </article>
 
     <?php endwhile; ?>
   <?php endif; ?>
- <?php /* Cases */ $limit = 1;
-  require_once get_template_directory() . '/section/cases.php'; ?>
 
-  
+
+
 </main>
 
 <?php get_footer(); ?>

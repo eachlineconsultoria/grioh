@@ -1,58 +1,94 @@
 <?php
 function eachline_related_posts(
-  $title = 'Artigos relacionados',
+  $title = 'Conteúdo relacionado',
   $posts_per_page = 3,
   $show_link = true,
-  $link_text = 'Ver todos os artigos'
+  $link_text = 'Veja todos'
 ) {
   global $post;
   if (!$post) return;
 
   $current_id = $post->ID;
-  $related_query = null;
 
-  // 1️⃣ Busca por TAG
-  $tags = wp_get_post_tags($current_id);
-  if ($tags) {
-    $tag_ids = wp_list_pluck($tags, 'term_id');
-    $related_query = new WP_Query([
-      'tag__in' => $tag_ids,
-      'post__not_in' => [$current_id],
-      'posts_per_page' => $posts_per_page,
-      'ignore_sticky_posts' => true
-    ]);
+  // 🔹 Coleta tags e categorias do post atual
+  $tag_ids = wp_list_pluck(wp_get_post_tags($current_id), 'term_id');
+  $categories = get_the_category($current_id);
+  $cat_ids = wp_list_pluck($categories, 'term_id');
+
+  // 🔹 Obtém a primeira categoria (principal) para o botão
+  $primary_cat_link = '';
+  if (!empty($categories)) {
+    $primary_cat_link = get_category_link($categories[0]->term_id);
   }
 
-  // 2️⃣ Fallback: busca por CATEGORIA
-  if (!$related_query || !$related_query->have_posts()) {
-    $categories = wp_get_post_categories($current_id);
-    if ($categories) {
-      $related_query = new WP_Query([
-        'category__in' => $categories,
-        'post__not_in' => [$current_id],
-        'posts_per_page' => $posts_per_page,
-        'ignore_sticky_posts' => true
-      ]);
+  // 🔹 Query híbrida: posts com mesma TAG e CATEGORIA
+  $args = [
+    'post_type'           => 'post',
+    'posts_per_page'      => $posts_per_page,
+    'post__not_in'        => [$current_id],
+    'ignore_sticky_posts' => true,
+    'tax_query' => [
+      'relation' => 'AND',
+    ],
+  ];
+
+  if (!empty($tag_ids)) {
+    $args['tax_query'][] = [
+      'taxonomy' => 'post_tag',
+      'field'    => 'term_id',
+      'terms'    => $tag_ids,
+    ];
+  }
+
+  if (!empty($cat_ids)) {
+    $args['tax_query'][] = [
+      'taxonomy' => 'category',
+      'field'    => 'term_id',
+      'terms'    => $cat_ids,
+    ];
+  }
+
+  // 🔹 Executa query
+  $related_query = new WP_Query($args);
+
+  // 🔹 Fallback (se não achar combinação exata)
+  if (!$related_query->have_posts()) {
+    $args['tax_query'] = [];
+
+    if (!empty($tag_ids)) {
+      $args['tax_query'][] = [
+        'taxonomy' => 'post_tag',
+        'field'    => 'term_id',
+        'terms'    => $tag_ids,
+      ];
+    } elseif (!empty($cat_ids)) {
+      $args['tax_query'][] = [
+        'taxonomy' => 'category',
+        'field'    => 'term_id',
+        'terms'    => $cat_ids,
+      ];
     }
+
+    $related_query = new WP_Query($args);
   }
 
-  // 3️⃣ Se nada encontrado, encerra
-  if (!$related_query || !$related_query->have_posts()) return;
+  // 🔹 Sai se nada encontrado
+  if (!$related_query->have_posts()) return;
   ?>
 
   <section class="related-posts container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="h3 m-0 fw-bold"><?php echo esc_html($title); ?></h2>
-      <?php if ($show_link): ?>
-        <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="link-text link-secondary">
+
+      <?php if ($show_link && !empty($primary_cat_link)): ?>
+        <a href="<?php echo esc_url($primary_cat_link); ?>" class="link-text link-secondary">
           <?php echo esc_html($link_text); ?> <i class="fa-solid fa-arrow-right"></i>
         </a>
       <?php endif; ?>
     </div>
 
-    <!-- 🔹 Mantém a estrutura padrão usada em post-category -->
     <div class="post-list row">
-      <?php while ($related_query->have_posts()) : $related_query->the_post(); ?>
+      <?php while ($related_query->have_posts()): $related_query->the_post(); ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class('col-md-4 mb-4'); ?>>
           <div class="card h-100 border-0">
             <?php if (has_post_thumbnail()): ?>
@@ -67,7 +103,7 @@ function eachline_related_posts(
             <div class="card-body">
               <header>
                 <h3 class="card-title h5 mb-2">
-                  <a href="<?php the_permalink(); ?>">
+                  <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
                     <?php the_title(); ?>
                   </a>
                 </h3>

@@ -87,26 +87,22 @@
 	</header>
 
 
-	<!-- Modal de Pesquisa -->
-	<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="searchModalLabel">Pesquisar</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-				</div>
-				<div class="modal-body">
-					<form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-						<div class="input-group">
-							<input id="site-search" type="search" class="form-control" name="s"
-								value="<?php echo esc_attr(get_search_query()); ?>" placeholder="Buscar..." />
-							<button class="btn btn-primary" type="submit">
-								<span class="visually-hidden">Buscar</span>
-								<i class="fa-solid fa-search" aria-hidden="true"></i>
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!-- Botão para abrir modal -->
+<button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#searchModal">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-4">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title fw-bold" id="searchModalLabel">Buscar no site</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body pt-0">
+        <?php get_search_form(); ?>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,24 +36,47 @@ if (!(is_home() || is_front_page() || is_page() || is_single())) {
 }
 
 // ==========================================================
-// 🔸 Lógica de conteúdo do Hero
+// 🔸 Conteúdo textual do Hero
 // ==========================================================
-
-// 1️⃣ Páginas de taxonomia (categoria, tag, etc.)
 if (is_category() || is_tag() || is_tax()) {
   $term = get_queried_object();
   $title = esc_html($term->name ?? '');
   $description = wp_kses_post($term->description ?? '');
-
-// 2️⃣ Páginas com grupo ACF "hero_container" preenchido
 } elseif (!empty($acf_title) || !empty($acf_description) || !empty($button)) {
   $title = $acf_title ?: get_the_title();
   $description = $acf_description ?: get_the_excerpt();
-
-// 3️⃣ Páginas sem ACF — usa título e resumo padrão
 } else {
   $title = get_the_title();
   $description = get_the_excerpt();
+}
+
+// ==========================================================
+// 🔸 Lógica da imagem do Hero (com fallback final)
+// ==========================================================
+$hero_image_url = '';
+
+if (is_single() && has_post_thumbnail() && has_category('servicos')) {
+  // 1️⃣ Featured image de posts da categoria "servicos"
+  $hero_image_url = esc_url(get_the_post_thumbnail_url(null, 'large'));
+
+} elseif (is_category() || is_tag() || is_tax()) {
+  // 2️⃣ Imagem do ACF da categoria/tag
+  $term = get_queried_object();
+  $image_field = get_field('category_image', $term);
+  if (!empty($image_field)) {
+    $hero_image_url = is_array($image_field)
+      ? esc_url($image_field['url'])
+      : esc_url($image_field);
+  }
+
+} elseif (is_page() && has_post_thumbnail()) {
+  // 3️⃣ Imagem destacada da página
+  $hero_image_url = esc_url(get_the_post_thumbnail_url(null, 'large'));
+}
+
+// 4️⃣ Fallback final (imagem padrão do tema)
+if (empty($hero_image_url)) {
+  $hero_image_url = get_template_directory_uri() . '/img/hero-default.jpg';
 }
 ?>
 
@@ -80,20 +103,19 @@ if (is_category() || is_tag() || is_tax()) {
         <div class="hero-icon position-absolute">
           <img src="<?php echo esc_url($icon_base . $icons[$icon_choice]); ?>" 
                alt="Ícone <?php echo esc_attr($icon_choice); ?>" 
-               class="custom-icon" />
+               class="border-0" />
         </div>
       <?php endif; ?>
-
     </div>
 
-    <div class="col-12 col-md-6">
-      <figure class="hero-image mb-0 h-100">
-        <?php if (has_post_thumbnail()): ?>
-          <img src="<?php echo esc_url(get_the_post_thumbnail_url(null, 'large')); ?>"
+    <?php if (!empty($hero_image_url)): ?>
+      <div class="col-12 col-md-6">
+        <figure class="hero-image mb-0 h-100">
+          <img src="<?php echo $hero_image_url; ?>"
                class="img-fluid w-100 h-100 rounded object-fit-cover"
-               alt="<?php echo esc_attr(get_the_title()); ?>">
-        <?php endif; ?>
-      </figure>
-    </div>
+               alt="<?php echo esc_attr($title); ?>">
+        </figure>
+      </div>
+    <?php endif; ?>
   </div>
 </section>
