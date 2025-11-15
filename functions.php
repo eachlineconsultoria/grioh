@@ -156,6 +156,19 @@ function eachline_widgets_init()
 		'after_title' => '',
 	));
 
+	register_sidebar(array(
+		'name' => esc_html__('Página com sidebar', 'eachline'),
+		'id' => 'sidebar',
+		'description' => esc_html__('Adicione widgets à sidebar principal.', 'eachline'),
+		// Remove divs e wrappers
+		'before_widget' => '',
+		'after_widget' => '',
+
+		// Opcional: pode manter os títulos se quiser
+		'before_title' => '',
+		'after_title' => '',
+	));
+
 
 
 	// Bignumbers
