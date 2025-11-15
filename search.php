@@ -78,7 +78,7 @@ $total_results = $search_query_obj->found_posts;
             <div class="card-body d-flex flex-column">
               <header>
                 <h3 class="card-title h5 mb-2">
-                  <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
+                  <a href="<?php the_permalink(); ?>" class="link-text link-primary">
                     <?php echo esc_html(get_the_title()); ?>
                   </a>
                 </h3>
@@ -88,7 +88,7 @@ $total_results = $search_query_obj->found_posts;
                 <?php
                 $excerpt = wp_trim_words(get_the_excerpt(), 25, '...');
                 if ($search_query) {
-                  $highlight = '<mark class="bg-warning-subtle fw-semibold text-dark">' . esc_html($search_query) . '</mark>';
+                  $highlight = '<mark class="fw-bold">' . esc_html($search_query) . '</mark>';
                   echo wp_kses_post(str_ireplace($search_query, $highlight, $excerpt));
                 } else {
                   echo wp_kses_post($excerpt);

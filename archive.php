@@ -94,7 +94,7 @@ $archive_query = new WP_Query($query_args);
             <div class="card-body">
               <header>
                 <h3 class="card-title h5 mb-2">
-                  <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
+                  <a href="<?php the_permalink(); ?>" class="link-text link-primary">
                     <?php the_title(); ?>
                   </a>
                 </h3>

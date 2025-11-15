@@ -1,7 +1,6 @@
 <?php
 /**
  * Template Name: Sobre
- * Description: Template que exibe os serviços a partir de subpáginas.
  * @package Eachline
  */
 

@@ -88,21 +88,21 @@
 
 
 	<!-- Botão para abrir modal -->
-<button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#searchModal">
-  <i class="fa-solid fa-magnifying-glass"></i>
-</button>
+	<button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#searchModal">
+		<i class="fa-solid fa-magnifying-glass"></i>
+	</button>
 
-<!-- Modal -->
-<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 shadow-lg rounded-4">
-      <div class="modal-header border-0 pb-0">
-        <h5 class="modal-title fw-bold" id="searchModalLabel">Buscar no site</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-      </div>
-      <div class="modal-body pt-0">
-        <?php get_search_form(); ?>
-      </div>
-    </div>
-  </div>
-</div>
+	<!-- Modal -->
+	<div class="modal fade" id="searchModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="searchModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content bg-white d-flex align-items-center justify-content-center">
+
+				<div class="modal-body w-100 d-flex flex-column align-items-center justify-content-center">
+					<?php get_search_form(); ?>
+					<button type="button" class="btn-close mt-4" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+
+			</div>
+		</div>
+	</div>

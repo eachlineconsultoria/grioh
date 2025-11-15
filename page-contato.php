@@ -144,12 +144,13 @@ get_header();
 
             <h3>Imprensa</h3>
             <p class="mb-0">Acompanhe as notícias na imprensa sobre nós.
-            <div class="d-block w-100"></div>
-            <a class="mt-3 button button-primary " href="/imprensa">Clipping<i
-                class="ms-2 fa-solid fa-arrow-right"></i></a>
-
-
             </p>
+            <div class="d-block w-100"></div>
+            <a class="my-3 button button-primary " href="<?php bloginfo('url'); ?>/category/imprensa">
+              Clipping<i class="ms-2 fa-solid fa-arrow-right"></i>
+            </a>
+            
+
 
             <p>Para material institucional, acesse <a href="sobre/manual-marca">nosso manual da marca</a>.</p>
             <?php if (is_active_sidebar('aside-contact')): ?>

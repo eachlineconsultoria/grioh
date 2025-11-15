@@ -8,23 +8,23 @@ $hero_container = get_field('hero_container');
 $hero_container = is_array($hero_container) ? $hero_container : [];
 
 // 🔹 Extrai os subcampos do grupo
-$acf_title       = trim($hero_container['hero_title'] ?? '');
+$acf_title = trim($hero_container['hero_title'] ?? '');
 $acf_description = trim($hero_container['hero_description'] ?? '');
-$icon_choice     = $hero_container['icon_choice'] ?? '';
-$button          = $hero_container['hero_button'] ?? [];
+$icon_choice = $hero_container['icon_choice'] ?? '';
+$button = $hero_container['hero_button'] ?? [];
 
 // 🔹 Campos internos do grupo "hero_button"
-$link  = esc_url($button['hero_button_link'] ?? '#');
-$text  = esc_html($button['hero_button_text'] ?? '');
-$icon  = $button['hero_button_icon'] ?? '';
+$link = esc_url($button['hero_button_link'] ?? '#');
+$text = esc_html($button['hero_button_text'] ?? '');
+$icon = $button['hero_button_icon'] ?? '';
 $icon_base = get_template_directory_uri() . '/img/icons/';
 
 // 🔹 Fallback de ícones SVG randômicos
 $icons = [
   'square' => 'icon-square.svg',
   'circle' => 'icon-circle.svg',
-  'equal'  => 'icon-equal.svg',
-  'arrow'  => 'icon-arrow.svg',
+  'equal' => 'icon-equal.svg',
+  'arrow' => 'icon-arrow.svg',
 ];
 if (empty($icon_choice)) {
   $icon_choice = array_rand($icons);
@@ -82,7 +82,8 @@ if (empty($hero_image_url)) {
 
 <section id="hero" class="container custom-page-header hero container">
   <div class="row">
-    <div class="section hero-content position-relative d-flex flex-column justify-content-center align-self-start col-12 col-md-6 mb-3 mb-md-0">
+    <div
+      class="section hero-content position-relative d-flex flex-column justify-content-center align-self-start col-12 col-md-6 mb-3 mb-md-0">
 
       <?php if (!empty($title)): ?>
         <h1 class="section-title"><?php echo esc_html($title); ?></h1>
@@ -92,6 +93,14 @@ if (empty($hero_image_url)) {
         <p class="section-description"><?php echo wp_kses_post($description); ?></p>
       <?php endif; ?>
 
+      <?php
+      if (is_category() || is_tag() || is_tax()) {
+        $text = 'Confira';
+        $icon = 'fa-solid fa-arrow-down';
+        $link = '#content';
+      }
+      ?>
+
       <?php if (!empty($text)): ?>
         <a href="<?php echo $link; ?>" class="hero-link link-text link-primary">
           <?php echo $text; ?>
@@ -99,11 +108,11 @@ if (empty($hero_image_url)) {
         </a>
       <?php endif; ?>
 
+
       <?php if (!empty($icon_choice) && isset($icons[$icon_choice])): ?>
         <div class="hero-icon position-absolute">
-          <img src="<?php echo esc_url($icon_base . $icons[$icon_choice]); ?>" 
-               alt="Ícone <?php echo esc_attr($icon_choice); ?>" 
-               class="border-0" />
+          <img src="<?php echo esc_url($icon_base . $icons[$icon_choice]); ?>"
+            alt="Ícone <?php echo esc_attr($icon_choice); ?>" class="border-0" />
         </div>
       <?php endif; ?>
     </div>
@@ -111,9 +120,8 @@ if (empty($hero_image_url)) {
     <?php if (!empty($hero_image_url)): ?>
       <div class="col-12 col-md-6">
         <figure class="hero-image mb-0 h-100">
-          <img src="<?php echo $hero_image_url; ?>"
-               class="img-fluid w-100 h-100 rounded object-fit-cover"
-               alt="<?php echo esc_attr($title); ?>">
+          <img src="<?php echo $hero_image_url; ?>" class="img-fluid w-100 h-100 rounded object-fit-cover"
+            alt="<?php echo esc_attr($title); ?>">
         </figure>
       </div>
     <?php endif; ?>

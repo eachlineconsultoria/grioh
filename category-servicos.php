@@ -80,14 +80,13 @@ $services = [
       <?php endif; ?>
     </section>
   <?php endif; ?>
-<section id="servicos" class="container section-container my-5">
+<section id="content" class="container section-container my-5">
   <header class="section-header text-center text-md-start mb-4">
     <h2 class="section-title">Todos os serviços</h2>
     <p class="section-description">Confira os serviços disponíveis e saiba mais sobre cada um.</p>
   </header>
 
   <?php
-  // Loop padrão da categoria "servicos"
   $servicos_query = new WP_Query([
     'post_type'      => 'post',
     'posts_per_page' => -1,
@@ -117,7 +116,7 @@ $services = [
 
             <div class="card-body rounded-bottom d-flex flex-column">
               <h3 class="card-title h5 mb-2">
-                <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
+                <a href="<?php the_permalink(); ?>" class="link-text link-primary">
                   <?php the_title(); ?>
                 </a>
               </h3>

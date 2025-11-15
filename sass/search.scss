@@ -1,0 +1,16 @@
+.search-form {
+  button,
+  input {
+    min-height: 3rem;
+  }
+}
+#button-search {
+  min-width: 3rem;
+  background-color: var(--color-secondary);
+  color: #fff;
+  &:hover,
+  &:focus {
+    background-color: var(--color-primary);
+    color: #fff;
+  }
+}

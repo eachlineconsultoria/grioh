@@ -991,6 +991,17 @@ LINKS E BOTÕES
       color: var(--color-dark);
       border-color: var(--color-dark); }
 
+.social-share-copy {
+  color: var(--email); }
+.social-share-linkedin {
+  color: var(--linkedin); }
+.social-share-x {
+  color: var(--x); }
+.social-share-facebook {
+  color: var(--facebook); }
+.social-share-bluesky {
+  color: var(--bluesky); }
+
 /* ==========================================================================
   MENU E NAVEGAÇÃO
 ========================================================================== */
@@ -1286,6 +1297,18 @@ form .form-control {
   font-weight: normal; }
 .modal-social {
   font-size: 1rem; }
+
+.search-form button,
+.search-form input {
+  min-height: 3rem; }
+
+#button-search {
+  min-width: 3rem;
+  background-color: var(--color-secondary);
+  color: #fff; }
+  #button-search:hover, #button-search:focus {
+    background-color: var(--color-primary);
+    color: #fff; }
 
 .contact-way {
   margin: 4rem 0; }
