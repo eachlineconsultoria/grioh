@@ -1,42 +1,64 @@
-/* global wp, jQuery */
+/* global wp */
 /**
- * File customizer.js.
+ * customizer.js — versão otimizada
  *
- * Theme Customizer enhancements for a better user experience.
- *
- * Contains handlers to make Theme Customizer preview reload changes asynchronously.
+ * Atualiza elementos no preview do Customizer em tempo real
+ * usando apenas JavaScript moderno (sem jQuery).
  */
 
-( function( $ ) {
-	// Site title and description.
-	wp.customize( 'blogname', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-title a' ).text( to );
-		} );
-	} );
-	wp.customize( 'blogdescription', function( value ) {
-		value.bind( function( to ) {
-			$( '.site-description' ).text( to );
-		} );
-	} );
+(function () {
 
-	// Header text color.
-	wp.customize( 'header_textcolor', function( value ) {
-		value.bind( function( to ) {
-			if ( 'blank' === to ) {
-				$( '.site-title, .site-description' ).css( {
+	/**
+	 * Helper para atualizar texto de seletores
+	 */
+	function updateText(selector, value) {
+		document.querySelectorAll(selector).forEach(el => {
+			el.textContent = value;
+		});
+	}
+
+	/**
+	 * Helper para aplicar estilos
+	 */
+	function updateStyle(selector, styles) {
+		document.querySelectorAll(selector).forEach(el => {
+			Object.assign(el.style, styles);
+		});
+	}
+
+	// 1) Nome do site
+	wp.customize('blogname', value => {
+		value.bind(to => updateText('.site-title a', to));
+	});
+
+	// 2) Descrição / tagline
+	wp.customize('blogdescription', value => {
+		value.bind(to => updateText('.site-description', to));
+	});
+
+	// 3) Cor do texto do cabeçalho
+	wp.customize('header_textcolor', value => {
+		value.bind(to => {
+
+			// Oculto
+			if (to === 'blank') {
+				updateStyle('.site-title, .site-description', {
 					clip: 'rect(1px, 1px, 1px, 1px)',
-					position: 'absolute',
-				} );
-			} else {
-				$( '.site-title, .site-description' ).css( {
-					clip: 'auto',
-					position: 'relative',
-				} );
-				$( '.site-title a, .site-description' ).css( {
-					color: to,
-				} );
+					position: 'absolute'
+				});
+				return;
 			}
-		} );
-	} );
-}( jQuery ) );
+
+			// Visível
+			updateStyle('.site-title, .site-description', {
+				clip: 'auto',
+				position: 'relative'
+			});
+
+			updateStyle('.site-title a, .site-description', {
+				color: to
+			});
+		});
+	});
+
+})();

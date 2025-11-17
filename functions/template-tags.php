@@ -1,165 +1,183 @@
 <?php
 /**
- * Custom template tags for this theme
- *
- * Eventually, some of the functionality here could be replaced by core features.
+ * Custom template tags for Eachline Theme
  *
  * @package Eachline
  */
 
-if ( ! function_exists( 'eachline_posted_on' ) ) :
-	/**
-	 * Prints HTML with meta information for the current post-date/time.
-	 */
-	function eachline_posted_on() {
-		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
-		}
+if (!defined('ABSPATH')) exit;
 
-		$time_string = sprintf(
-			$time_string,
-			esc_attr( get_the_date( DATE_W3C ) ),
-			esc_html( get_the_date() ),
-			esc_attr( get_the_modified_date( DATE_W3C ) ),
-			esc_html( get_the_modified_date() )
-		);
+/* -------------------------------------------------------
+ * 1. DATA DO POST
+ * ------------------------------------------------------- */
+if (!function_exists('eachline_posted_on')) :
+    function eachline_posted_on() {
 
-		$posted_on = sprintf(
-			/* translators: %s: post date. */
-			esc_html_x( 'Posted on %s', 'post date', 'eachline' ),
-			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-		);
+        $published = get_the_date(DATE_W3C);
+        $modified  = get_the_modified_date(DATE_W3C);
 
-		echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        // HTML da data (acessível + SEO-friendly)
+        $time_html = sprintf(
+            '<time class="entry-date published" datetime="%1$s">%2$s</time>',
+            esc_attr($published),
+            esc_html(get_the_date())
+        );
 
-	}
+        // Se houve atualização, adiciona segundo <time>
+        if ($published !== $modified) {
+            $time_html .= sprintf(
+                '<time class="updated" datetime="%1$s">%2$s</time>',
+                esc_attr($modified),
+                esc_html(get_the_modified_date())
+            );
+        }
+
+        echo '<span class="posted-on">';
+        echo sprintf(
+            wp_kses(
+                __('Posted on %s', 'eachline'),
+                ['a' => ['href' => [], 'rel' => []], 'time' => ['datetime' => [], 'class' => []]]
+            ),
+            '<a href="' . esc_url(get_permalink()) . '" rel="bookmark">' . $time_html . '</a>'
+        );
+        echo '</span>';
+    }
 endif;
 
-if ( ! function_exists( 'eachline_posted_by' ) ) :
-	/**
-	 * Prints HTML with meta information for the current author.
-	 */
-	function eachline_posted_by() {
-		$byline = sprintf(
-			/* translators: %s: post author. */
-			esc_html_x( 'by %s', 'post author', 'eachline' ),
-			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
-		);
 
-		echo '<span class="byline"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+/* -------------------------------------------------------
+ * 2. AUTOR DO POST
+ * ------------------------------------------------------- */
+if (!function_exists('eachline_posted_by')) :
+    function eachline_posted_by() {
 
-	}
+        $author_url = esc_url(get_author_posts_url(get_the_author_meta('ID')));
+        $author_name = esc_html(get_the_author());
+
+        echo '<span class="byline">';
+        printf(
+            wp_kses(
+                __('by %s', 'eachline'),
+                ['span' => ['class' => []], 'a' => ['href' => [], 'class' => []]]
+            ),
+            '<span class="author vcard"><a class="url fn n" href="' . $author_url . '">' . $author_name . '</a></span>'
+        );
+        echo '</span>';
+    }
 endif;
 
-if ( ! function_exists( 'eachline_entry_footer' ) ) :
-	/**
-	 * Prints HTML with meta information for the categories, tags and comments.
-	 */
-	function eachline_entry_footer() {
-		// Hide category and tag text for pages.
-		if ( 'post' === get_post_type() ) {
-			/* translators: used between list items, there is a space after the comma */
-			$categories_list = get_the_category_list( esc_html__( ', ', 'eachline' ) );
-			if ( $categories_list ) {
-				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'eachline' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
 
-			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'eachline' ) );
-			if ( $tags_list ) {
-				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'eachline' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
-		}
+/* -------------------------------------------------------
+ * 3. FOOTER DO POST (categorias, tags, comentários)
+ * ------------------------------------------------------- */
+if (!function_exists('eachline_entry_footer')) :
+    function eachline_entry_footer() {
 
-		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-			echo '<span class="comments-link">';
-			comments_popup_link(
-				sprintf(
-					wp_kses(
-						/* translators: %s: post title */
-						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'eachline' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					wp_kses_post( get_the_title() )
-				)
-			);
-			echo '</span>';
-		}
+        if ('post' === get_post_type()) {
 
-		edit_post_link(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Edit <span class="screen-reader-text">%s</span>', 'eachline' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			),
-			'<span class="edit-link">',
-			'</span>'
-		);
-	}
+            // Categorias
+            $categories = get_the_category_list(', ');
+            if ($categories) {
+                echo '<span class="cat-links">';
+                echo sprintf(
+                    wp_kses(
+                        __('Posted in %s', 'eachline'),
+                        ['span' => ['class' => []], 'a' => ['href' => [], 'rel' => []]]
+                    ),
+                    $categories
+                );
+                echo '</span>';
+            }
+
+            // Tags
+            $tags = get_the_tag_list('', ', ');
+            if ($tags) {
+                echo '<span class="tags-links">';
+                echo sprintf(
+                    wp_kses(
+                        __('Tagged %s', 'eachline'),
+                        ['span' => ['class' => []], 'a' => ['href' => [], 'rel' => []]]
+                    ),
+                    $tags
+                );
+                echo '</span>';
+            }
+        }
+
+        // Comentários
+        if (!is_single() && !post_password_required() && (comments_open() || get_comments_number())) {
+            echo '<span class="comments-link">';
+            comments_popup_link(
+                sprintf(
+                    wp_kses(
+                        __('Leave a Comment<span class="screen-reader-text"> on %s</span>', 'eachline'),
+                        ['span' => ['class' => []]]
+                    ),
+                    esc_html(get_the_title())
+                )
+            );
+            echo '</span>';
+        }
+
+        // Editar
+        edit_post_link(
+            sprintf(
+                wp_kses(
+                    __('Edit <span class="screen-reader-text">%s</span>', 'eachline'),
+                    ['span' => ['class' => []]]
+                ),
+                esc_html(get_the_title())
+            ),
+            '<span class="edit-link">',
+            '</span>'
+        );
+    }
 endif;
 
-if ( ! function_exists( 'eachline_post_thumbnail' ) ) :
-	/**
-	 * Displays an optional post thumbnail.
-	 *
-	 * Wraps the post thumbnail in an anchor element on index views, or a div
-	 * element when on single views.
-	 */
-	function eachline_post_thumbnail() {
-		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
-			return;
-		}
 
-		if ( is_singular() ) :
-			?>
+/* -------------------------------------------------------
+ * 4. MINIATURA DO POST (thumbnail)
+ * ------------------------------------------------------- */
+if (!function_exists('eachline_post_thumbnail')) :
+    function eachline_post_thumbnail() {
 
-			<div class="post-thumbnail">
-				<?php the_post_thumbnail(); ?>
-			</div><!-- .post-thumbnail -->
+        if (post_password_required() || is_attachment() || !has_post_thumbnail()) {
+            return;
+        }
 
-		<?php else : ?>
+        // Single view
+        if (is_singular()) {
+            echo '<div class="post-thumbnail">';
+            the_post_thumbnail('large', [
+                'class' => 'img-fluid',
+                'loading' => 'lazy',
+                'decoding' => 'async'
+            ]);
+            echo '</div>';
+            return;
+        }
 
-			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
-				<?php
-					the_post_thumbnail(
-						'post-thumbnail',
-						array(
-							'alt' => the_title_attribute(
-								array(
-									'echo' => false,
-								)
-							),
-						)
-					);
-				?>
-			</a>
+        // Lista / arquivo
+        $alt = the_title_attribute(['echo' => false]);
 
-			<?php
-		endif; // End is_singular().
-	}
+        echo '<a class="post-thumbnail" href="' . esc_url(get_permalink()) . '" aria-hidden="true" tabindex="-1">';
+        the_post_thumbnail('medium_large', [
+            'alt'      => esc_attr($alt),
+            'class'    => 'img-fluid',
+            'loading'  => 'lazy',
+            'decoding' => 'async',
+            'fetchpriority' => 'low'
+        ]);
+        echo '</a>';
+    }
 endif;
 
-if ( ! function_exists( 'wp_body_open' ) ) :
-	/**
-	 * Shim for sites older than 5.2.
-	 *
-	 * @link https://core.trac.wordpress.org/ticket/12563
-	 */
-	function wp_body_open() {
-		do_action( 'wp_body_open' );
-	}
+
+/* -------------------------------------------------------
+ * 5. Fallback para wp_body_open (compatibilidade)
+ * ------------------------------------------------------- */
+if (!function_exists('wp_body_open')) :
+    function wp_body_open() {
+        do_action('wp_body_open');
+    }
 endif;

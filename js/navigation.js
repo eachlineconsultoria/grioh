@@ -1,99 +1,89 @@
 /**
- * File navigation.js.
+ * navigation.js — versão otimizada
  *
- * Handles toggling the navigation menu for small screens and enables TAB key
- * navigation support for dropdown menus.
+ * Melhora:
+ * - performance
+ * - acessibilidade (ARIA + foco)
+ * - organização
+ * - robustez (sem uso de event global)
+ * - suporte mobile/tablet
  */
-( function() {
-	const siteNavigation = document.getElementById( 'site-navigation' );
 
-	// Return early if the navigation doesn't exist.
-	if ( ! siteNavigation ) {
-		return;
-	}
+(() => {
 
-	const button = siteNavigation.getElementsByTagName( 'button' )[ 0 ];
+	const nav = document.getElementById('site-navigation');
+	if (!nav) return;
 
-	// Return early if the button doesn't exist.
-	if ( 'undefined' === typeof button ) {
-		return;
-	}
+	const button = nav.querySelector('button[aria-controls]');
+	const menu = nav.querySelector('ul');
 
-	const menu = siteNavigation.getElementsByTagName( 'ul' )[ 0 ];
+	// Se menu ou botão não existem, interrompe.
+	if (!button || !menu) return;
 
-	// Hide menu toggle button if menu is empty and return early.
-	if ( 'undefined' === typeof menu ) {
-		button.style.display = 'none';
-		return;
-	}
+	// Garante classe de navegação
+	menu.classList.add('nav-menu');
 
-	if ( ! menu.classList.contains( 'nav-menu' ) ) {
-		menu.classList.add( 'nav-menu' );
-	}
+	// 🔹 Toggle do menu mobile
+	button.addEventListener('click', () => {
+		const expanded = button.getAttribute('aria-expanded') === 'true';
+		button.setAttribute('aria-expanded', String(!expanded));
+		nav.classList.toggle('toggled');
+	});
 
-	// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
-	button.addEventListener( 'click', function() {
-		siteNavigation.classList.toggle( 'toggled' );
-
-		if ( button.getAttribute( 'aria-expanded' ) === 'true' ) {
-			button.setAttribute( 'aria-expanded', 'false' );
-		} else {
-			button.setAttribute( 'aria-expanded', 'true' );
+	// 🔹 Fecha menu ao clicar fora
+	document.addEventListener('click', e => {
+		if (!nav.contains(e.target)) {
+			nav.classList.remove('toggled');
+			button.setAttribute('aria-expanded', 'false');
 		}
-	} );
+	});
 
-	// Remove the .toggled class and set aria-expanded to false when the user clicks outside the navigation.
-	document.addEventListener( 'click', function( event ) {
-		const isClickInside = siteNavigation.contains( event.target );
+	// 🔹 Acessibilidade para dropdowns
+	const itemsWithChildren = nav.querySelectorAll(
+		'.menu-item-has-children, .page_item_has_children'
+	);
 
-		if ( ! isClickInside ) {
-			siteNavigation.classList.remove( 'toggled' );
-			button.setAttribute( 'aria-expanded', 'false' );
-		}
-	} );
+	itemsWithChildren.forEach(item => {
+		const link = item.querySelector('a');
+		const sub = item.querySelector('ul');
 
-	// Get all the link elements within the menu.
-	const links = menu.getElementsByTagName( 'a' );
+		if (!link || !sub) return;
 
-	// Get all the link elements with children within the menu.
-	const linksWithChildren = menu.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a' );
+		// Adiciona ARIA para leitores de tela
+		link.setAttribute('aria-haspopup', 'true');
+		link.setAttribute('aria-expanded', 'false');
 
-	// Toggle focus each time a menu link is focused or blurred.
-	for ( const link of links ) {
-		link.addEventListener( 'focus', toggleFocus, true );
-		link.addEventListener( 'blur', toggleFocus, true );
-	}
+		// Clique ou toque abre dropdown
+		link.addEventListener('click', e => {
+			if (window.innerWidth > 992) return; // desktop usa hover do CSS
 
-	// Toggle focus each time a menu link with children receive a touch event.
-	for ( const link of linksWithChildren ) {
-		link.addEventListener( 'touchstart', toggleFocus, false );
-	}
+			e.preventDefault();
 
-	/**
-	 * Sets or removes .focus class on an element.
-	 */
-	function toggleFocus() {
-		if ( event.type === 'focus' || event.type === 'blur' ) {
-			let self = this;
-			// Move up through the ancestors of the current link until we hit .nav-menu.
-			while ( ! self.classList.contains( 'nav-menu' ) ) {
-				// On li elements toggle the class .focus.
-				if ( 'li' === self.tagName.toLowerCase() ) {
-					self.classList.toggle( 'focus' );
+			const isOpen = item.classList.toggle('focus');
+			link.setAttribute('aria-expanded', String(isOpen));
+
+			// Fecha outros abertos
+			itemsWithChildren.forEach(other => {
+				if (other !== item) {
+					other.classList.remove('focus');
+					const otherLink = other.querySelector('a');
+					if (otherLink) {
+						otherLink.setAttribute('aria-expanded', 'false');
+					}
 				}
-				self = self.parentNode;
-			}
-		}
+			});
+		});
 
-		if ( event.type === 'touchstart' ) {
-			const menuItem = this.parentNode;
-			event.preventDefault();
-			for ( const link of menuItem.parentNode.children ) {
-				if ( menuItem !== link ) {
-					link.classList.remove( 'focus' );
-				}
-			}
-			menuItem.classList.toggle( 'focus' );
-		}
-	}
-}() );
+		// Foco via teclado (TAB)
+		link.addEventListener('focus', () => {
+			item.classList.add('focus');
+			link.setAttribute('aria-expanded', 'true');
+		});
+
+		link.addEventListener('blur', () => {
+			item.classList.remove('focus');
+			link.setAttribute('aria-expanded', 'false');
+		});
+	});
+
+})();

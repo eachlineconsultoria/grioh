@@ -1,20 +1,36 @@
-<form role="search" method="get" class="search-form w-50" action="<?php echo esc_url(home_url('/')); ?>">
+<form
+  role="search"
+  method="get"
+  class="search-form w-50"
+  action="<?php echo esc_url(home_url('/')); ?>">
 
   <div class="d-flex gap-2 align-items-center mb-4">
 
-    <input type="search" class=" p-2 form-control" placeholder="Pesquisar no site"
-      value="<?php echo get_search_query(); ?>" name="s" aria-label="Campo de busca" />
+    <label for="modal-search-input" class="visually-hidden">
+      Buscar no site
+    </label>
 
-    <button class=" p-2 btn btn-outline-secondary" type="submit" id="button-search" title="Pesquisar">
+    <input
+      type="search"
+      id="modal-search-input"
+      class="form-control p-2"
+      placeholder="Pesquisar no site"
+      name="s"
+      value="<?php echo esc_attr(get_search_query()); ?>"
+      autocomplete="off"
+      aria-label="Pesquisar no site" />
+
+    <button
+      class="btn btn-outline-secondary p-2"
+      type="submit"
+      id="button-search"
+      title="Pesquisar">
+      <span class="visually-hidden">Buscar</span>
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
 
   </div>
 
-  <!-- Botão de fechar abaixo -->
-  <div class="text-center mt-3">
-    <button type="button" class="btn btn-link text-muted" data-bs-dismiss="modal" aria-label="Fechar">
-    </button>
-  </div>
+
 
 </form>

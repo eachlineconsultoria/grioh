@@ -991,16 +991,32 @@ LINKS E BOTÕES
       color: var(--color-dark);
       border-color: var(--color-dark); }
 
+.social-author-website, .social-author-copy,
+.social-share-website,
 .social-share-copy {
   color: var(--email); }
+.social-author-linkedin,
 .social-share-linkedin {
   color: var(--linkedin); }
+.social-author-twitter, .social-author-x,
+.social-share-twitter,
 .social-share-x {
   color: var(--x); }
+.social-author-facebook,
 .social-share-facebook {
   color: var(--facebook); }
+.social-author-bluesky,
 .social-share-bluesky {
   color: var(--bluesky); }
+.social-author-mastodon,
+.social-share-mastodon {
+  color: var(--mastodon); }
+.social-author-pinterest,
+.social-share-pinterest {
+  color: var(--pinterest); }
+.social-author-instagram,
+.social-share-instagram {
+  color: var(--instagram); }
 
 /* ==========================================================================
   MENU E NAVEGAÇÃO

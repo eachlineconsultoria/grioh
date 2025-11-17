@@ -113,7 +113,10 @@ LINKS E BOTÕES
     }
   }
 }
+
+.social-author,
 .social-share {
+  &-website,
   &-copy {
     color: var(--email);
   }
@@ -121,6 +124,7 @@ LINKS E BOTÕES
   &-linkedin {
     color: var(--linkedin);
   }
+  &-twitter,
   &-x {
     color: var(--x);
   }
@@ -129,5 +133,14 @@ LINKS E BOTÕES
   }
   &-bluesky {
     color: var(--bluesky);
+  }
+  &-mastodon {
+    color: var(--mastodon);
+  }
+  &-pinterest {
+    color: var(--pinterest);
+  }
+  &-instagram {
+    color: var(--instagram);
   }
 }

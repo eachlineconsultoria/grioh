@@ -1,37 +1,53 @@
 <?php
 /**
- * Functions which enhance the theme by hooking into WordPress
+ * Funções auxiliares para melhorar classes do <body> e headers nativos.
  *
  * @package Eachline
  */
 
+if (!defined('ABSPATH')) exit;
+
 /**
- * Adds custom classes to the array of body classes.
+ * Otimiza classes aplicadas ao <body>
  *
- * @param array $classes Classes for the body element.
+ * @param array $classes
  * @return array
  */
-function eachline_body_classes( $classes ) {
-	// Adds a class of hfeed to non-singular pages.
-	if ( ! is_singular() ) {
-		$classes[] = 'hfeed';
-	}
+function eachline_body_classes($classes) {
 
-	// Adds a class of no-sidebar when there is no sidebar present.
-	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-		$classes[] = 'no-sidebar';
-	}
+    // 🔹 Adiciona "hfeed" para páginas de arquivo (não-singulares)
+    if (!is_singular()) {
+        $classes[] = 'hfeed';
+    }
 
-	return $classes;
+    // 🔹 Adiciona "no-sidebar" se a sidebar estiver desativada
+    if (!is_active_sidebar('sidebar-1')) {
+        $classes[] = 'no-sidebar';
+    }
+
+    // 🔹 Tema filho / dev tools
+    if (is_child_theme()) {
+        $classes[] = 'child-theme-active';
+    }
+
+    return $classes;
 }
-add_filter( 'body_class', 'eachline_body_classes' );
+add_filter('body_class', 'eachline_body_classes');
+
 
 /**
- * Add a pingback url auto-discovery header for single posts, pages, or attachments.
+ * Adiciona tag de pingback em páginas que aceitam trackbacks.
+ * Mantido por compatibilidade com RSS, apps antigos e indexadores.
  */
 function eachline_pingback_header() {
-	if ( is_singular() && pings_open() ) {
-		printf( '<link rel="pingback" href="%s">', esc_url( get_bloginfo( 'pingback_url' ) ) );
-	}
+
+    if (!is_singular() || !pings_open()) {
+        return; // early return → melhor performance
+    }
+
+    printf(
+        '<link rel="pingback" href="%s" />' . PHP_EOL,
+        esc_url(get_bloginfo('pingback_url'))
+    );
 }
-add_action( 'wp_head', 'eachline_pingback_header' );
+add_action('wp_head', 'eachline_pingback_header');
