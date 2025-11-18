@@ -10,7 +10,7 @@
     </p>
   </header>
 
-  <?php 
+  <?php
   /**
    * CONFIGURAÇÃO MAILCHIMP — O QUE VOCÊ PRECISA ALTERAR AQUI:
    *
@@ -23,30 +23,31 @@
    * 
    * 4. O campo "EMAIL" deve ter name="EMAIL" (é obrigatório no Mailchimp)
    */
-  $mailchimp_action = "https://SEU-SUBDOMINIO.usXX.list-manage.com/subscribe/post?u=SEU_U&id=SEU_ID";
+  $mailchimp_action = "https://eachline.us14.list-manage.com/subscribe/post?u=d51d140f62043abf424bdc80b&id=48f3ba52f1";
   ?>
 
-  <form 
-    action="<?php echo esc_url($mailchimp_action); ?>" 
-    method="post" 
+  <form
+    action="<?php echo esc_url($mailchimp_action); ?>"
+    method="post"
     class="col-12 col-md-6 newsletter-form"
     target="_blank"
-    novalidate
-  >
+    novalidate>
+
+    <input type="hidden" name="u" value="d51d140f62043abf424bdc80b">
+    <input type="hidden" name="id" value="48f3ba52f1">
     <div class="row gx-2">
 
       <label for="emailNewsletter" class="visually-hidden">Email</label>
 
       <div class="col-7">
-        <input 
+        <input
           class="rounded newsletter-input w-100"
-          type="email" 
-          id="emailNewsletter" 
-          name="EMAIL"  
+          type="email"
+          id="emailNewsletter"
+          name="EMAIL"
           placeholder="Insira seu email"
           required
-          aria-required="true"
-        >
+          aria-required="true">
       </div>
 
       <div class="col-5">
@@ -54,6 +55,9 @@
           Assinar
           <i class="ms-2 fa-solid fa-arrow-right" aria-hidden="true"></i>
         </button>
+
+        <input type="hidden" name="ht" value="b40589a59e763acbffd85b5a320f658093be839e:MTc2MzQ3MDIwMC40MjY3">
+        <input type="hidden" name="mc_signupsource" value="hosted">
       </div>
 
     </div>
@@ -67,7 +71,7 @@
   </form>
 
   <p class="newsletter-info mt-2 text-center">
-    Ao clicar em "Assinar", você confirma que concorda com nossos 
+    Ao clicar em "Assinar", você confirma que concorda com nossos
     <a href="#">Termos e Condições</a>.
   </p>
 

@@ -344,4 +344,4 @@ require_once get_template_directory() . '/functions/user_extra_fields.php';
 /**
  * Remove os textos das urls de categorias e tags
  */
-require_once get_template_directory() . '/functions/remove-slug-category-tag.php';
+//require_once get_template_directory() . '/functions/remove-slug-category-tag.php';
